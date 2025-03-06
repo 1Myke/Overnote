@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Main Background -->
+  <rect width="1200" height="800" fill="#f0f2f5" rx="0" ry="0" />
+  
+  <!-- Application Window -->
+  <rect x="50" y="50" width="1100" height="700" fill="white" stroke="#e1e4e8" stroke-width="1" rx="8" ry="8" />
+  
+  <!-- Left Sidebar -->
+  <rect x="50" y="50" width="250" height="700" fill="#f8f9fa" stroke="#e1e4e8" stroke-width="1" rx="8 0 0 8" ry="8 0 0 8" />
+  
+  <!-- App Logo & Name -->
+  <rect x="80" y="80" width="190" height="50" fill="#f8f9fa" rx="4" ry="4" />
+  <text x="125" y="112" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333">Overnote</text>
+  
+  <!-- New Note Button -->
+  <rect x="80" y="150" width="190" height="40" fill="#4285f4" rx="20" ry="20" />
+  <text x="175" y="175" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">+ New Note</text>
+  
+  <!-- AI Generated Note Button -->
+  <rect x="80" y="200" width="190" height="40" fill="#34a853" rx="20" ry="20" />
+  <text x="175" y="225" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">+ AI Generated Note</text>
+  
+  <!-- Tags Section -->
+  <text x="80" y="300" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#555">Tags</text>
+  
+  <!-- Tags List -->
+  <rect x="80" y="315" width="80" height="25" fill="#e3f2fd" rx="12" ry="12" />
+  <text x="120" y="333" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1976d2">Project</text>
+  
+  <rect x="170" y="315" width="60" height="25" fill="#fefce0" rx="12" ry="12" />
+  <text x="200" y="333" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#856404">Idea</text>
+  
+  <rect x="80" y="345" width="70" height="25" fill="#ffebee" rx="12" ry="12" />
+  <text x="115" y="363" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#c62828">TODO</text>
+  
+  <rect x="160" y="345" width="110" height="25" fill="#e8f5e9" rx="12" ry="12" />
+  <text x="215" y="363" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#388e3c">AI Generated</text>
+  
+  <!-- Add Tag Link -->
+  <text x="100" y="400" font-family="Arial, sans-serif" font-size="14" fill="#4285f4">+ Add Tag</text>
+  
+  <!-- User Profile -->
+  <circle cx="100" cy="690" r="25" fill="#eeeeee" />
+  <text x="150" y="685" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#333">John Doe</text>
+  <text x="150" y="705" font-family="Arial, sans-serif" font-size="12" fill="#757575">Settings</text>
+  
+  <!-- Middle Section - Notes List -->
+  <rect x="300" y="50" width="350" height="700" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  
+  <!-- Search Bar -->
+  <rect x="325" y="80" width="300" height="40" fill="white" stroke="#e1e4e8" stroke-width="1" rx="20" ry="20" />
+  <text x="345" y="105" font-family="Arial, sans-serif" font-size="14" fill="#999">Search notes...</text>
+  
+  <!-- Notes Header -->
+  <rect x="325" y="130" width="300" height="30" fill="white" />
+  <text x="340" y="150" font-family="Arial, sans-serif" font-size="16" fill="#333">All Notes</text>
+  
+  <!-- Sort Dropdown -->
+  <rect x="590" y="130" width="35" height="25" fill="white" stroke="#e1e4e8" stroke-width="1" rx="4" ry="4" />
+  <text x="607" y="148" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#333">Recent ▼</text>
+  
+  <!-- Notes List -->
+  <!-- Note 1 (Active) -->
+  <rect x="325" y="170" width="300" height="80" fill="#e3f2fd" stroke="#90caf9" stroke-width="1" rx="4" ry="4" />
+  <text x="345" y="195" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Software Engineering Project</text>
+  <text x="345" y="215" font-family="Arial, sans-serif" font-size="12" fill="#757575">Planning the architecture for the Notes...</text>
+  <text x="345" y="235" font-family="Arial, sans-serif" font-size="12" fill="#9e9e9e">Today, 2:45 PM</text>
+  <!-- Tag P -->
+  <rect x="590" y="170" width="25" height="25" fill="#e3f2fd" stroke="#90caf9" stroke-width="1" rx="12" ry="12" />
+  <text x="602" y="187" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1976d2">P</text>
+  
+  <!-- Note 2 -->
+  <rect x="325" y="260" width="300" height="80" fill="white" stroke="#e1e4e8" stroke-width="1" rx="4" ry="4" />
+  <text x="345" y="285" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">JavaFX Controls Overview</text>
+  <text x="345" y="305" font-family="Arial, sans-serif" font-size="12" fill="#757575">Notes on the main UI components...</text>
+  <text x="345" y="325" font-family="Arial, sans-serif" font-size="12" fill="#9e9e9e">Today, 11:20 AM</text>
+  <!-- Tag A -->
+  <rect x="590" y="260" width="25" height="25" fill="#e8f5e9" stroke="#a5d6a7" stroke-width="1" rx="12" ry="12" />
+  <text x="602" y="277" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#388e3c">A</text>
+  
+  <!-- Note 3 -->
+  <rect x="325" y="350" width="300" height="80" fill="white" stroke="#e1e4e8" stroke-width="1" rx="4" ry="4" />
+  <text x="345" y="375" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Hibernate Setup Guide</text>
+  <text x="345" y="395" font-family="Arial, sans-serif" font-size="12" fill="#757575">Steps to configure Hibernate with Java...</text>
+  <text x="345" y="415" font-family="Arial, sans-serif" font-size="12" fill="#9e9e9e">Yesterday, 4:15 PM</text>
+  <!-- Tag A -->
+  <rect x="590" y="350" width="25" height="25" fill="#e8f5e9" stroke="#a5d6a7" stroke-width="1" rx="12" ry="12" />
+  <text x="602" y="367" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#388e3c">A</text>
+  
+  <!-- Note 4 -->
+  <rect x="325" y="440" width="300" height="80" fill="white" stroke="#e1e4e8" stroke-width="1" rx="4" ry="4" />
+  <text x="345" y="465" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">Project Timeline</text>
+  <text x="345" y="485" font-family="Arial, sans-serif" font-size="12" fill="#757575">Key milestones and deadlines for...</text>
+  <text x="345" y="505" font-family="Arial, sans-serif" font-size="12" fill="#9e9e9e">Yesterday, 2:30 PM</text>
+  <!-- Tag T -->
+  <rect x="590" y="440" width="25" height="25" fill="#ffebee" stroke="#ef9a9a" stroke-width="1" rx="12" ry="12" />
+  <text x="602" y="457" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#c62828">T</text>
+  
+  <!-- Note 5 -->
+  <rect x="325" y="530" width="300" height="80" fill="white" stroke="#e1e4e8" stroke-width="1" rx="4" ry="4" />
+  <text x="345" y="555" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333">UI Design Ideas</text>
+  <text x="345" y="575" font-family="Arial, sans-serif" font-size="12" fill="#757575">Brainstorming for the application...</text>
+  <text x="345" y="595" font-family="Arial, sans-serif" font-size="12" fill="#9e9e9e">Mar 4, 2025</text>
+  <!-- Tag I -->
+  <rect x="590" y="530" width="25" height="25" fill="#fefce0" stroke="#ffe082" stroke-width="1" rx="12" ry="12" />
+  <text x="602" y="547" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#856404">I</text>
+  
+  <!-- Right Section - Note Editor -->
+  <rect x="650" y="50" width="500" height="700" fill="white" stroke="#e1e4e8" stroke-width="1" rx="0 8 8 0" ry="0 8 8 0" />
+  
+  <!-- Formatting Toolbar -->
+  <rect x="675" y="80" width="450" height="40" fill="white" rx="4" ry="4" />
+  
+  <!-- Formatting Buttons -->
+  <circle cx="695" cy="100" r="15" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  <text x="695" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">B</text>
+  
+  <circle cx="730" cy="100" r="15" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  <text x="730" y="105" font-family="Arial, sans-serif" font-size="14" font-style="italic" text-anchor="middle" fill="#333">I</text>
+  
+  <circle cx="765" cy="100" r="15" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  <text x="765" y="105" font-family="Arial, sans-serif" font-size="14" text-decoration="underline" text-anchor="middle" fill="#333">U</text>
+  
+  <circle cx="800" cy="100" r="15" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  <text x="800" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">+</text>
+  
+  <circle cx="835" cy="100" r="15" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  <text x="835" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">¶</text>
+  
+  <circle cx="870" cy="100" r="15" fill="white" stroke="#e1e4e8" stroke-width="1" />
+  <text x="870" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#fa8072">📝</text>
+  
+  <circle cx="905" cy="100" r="15" fill="#e8f5e9" stroke="#a5d6a7" stroke-width="1" />
+  <text x="905" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#388e3c">AI</text>
+  
+  <!-- Save Button -->
+  <circle cx="1100" cy="100" r="20" fill="#4caf50" />
+  <text x="1100" y="105" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">✓</text>
+  
+  <!-- Note Title -->
+  <text x="675" y="155" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333">Software Engineering Project</text>
+  
+  <!-- Saved Indicator -->
+  <rect x="1060" y="135" width="65" height="30" fill="white" stroke="#4caf50" stroke-width="1" rx="15" ry="15" />
+  <text x="1092" y="155" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4caf50">Saved</text>
+  
+  <!-- Tags -->
+  <rect x="675" y="170" width="80" height="25" fill="#e3f2fd" rx="12" ry="12" />
+  <text x="715" y="187" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#1976d2">Project</text>
+  
+  <rect x="765" y="170" width="90" height="25" fill="#f5f5f5" rx="12" ry="12" />
+  <text x="810" y="187" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#616161">University</text>
+  
+  <!-- Note Content -->
+  <text x="675" y="230" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Notes Application Requirements:</text>
+  
+  <!-- Bullet Points -->
+  <circle cx="680" cy="255" r="3" fill="#333" />
+  <text x="690" y="260" font-family="Arial, sans-serif" font-size="14" fill="#333">User authentication system with login/signup</text>
+  
+  <circle cx="680" cy="285" r="3" fill="#333" />
+  <text x="690" y="290" font-family="Arial, sans-serif" font-size="14" fill="#333">JavaFX UI with modern design</text>
+  
+  <circle cx="680" cy="315" r="3" fill="#333" />
+  <text x="690" y="320" font-family="Arial, sans-serif" font-size="14" fill="#333">Hibernate for database persistence</text>
+  
+  <circle cx="680" cy="345" r="3" fill="#333" />
+  <text x="690" y="350" font-family="Arial, sans-serif" font-size="14" fill="#333">LLM API integration for AI-generated notes</text>
+  
+  <circle cx="680" cy="375" r="3" fill="#333" />
+  <text x="690" y="380" font-family="Arial, sans-serif" font-size="14" fill="#333">Note organization with folders and tags</text>
+  
+  <circle cx="680" cy="405" r="3" fill="#333" />
+  <text x="690" y="410" font-family="Arial, sans-serif" font-size="14" fill="#333">Rich text editor with formatting options</text>
+  
+  <!-- Timeline Heading -->
+  <text x="675" y="450" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Timeline:</text>
+  
+  <circle cx="680" cy="475" r="3" fill="#333" />
+  <text x="690" y="480" font-family="Arial, sans-serif" font-size="14" fill="#333">Week 1-2: Design UI and database schema</text>
+  
+  <circle cx="680" cy="505" r="3" fill="#333" />
+  <text x="690" y="510" font-family="Arial, sans-serif" font-size="14" fill="#333">Week 3-4: Implement basic CRUD operations</text>
+  
+  <circle cx="680" cy="535" r="3" fill="#333" />
+  <text x="690" y="540" font-family="Arial, sans-serif" font-size="14" fill="#333">Week 5-6: Add authentication and user profiles</text>
+  
+  <circle cx="680" cy="565" r="3" fill="#333" />
+  <text x="690" y="570" font-family="Arial, sans-serif" font-size="14" fill="#333">Week 7-8: Integrate LLM API for AI features</text>
+  
+  <!-- Team Members -->
+  <text x="675" y="610" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Project Members:</text>
+  
+  <circle cx="680" cy="635" r="3" fill="#333" />
+  <text x="690" y="640" font-family="Arial, sans-serif" font-size="14" fill="#333">John Doe - Frontend (JavaFX)</text>
+  
+  <circle cx="680" cy="665" r="3" fill="#333" />
+  <text x="690" y="670" font-family="Arial, sans-serif" font-size="14" fill="#333">Jane Smith - Backend (Hibernate)</text>
+  
+  <circle cx="680" cy="695" r="3" fill="#333" />
+  <text x="690" y="700" font-family="Arial, sans-serif" font-size="14" fill="#333">Alex Johnson - LLM Integration</text>
+  
+  <!-- Zoom Controls -->
+  <rect x="1125" y="650" width="25" height="100" fill="#f5f5f5" rx="12" ry="12" />
+  <text x="1137" y="680" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">+</text>
+  <line x1="1125" y1="700" x2="1150" y2="700" stroke="#e1e4e8" stroke-width="1" />
+  <text x="1137" y="730" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">-</text>
+</svg>
