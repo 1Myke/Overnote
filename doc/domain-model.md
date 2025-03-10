@@ -1,3 +1,10 @@
+<!--
+    Original template from:
+    https://claude.ai/share/2539339f-ea2e-4429-893e-e851c1a7a76f
+
+    By: Jorge Arévalo
+-->
+
 ```mermaid
 classDiagram
     User "1" -- "0..*" Note : owns
