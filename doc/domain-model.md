@@ -1,6 +1,7 @@
 ```mermaid
 classDiagram
     User "1" -- "0..*" Note : owns
+    User "1" -- "0..*" Tag : has
     Note "0..*" -- "0..*" Tag : categorized by
     Note "1" -- "0..*" Content : contains
     ListContent "1" -- "0..*" Content : contains
@@ -13,6 +14,8 @@ classDiagram
 
     class User {
         id: UUID
+        firstName: String
+        lastName: String
         email: String
         password: String
         registrationDate: Date
