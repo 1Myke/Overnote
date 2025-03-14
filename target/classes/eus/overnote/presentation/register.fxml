@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.RegisterController">
+    <children>
+        <AnchorPane prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: transparent;">
+            <children>
+                <!-- Window decoration -->
+                <Pane fx:id="barPane" prefHeight="30.0" prefWidth="700.0" style="-fx-background-color: #343a40; -fx-background-radius: 5 5 0 0;">
+                    <children>
+
+                        <!-- Window Title -->
+                        <Label alignment="CENTER" layoutX="0.0" layoutY="5.0" prefWidth="700.0" text="Overnote" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <!-- Window Controls -->
+                        <HBox alignment="CENTER_RIGHT" layoutX="621.0" layoutY="2.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="minimizeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="‒" />
+                                <Button fx:id="closeButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="✕" />
+                            </children>
+                            <padding>
+                                <Insets right="10.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </Pane>
+
+                <!-- Main Content -->
+                <HBox layoutY="30.0" prefHeight="420.0" prefWidth="700.0" style="-fx-background-color: transparent;">
+                    <children>
+                        <!-- Left Panel (Register Form) -->
+                        <VBox prefHeight="420.0" prefWidth="350.0" style="-fx-background-color: white; -fx-background-radius: 0 0 0 5;">
+                            <padding>
+                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                            </padding>
+                            <children>
+                                <Label text="Create Account" textFill="#333333">
+                                    <font>
+                                        <Font name="System Bold" size="22.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="25.0" />
+                                    </VBox.margin>
+                                </Label>
+
+                                <!-- Full Name Field -->
+                                <Label text="FULL NAME" textFill="#666666">
+                                    <font>
+                                        <Font name="System Bold" size="11.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="fullNameField" promptText="John Doe" style="-fx-background-color: #f5f5f5; -fx-background-radius: 4;">
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </TextField>
+
+                                <!-- Email Field -->
+                                <Label text="EMAIL" textFill="#666666">
+                                    <font>
+                                        <Font name="System Bold" size="11.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <TextField fx:id="emailField" promptText="example@email.com" style="-fx-background-color: #f5f5f5; -fx-background-radius: 4;">
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </TextField>
+
+                                <!-- Password Field -->
+                                <Label text="PASSWORD" textFill="#666666">
+                                    <font>
+                                        <Font name="System Bold" size="11.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <PasswordField fx:id="passwordField" promptText="At least 8 characters" style="-fx-background-color: #f5f5f5; -fx-background-radius: 4;">
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </PasswordField>
+
+                                <!-- Confirm Password Field -->
+                                <Label text="CONFIRM PASSWORD" textFill="#666666">
+                                    <font>
+                                        <Font name="System Bold" size="11.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                    </VBox.margin>
+                                </Label>
+                                <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password" style="-fx-background-color: #f5f5f5; -fx-background-radius: 4;">
+                                    <VBox.margin>
+                                        <Insets bottom="25.0" />
+                                    </VBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </PasswordField>
+
+                                <!-- Terms Checkbox -->
+                                <CheckBox fx:id="termsCheckbox" text="I agree to the Terms of Service and Privacy Policy" textFill="#666666">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" />
+                                    </VBox.margin>
+                                </CheckBox>
+
+                                <!-- Register Button -->
+                                <Button fx:id="registerButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #ff5163; -fx-background-radius: 20; -fx-text-fill: white;" text="Create Account">
+                                    <padding>
+                                        <Insets bottom="10.0" top="10.0" />
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+
+                        <!-- Right Panel (Welcome Message) -->
+                        <VBox alignment="CENTER" prefHeight="420.0" prefWidth="350.0" style="-fx-background-color: #ff5163; -fx-background-radius: 0 0 5 0;">
+                            <padding>
+                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                            </padding>
+                            <children>
+                                <Label text="Welcome to Overnote" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="15.0" />
+                                    </VBox.margin>
+                                </Label>
+
+                                <Label text="Already have an account?" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets bottom="20.0" />
+                                    </VBox.margin>
+                                </Label>
+
+                                <Button fx:id="signInButton" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 20; -fx-text-fill: white;" text="Sign In">
+                                    <padding>
+                                        <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
+                                    </padding>
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
