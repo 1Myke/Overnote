@@ -4,6 +4,8 @@ module eus.overnote.presentation {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires ch.qos.logback.classic;
+    requires org.slf4j;
 
     opens eus.overnote.presentation to javafx.fxml;
     exports eus.overnote.presentation;

@@ -8,16 +8,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class RegisterController {
+
+    private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 
     @FXML
     private TextField fullNameField;
@@ -57,29 +59,38 @@ public class RegisterController {
     public void initialize() {
         // Set up event handlers for registration functionality
         registerButton.setOnAction(event -> handleRegistration());
+        logger.debug("\"" + registerButton.getText() + "\" button listener initialized");
         signInButton.setOnAction(event -> navigateToLogin());
+        logger.debug("\"" + signInButton.getText() + "\" button listener initialized");
 
         // Set up custom window control buttons
         closeButton.setOnAction(event -> {
+            logger.debug("Close button clicked");
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.close();
         });
         minimizeButton.setOnAction(event -> {
+            logger.debug("Minimize button clicked");
             Stage stage = (Stage) minimizeButton.getScene().getWindow();
             stage.setIconified(true);
         });
 
         // Set up window dragging
         barPane.setOnMousePressed(this::handleMousePressed);
+        logger.debug("Mouse pressed listener initialized");
         barPane.setOnMouseDragged(this::handleMouseDragged);
+        logger.debug("Mouse dragged listener initialized");
     }
 
     private void handleMousePressed(MouseEvent event) {
         xOffset = event.getSceneX();
         yOffset = event.getSceneY();
+        logger.debug("Mouse pressed at (" + xOffset + ", " + yOffset + ")");
     }
 
     private void handleMouseDragged(MouseEvent event) {
+        logger.debug("Mouse dragged to x: " + event.getScreenX() + ", y: " + event.getScreenY());
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
         stage.setY(event.getScreenY() - yOffset);
@@ -93,13 +104,8 @@ public class RegisterController {
         String confirmPassword = confirmPasswordField.getText();
         boolean termsAccepted = termsCheckbox.isSelected();
 
-        System.out.println(
-            "Full Name: " + fullName + "\n" +
-            "Email: " + email + "\n" +
-            "Password: " + password + "\n" +
-            "Confirm Password: " + confirmPassword + "\n" +
-            "Terms Accepted: " + termsAccepted
-        );
+        logger.info(
+            "User tried to register. fullName=\"" + fullName + "\", email=\"" + email + "\", password=\"" + password + "\", confirmPassword=\"" + confirmPassword + "\", termsAccepted=\"" + termsAccepted + "\"");
     }
 
     private void navigateToLogin() {
@@ -116,9 +122,9 @@ public class RegisterController {
             // Get the current stage and set the new scene
             Stage stage = (Stage) signInButton.getScene().getWindow();
             stage.setScene(loginScene);
-
+            logger.info("Navigated to login screen");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to navigate to login screen", e);
         }
     }
 }

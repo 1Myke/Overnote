@@ -5,23 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43237e66-089d-4f62-ba21-4e0ec81776e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/bootstrapfx.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/register.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/HelloApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/HelloApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/HelloController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/hello-view.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +147,7 @@
       <workItem from="1741965725288" duration="712000" />
       <workItem from="1741966450339" duration="257000" />
       <workItem from="1741966902146" duration="797000" />
-      <workItem from="1741967932328" duration="8264000" />
+      <workItem from="1741967932328" duration="11564000" />
     </task>
     <servers />
   </component>
