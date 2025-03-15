@@ -4,23 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[FEATURE] Implement custom window decoration">
+    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Add a WindowManager">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Overnote.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Overnote.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/CustomWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/titlebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/customwindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,48 +39,48 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KingJorjai"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KingJorjai&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/1Myke/Overnote.git",
-    "accountId": "ce3aad4a-6428-482c-8597-55adf1f01b22"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/1Myke/Overnote.git&quot;,
+    &quot;accountId&quot;: &quot;ce3aad4a-6428-482c-8597-55adf1f01b22&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2uLjmQysjHMMj0c02WajLyREMw6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BaseWindow.executor": "Run",
-    "Application.LoginApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.RegisterApplication.executor": "Run",
-    "Application.WindowManager.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "refactor/window-manager",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BaseWindow.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RegisterApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.WindowManager.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;refactor/window-manager&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views" />
@@ -190,6 +185,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742034909510</updated>
       <workItem from="1742034912683" duration="24099000" />
+      <workItem from="1742078941436" duration="1682000" />
     </task>
     <task id="LOCAL-00001" summary="[REFACTOR] Merge custom stylesheets into styles.css">
       <option name="closed" value="true" />

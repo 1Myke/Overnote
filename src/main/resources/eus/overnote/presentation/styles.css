@@ -27,6 +27,14 @@
     -titlebar-dragged-color: rgba(52, 58, 64, 0.9);
 }
 
+/*******************/
+/* WINDOW RESIZERS */
+/*******************/
+
+.resize-corner {
+    -fx-background-color: transparent;
+}
+
 /*************/
 /* TITLE BAR */
 /*************/
@@ -148,7 +156,7 @@
 /**********************************/
 
 /* Button with custom icon for closing */
-.button-close, .button-minimize {
+.button-close, .button-minimize, .button-maximize {
     -fx-font-family: ui-monospace;
     -fx-text-fill: -text-light;
     -fx-background-color: transparent;
@@ -159,11 +167,9 @@
 .button-close:hover{
     -fx-background-color: rgba(255, 0, 0, 0.5);}
 
-.button-minimize:hover{
+.button-minimize:hover, .button-maximize:hover {
     -fx-background-color: rgba(255, 255, 255, 0.1);
 }
-
-
 
 /********************/
 /* CHECKBOX STYLING */

@@ -8,11 +8,11 @@ import java.io.IOException;
 public class TitleBarLoader {
     public static Parent load(String title) throws IOException {
         // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(TitleBarController.class.getResource("titlebar.fxml"));
+        FXMLLoader loader = new FXMLLoader(CustomWindowController.class.getResource("customwindow.fxml"));
         Parent titleBar = loader.load();
 
         // Get the controller
-        TitleBarController controller = loader.getController();
+        CustomWindowController controller = loader.getController();
 
         controller.setTitle(title);
 

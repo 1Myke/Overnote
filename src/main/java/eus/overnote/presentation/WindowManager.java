@@ -35,10 +35,7 @@ public class WindowManager extends Application {
         Pane loginContent = loader.load();
 
         // Create custom window using the factory
-        Stage loginWindow = WindowFactory.createWindow("Overnote - Login", loginContent);
-
-        // Show the window
-        loginWindow.show();
+        WindowFactory.createWindow("Overnote", loginContent, false);
 
         logger.info("Login view opened");
     }
@@ -49,10 +46,7 @@ public class WindowManager extends Application {
         Pane registerContent = loader.load();
 
         // Create custom window using the factory
-        Stage registerWindow = WindowFactory.createWindow("Overnote - Register", registerContent);
-
-        // Show the window
-        registerWindow.show();
+        WindowFactory.createWindow("Overnote", registerContent, true);
 
         logger.info("Register view opened");
     }
