@@ -18,4 +18,6 @@ module eus.overnote.presentation {
     opens eus.overnote.domain to org.hibernate.orm.core;
     opens eus.overnote.presentation to javafx.fxml;
     opens eus.overnote.presentation.components to javafx.fxml;
+    exports eus.overnote.presentation.views;
+    opens eus.overnote.presentation.views to javafx.fxml;
 }

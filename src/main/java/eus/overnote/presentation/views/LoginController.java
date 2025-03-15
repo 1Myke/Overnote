@@ -1,9 +1,10 @@
-package eus.overnote.presentation;
+package eus.overnote.presentation.views;
 
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.factories.WindowFactory;
+import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -63,22 +64,14 @@ public class LoginController {
     }
 
     private void navigateToRegister() {
-        logger.info("User clicked on \"" + createAccountButton.getText() + "\"");
+        // Close the current window
+        Stage stage = (Stage) createAccountButton.getScene().getWindow();
+        stage.close();
+
+        // Open the register view
+        logger.info("User clicked on \"{}\"", createAccountButton.getText());
         try {
-            // Load the FXML
-            FXMLLoader loader = new FXMLLoader(LoginApplication.class.getResource("register.fxml"));
-            Pane loginContent = loader.load();
-
-            // Create register window using the factory
-            Stage registerWindow = WindowFactory.createWindow("Overnote - Register", loginContent);
-
-            // Close the login window
-            Stage loginWindow = (Stage) createAccountButton.getScene().getWindow();
-            loginWindow.close();
-
-            // Show the window
-            registerWindow.show();
-
+            WindowManager.openRegisterView();
             logger.info("Navigated to register view");
         } catch (IOException e) {
             logger.error("Error changing to register view", e);

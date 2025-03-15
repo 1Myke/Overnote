@@ -1,6 +1,7 @@
 package eus.overnote.factories;
 
-import eus.overnote.presentation.LoginController;
+import eus.overnote.presentation.WindowManager;
+import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.components.TitleBarLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -30,7 +31,7 @@ public class WindowFactory {
         // Configure the scene
         Scene scene = new Scene(root);
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
-        scene.getStylesheets().add(LoginController.class.getResource("styles.css").toExternalForm());
+        scene.getStylesheets().add(WindowManager.class.getResource("styles.css").toExternalForm());
 
         // Set the stage
         Stage stage = new Stage();

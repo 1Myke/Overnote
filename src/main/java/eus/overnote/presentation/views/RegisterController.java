@@ -1,8 +1,9 @@
-package eus.overnote.presentation;
+package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.factories.WindowFactory;
+import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -76,22 +77,14 @@ public class RegisterController {
     }
 
     private void navigateToLogin() {
+        // Close the current window
+        Stage stage = (Stage) signInButton.getScene().getWindow();
+        stage.close();
+
+        // Open the login view
+        logger.info("User clicked on \"{}\"", signInButton.getText());
         try {
-            // Load the FXML
-            FXMLLoader loader = new FXMLLoader(LoginApplication.class.getResource("login.fxml"));
-            Pane loginContent = loader.load();
-
-            // Create register window using the factory
-            Stage registerWindow = WindowFactory.createWindow("Overnote - Login", loginContent);
-
-            // Close the login window
-            Stage loginWindow = (Stage) signInButton.getScene().getWindow();
-            loginWindow.close();
-
-            // Show the window
-            registerWindow.show();
-
-            logger.info("Navigated to login screen");
+            WindowManager.openLoginView();
         } catch (IOException e) {
             logger.error("Failed to navigate to login screen", e);
         }
