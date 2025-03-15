@@ -57,11 +57,11 @@ public class LoginController {
     public void initialize() {
         // Set up event handlers for login functionality
         loginButton.setOnAction(event -> handleLoginButtonAction());
-        logger.debug("\"" + loginButton.getText() + "\" button listener initialized");
+        logger.debug("\"{}\" button listener initialized", loginButton.getText());
         createAccountButton.setOnAction(event -> navigateToRegister());
-        logger.debug("\"" + createAccountButton.getText() + "\" button listener initialized");
+        logger.debug("\"{}\" button listener initialized", createAccountButton.getText());
         forgotPasswordLabel.setOnMouseClicked(event -> handleForgotPasswordAction());
-        logger.debug("\"" + forgotPasswordLabel.getText() + "\" label listener initialized");
+        logger.debug("\"{}\" label listener initialized", forgotPasswordLabel.getText());
 
         // Set up custom window control buttons
         closeButton.setOnAction(event -> {
@@ -90,11 +90,11 @@ public class LoginController {
         xOffset = event.getSceneX();
         yOffset = event.getSceneY();
 
-        logger.debug("Mouse pressed at x: " + xOffset + ", y: " + yOffset);
+        logger.debug("Mouse pressed at x: {}, y: {}", xOffset, yOffset);
     }
 
     private void handleMouseDragged(MouseEvent event) {
-        logger.debug("Mouse dragged to x: " + event.getScreenX() + ", y: " + event.getScreenY());
+        logger.debug("Mouse dragged to x: {}, y: {}", event.getScreenX(), event.getScreenY());
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
@@ -106,12 +106,7 @@ public class LoginController {
         String password = passwordField.getText();
         boolean rememberMe = rememberMeCheckbox.isSelected();
 
-        logger.info(
-                "User tried to log in. " +
-                "email=\"" + email +
-                "\", password=\"" + password+
-                "\", rememberMe=\"" + rememberMe + "\""
-        );
+        logger.info("User tried to log in. email=\"{}\", password=\"{}\", rememberMe=\"{}\"", email, password, rememberMe);
 
         // Call the business logic to log in the user
         bl.loginUser(email, password);

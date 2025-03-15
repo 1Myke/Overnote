@@ -1,6 +1,11 @@
+/****************************/
+/*   Overnote CSS Styles    */
+/*     Author: Jorjai       */
+/****************************/
+
 .root {
     /* Font */
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, ui-sans-serif;
 
     /* Background */
     -fx-background-color: transparent;
@@ -10,22 +15,30 @@
     -secondary-color: #e83e50;
     -background-light: #f5f5f5;
     -background-white: white;
-    -text-white: white;
+    -text-light: white;
+    -text-dark: #666666;
+    -title-dark: #333333;
+    -title-light: white;
     -border-primary: #ff5163;
     -border-secondary: #cccccc;
     -border-white: white;
     -hover-color: rgba(255, 255, 255, 0.2);
 }
 
+/*******************/
 /* General styling */
+/*******************/
+
 .primary-color { -fx-background-color: -primary-color; }
 .secondary-color { -fx-background-color: -secondary-color; }
 .background-light { -fx-background-color: -background-light; }
 .background-white { -fx-background-color: -background-white; }
-.text-white { -fx-text-fill: -text-white; }
 .border-primary { -fx-border-color: -border-primary; }
 
-/* Text fields styling */
+/***********************/
+/* TEXT FIELDS STYLING */
+/***********************/
+
 .text-field, .password-field {
     -fx-background-color: -background-light;
     -fx-background-radius: 4;
@@ -41,51 +54,108 @@
     -fx-border-radius: 4;
 }
 
-/* Buttons styling */
+/******************/
+/* LABELS STYLING */
+/******************/
+
+.label {
+    -fx-font-size: 11px;
+    -fx-text-fill: -text-dark;
+}
+
+.link {
+    -fx-cursor: hand;
+    -fx-text-fill: -primary-color;
+    -fx-font-weight: bold;
+}
+
+.link:hover {
+    -fx-text-fill: -secondary-color;
+    -fx-underline: true;
+}
+
+/******************/
+/* TITLES STYLING */
+/******************/
+
+.title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.title-light {
+    -fx-text-fill: -title-light;
+}
+
+.title-dark {
+    -fx-text-fill: -title-dark;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/*******************/
+/* BUTTONS STYLING */
+/*******************/
+
 .button {
     -fx-cursor: hand;
-}
-
-#registerButton {
-    -fx-background-color: -primary-color;
     -fx-background-radius: 20;
-    -fx-text-fill: -text-white;
-    -fx-font-weight: bold;
+    -fx-border-radius: 20;
     -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-light;
 }
 
-#registerButton:hover {
-    -fx-background-color: -secondary-color;
+.button-primary {
+    -fx-background-color: -primary-color;
 }
 
-#signInButton {
+.button-primary:hover {
+    -fx-background-color: -background-light;
+    -fx-border-color: -primary-color;
+    -fx-text-fill: -primary-color;
+}
+
+.button-secondary {
     -fx-background-color: transparent;
     -fx-border-color: -border-white;
-    -fx-border-radius: 20;
-    -fx-text-fill: -text-white;
 }
 
-#signInButton:hover {
+.button-secondary:hover {
     -fx-background-color: -hover-color;
-}
 
-/* Window control buttons */
-#minimizeButton, #closeButton {
+}
+/**********************************/
+/* WINDOW CONTROL BUTTONS STYLING */
+/**********************************/
+
+/* Button with custom icon for closing */
+.button-close, .button-minimize {
+    -fx-font-family: ui-monospace;
+    -fx-text-fill: -text-light;
     -fx-background-color: transparent;
-    -fx-text-fill: -text-white;
-    -fx-font-weight: bold;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
 }
 
-#minimizeButton:hover, #closeButton:hover {
-    -fx-background-color: -hover-color;
+.button-close:hover{
+    -fx-background-color: rgba(255, 0, 0, 0.5);}
+
+.button-minimize:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
-#closeButton:hover {
-    -fx-background-color: rgba(255, 0, 0, 0.5);
-}
 
-/* Checkbox styling */
+
+/********************/
+/* CHECKBOX STYLING */
+/********************/
+
 .check-box .box {
+    -fx-cursor: hand;
     -fx-background-color: -background-light;
     -fx-border-color: -border-secondary;
     -fx-border-radius: 3px;

@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[FEATURE] Implement user registration and login functionality">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
+    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Merge custom stylesheets into styles.css">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/register.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/register.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +37,9 @@
     "accountId": "ce3aad4a-6428-482c-8597-55adf1f01b22"
   }
 }]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 7
 }]]></component>
@@ -69,7 +64,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.RegisterApplication">
+  <component name="RunManager" selected="Application.LoginApplication">
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.LoginApplication" />
       <module name="Overnote" />
@@ -98,8 +93,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RegisterApplication" />
         <item itemvalue="Application.LoginApplication" />
+        <item itemvalue="Application.RegisterApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -119,11 +114,35 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742034909510</updated>
-      <workItem from="1742034912683" duration="1883000" />
+      <workItem from="1742034912683" duration="10984000" />
     </task>
+    <task id="LOCAL-00001" summary="[REFACTOR] Merge custom stylesheets into styles.css">
+      <option name="closed" value="true" />
+      <created>1742037148470</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1742037148470</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[REFACTOR] Merge custom stylesheets into styles.css" />
+    <option name="LAST_COMMIT_MESSAGE" value="[REFACTOR] Merge custom stylesheets into styles.css" />
   </component>
 </project>
