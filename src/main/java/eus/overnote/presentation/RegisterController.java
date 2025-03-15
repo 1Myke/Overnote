@@ -131,7 +131,7 @@ public class RegisterController {
             Scene loginScene = new Scene(loginRoot);
 
             // Add CSS for styling
-            loginScene.getStylesheets().add(RegisterApplication.class.getResource("login.css").toExternalForm());
+            loginScene.getStylesheets().add(RegisterApplication.class.getResource("styles.css").toExternalForm());
             loginScene.setFill(javafx.scene.paint.Color.TRANSPARENT);
 
             // Get the current stage and set the new scene

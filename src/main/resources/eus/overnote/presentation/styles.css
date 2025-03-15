@@ -1,0 +1,100 @@
+.root {
+    /* Font */
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+    /* Background */
+    -fx-background-color: transparent;
+
+    /* Color palette */
+    -primary-color: #ff5163;
+    -secondary-color: #e83e50;
+    -background-light: #f5f5f5;
+    -background-white: white;
+    -text-white: white;
+    -border-primary: #ff5163;
+    -border-secondary: #cccccc;
+    -border-white: white;
+    -hover-color: rgba(255, 255, 255, 0.2);
+}
+
+/* General styling */
+.primary-color { -fx-background-color: -primary-color; }
+.secondary-color { -fx-background-color: -secondary-color; }
+.background-light { -fx-background-color: -background-light; }
+.background-white { -fx-background-color: -background-white; }
+.text-white { -fx-text-fill: -text-white; }
+.border-primary { -fx-border-color: -border-primary; }
+
+/* Text fields styling */
+.text-field, .password-field {
+    -fx-background-color: -background-light;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-font-size: 13px;
+    -fx-padding: 8;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-background-color: -background-white;
+    -fx-border-color: -border-primary;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+}
+
+/* Buttons styling */
+.button {
+    -fx-cursor: hand;
+}
+
+#registerButton {
+    -fx-background-color: -primary-color;
+    -fx-background-radius: 20;
+    -fx-text-fill: -text-white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#registerButton:hover {
+    -fx-background-color: -secondary-color;
+}
+
+#signInButton {
+    -fx-background-color: transparent;
+    -fx-border-color: -border-white;
+    -fx-border-radius: 20;
+    -fx-text-fill: -text-white;
+}
+
+#signInButton:hover {
+    -fx-background-color: -hover-color;
+}
+
+/* Window control buttons */
+#minimizeButton, #closeButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: -text-white;
+    -fx-font-weight: bold;
+}
+
+#minimizeButton:hover, #closeButton:hover {
+    -fx-background-color: -hover-color;
+}
+
+#closeButton:hover {
+    -fx-background-color: rgba(255, 0, 0, 0.5);
+}
+
+/* Checkbox styling */
+.check-box .box {
+    -fx-background-color: -background-light;
+    -fx-border-color: -border-secondary;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -background-white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: -primary-color;
+}

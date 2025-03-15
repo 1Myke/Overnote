@@ -126,7 +126,7 @@ public class LoginController {
             Scene loginScene = new Scene(loginRoot);
 
             // Add CSS for styling
-            loginScene.getStylesheets().add(RegisterApplication.class.getResource("register.css").toExternalForm());
+            loginScene.getStylesheets().add(RegisterApplication.class.getResource("styles.css").toExternalForm());
             loginScene.setFill(Color.TRANSPARENT);
 
             // Get the current stage and set the new scene

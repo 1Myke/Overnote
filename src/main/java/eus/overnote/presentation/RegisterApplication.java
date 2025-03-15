@@ -20,7 +20,7 @@ public class RegisterApplication extends Application {
 
         // Add CSS for styling
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(RegisterApplication.class.getResource("register.css").toExternalForm());
+        scene.getStylesheets().add(RegisterApplication.class.getResource("styles.css").toExternalForm());
 
         // Remove default window decoration
         primaryStage.initStyle(StageStyle.UNDECORATED);
