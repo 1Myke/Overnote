@@ -17,7 +17,7 @@
     <children>
           <HBox style="-fx-background-color: transparent;">
               <children>
-                  <VBox alignment="CENTER" prefHeight="362.0" prefWidth="281.0" styleClass="primary-color">
+                  <VBox alignment="CENTER" prefHeight="362.0" prefWidth="281.0" styleClass="primary-color" HBox.hgrow="ALWAYS">
                       <padding>
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>
@@ -56,7 +56,7 @@
                           </Button>
                       </children>
                   </VBox>
-                  <VBox prefHeight="362.0" prefWidth="361.0" styleClass="background-white">
+                  <VBox alignment="CENTER_LEFT" prefHeight="362.0" prefWidth="361.0" styleClass="background-white" HBox.hgrow="ALWAYS">
                       <padding>
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>

@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -54,8 +53,6 @@ public class CustomWindowController {
 
     private List<Node> resizePanes;
 
-    private Rectangle windowClip;
-
     private boolean justUnmaximized = false;
     private Dimension2D dimBeforeUnmax;
     private Point2D mouseBeforeUnmax;
@@ -68,7 +65,7 @@ public class CustomWindowController {
 
     public void initialize() {
         // Set up window clipping
-        windowClip = new Rectangle();
+        Rectangle windowClip = new Rectangle();
         windowClip.widthProperty().bind(container.widthProperty());
         windowClip.heightProperty().bind(container.heightProperty());
         windowClip.setArcWidth(10);
@@ -121,7 +118,7 @@ public class CustomWindowController {
 
         // Unmaximize and set the offset to match the dragged position
         if (stage.isMaximized()) {
-            stage.setMaximized(false);
+            toggleMaximizeWindow();
             justUnmaximized = true;
             dimBeforeUnmax = new Dimension2D(stage.getWidth(), stage.getHeight());
             mouseBeforeUnmax = new Point2D(event.getSceneX(), event.getSceneY());
@@ -172,13 +169,6 @@ public class CustomWindowController {
                 pane.setVisible(!isNowMaximized);
                 pane.setManaged(!isNowMaximized);
             });
-
-        // Remove the clip when maximized
-        if (isNowMaximized) {
-            container.setClip(null);
-        } else {
-            container.setClip(windowClip);
-        }
 
         logger.debug("Maximized: {}", isNowMaximized);
     }

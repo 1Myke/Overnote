@@ -21,7 +21,7 @@ public class WindowManager extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         try {
             openLoginView();
         } catch (IOException e) {
@@ -35,7 +35,7 @@ public class WindowManager extends Application {
         Pane loginContent = loader.load();
 
         // Create custom window using the factory
-        WindowFactory.createWindow("Overnote", loginContent, false);
+        WindowFactory.createWindow("Overnote", loginContent, true);
 
         logger.info("Login view opened");
     }

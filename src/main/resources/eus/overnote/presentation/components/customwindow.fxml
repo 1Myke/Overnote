@@ -30,9 +30,9 @@
                      <right>
                         <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="99.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="minimizeButton" alignment="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="button-minimize" text="−" textAlignment="CENTER" />
-                              <Button fx:id="maximizeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="button-maximize" text="🗖" textAlignment="CENTER" />
-                              <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="button-close" text="✕" textAlignment="CENTER" />
+                              <Button fx:id="minimizeButton" alignment="CENTER" ellipsisString="−" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="button-minimize" text="−" textAlignment="CENTER" />
+                              <Button fx:id="maximizeButton" alignment="CENTER" contentDisplay="CENTER" ellipsisString="🗖" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="button-maximize" text="🗖" textAlignment="CENTER" />
+                              <Button fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" ellipsisString="✕" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" styleClass="button-close" text="✕" textAlignment="CENTER" />
                            </children>
                         </HBox>
                      </right>

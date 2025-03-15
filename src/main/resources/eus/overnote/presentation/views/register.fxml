@@ -19,7 +19,7 @@
           <HBox style="-fx-background-color: transparent;">
               <children>
                   <!-- Left Panel (Register Form) -->
-                  <VBox prefHeight="487.0" prefWidth="424.0" style="-fx-background-color: white;">
+                  <VBox alignment="CENTER_LEFT" prefHeight="487.0" prefWidth="424.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
                       <padding>
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>
@@ -129,7 +129,7 @@
                   </VBox>
       
                   <!-- Right Panel (Welcome Message) -->
-                  <VBox alignment="CENTER" prefHeight="487.0" prefWidth="350.0" styleClass="primary-color">
+                  <VBox alignment="CENTER" prefHeight="487.0" prefWidth="350.0" styleClass="primary-color" HBox.hgrow="ALWAYS">
                       <padding>
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>

@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Add a WindowManager">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" afterDir="false" />
+    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Enhance window controls and improve layout responsiveness">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Overnote.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Overnote.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/CustomWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/titlebar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/customwindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/CustomWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/CustomWindowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/customwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/customwindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +182,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742034909510</updated>
       <workItem from="1742034912683" duration="24099000" />
-      <workItem from="1742078941436" duration="1682000" />
+      <workItem from="1742078941436" duration="3253000" />
     </task>
     <task id="LOCAL-00001" summary="[REFACTOR] Merge custom stylesheets into styles.css">
       <option name="closed" value="true" />
@@ -211,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742058845462</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[FEATURE] Implement window maximizing">
+      <option name="closed" value="true" />
+      <created>1742080806413</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1742080806413</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +237,8 @@
     <MESSAGE value="[REFACTOR] Merge custom stylesheets into styles.css" />
     <MESSAGE value="[REFACTOR] Migrate Login UI to custom css" />
     <MESSAGE value="[FEATURE] Implement custom window decoration" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FEATURE] Implement custom window decoration" />
+    <MESSAGE value="[FEATURE] Implement window maximizing" />
+    <MESSAGE value="[REFACTOR] Enhance window controls and improve layout responsiveness" />
+    <option name="LAST_COMMIT_MESSAGE" value="[REFACTOR] Enhance window controls and improve layout responsiveness" />
   </component>
 </project>
