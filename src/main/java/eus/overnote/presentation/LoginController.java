@@ -1,6 +1,8 @@
 package eus.overnote.presentation;
 
 
+import eus.overnote.businesslogic.BlInterface;
+import eus.overnote.businesslogic.BusinessLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +21,7 @@ import java.io.IOException;
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    BlInterface bl;
 
     @FXML
     private Button minimizeButton;
@@ -77,6 +80,10 @@ public class LoginController {
         logger.debug("Mouse pressed listener initialized");
         barPane.setOnMouseDragged(this::handleMouseDragged);
         logger.debug("Mouse dragged listener initialized");
+
+        // Initialize business logic
+        bl = new BusinessLogic();
+        logger.debug("Business logic initialized");
     }
 
     private void handleMousePressed(MouseEvent event) {
@@ -105,6 +112,9 @@ public class LoginController {
                 "\", password=\"" + password+
                 "\", rememberMe=\"" + rememberMe + "\""
         );
+
+        // Call the business logic to log in the user
+        bl.loginUser(email, password);
     }
 
     private void navigateToRegister() {

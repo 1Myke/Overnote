@@ -4,13 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43237e66-089d-4f62-ba21-4e0ec81776e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+    <list default="true" id="43237e66-089d-4f62-ba21-4e0ec81776e7" name="Changes" comment="[FEATURE] Set up logging (logback)">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Overnote.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BlInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/OvernoteUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" afterDir="false" />
@@ -26,6 +35,7 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -45,6 +55,9 @@
     &quot;accountId&quot;: &quot;ce3aad4a-6428-482c-8597-55adf1f01b22&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -68,6 +81,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "feature/login-register",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/jorjai/Documents/Overnote/src/main/resources/eus/overnote/presentation",
@@ -81,6 +95,11 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -88,7 +107,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.LoginApplication">
+  <component name="RunManager" selected="Application.RegisterApplication">
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.LoginApplication" />
       <module name="Overnote" />
@@ -117,8 +136,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.LoginApplication" />
         <item itemvalue="Application.RegisterApplication" />
+        <item itemvalue="Application.LoginApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -147,8 +166,17 @@
       <workItem from="1741965725288" duration="712000" />
       <workItem from="1741966450339" duration="257000" />
       <workItem from="1741966902146" duration="797000" />
-      <workItem from="1741967932328" duration="11564000" />
+      <workItem from="1741967932328" duration="20789000" />
     </task>
+    <task id="LOCAL-00001" summary="[FEATURE] Set up logging (logback)">
+      <option name="closed" value="true" />
+      <created>1741987748695</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741987748695</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,5 +204,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[FEATURE] Set up logging (logback)" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FEATURE] Set up logging (logback)" />
   </component>
 </project>

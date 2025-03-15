@@ -1,5 +1,7 @@
 package eus.overnote.presentation;
 
+import eus.overnote.businesslogic.BlInterface;
+import eus.overnote.businesslogic.BusinessLogic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +22,7 @@ import java.io.IOException;
 public class RegisterController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
+    private BlInterface bl;
 
     @FXML
     private TextField fullNameField;
@@ -59,9 +62,9 @@ public class RegisterController {
     public void initialize() {
         // Set up event handlers for registration functionality
         registerButton.setOnAction(event -> handleRegistration());
-        logger.debug("\"" + registerButton.getText() + "\" button listener initialized");
+        logger.debug("\"{}\" button listener initialized", registerButton.getText());
         signInButton.setOnAction(event -> navigateToLogin());
-        logger.debug("\"" + signInButton.getText() + "\" button listener initialized");
+        logger.debug("\"{}\" button listener initialized", signInButton.getText());
 
         // Set up custom window control buttons
         closeButton.setOnAction(event -> {
@@ -80,16 +83,20 @@ public class RegisterController {
         logger.debug("Mouse pressed listener initialized");
         barPane.setOnMouseDragged(this::handleMouseDragged);
         logger.debug("Mouse dragged listener initialized");
+
+        // Initialize business logic
+        bl = new BusinessLogic();
+        logger.debug("Business logic initialized");
     }
 
     private void handleMousePressed(MouseEvent event) {
         xOffset = event.getSceneX();
         yOffset = event.getSceneY();
-        logger.debug("Mouse pressed at (" + xOffset + ", " + yOffset + ")");
+        logger.debug("Mouse pressed at ({}, {})", xOffset, yOffset);
     }
 
     private void handleMouseDragged(MouseEvent event) {
-        logger.debug("Mouse dragged to x: " + event.getScreenX() + ", y: " + event.getScreenY());
+        logger.debug("Mouse dragged to x: {}, y: {}", event.getScreenX(), event.getScreenY());
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setX(event.getScreenX() - xOffset);
@@ -104,8 +111,16 @@ public class RegisterController {
         String confirmPassword = confirmPasswordField.getText();
         boolean termsAccepted = termsCheckbox.isSelected();
 
-        logger.info(
-            "User tried to register. fullName=\"" + fullName + "\", email=\"" + email + "\", password=\"" + password + "\", confirmPassword=\"" + confirmPassword + "\", termsAccepted=\"" + termsAccepted + "\"");
+        logger.info("User tried to register. fullName=\"{}\", email=\"{}\", password=\"{}\", confirmPassword=\"{}\", termsAccepted=\"{}\"", fullName, email, password, confirmPassword, termsAccepted);
+
+        // Check if the terms have been accepted (likely to be removed)
+        if (!termsAccepted) {
+            logger.info("User did not accept the terms and conditions. Registration aborted.");
+            return;
+        }
+
+        // Call the business logic to register the user
+        bl.registerUser(fullName, email, password, confirmPassword);
     }
 
     private void navigateToLogin() {
