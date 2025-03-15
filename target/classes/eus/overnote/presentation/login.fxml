@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -16,153 +15,124 @@
 
 <StackPane styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.LoginController">
     <children>
-        <AnchorPane prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: transparent;" styleClass="root">
-            <children>
-                <Pane fx:id="barPane" prefHeight="30.0" prefWidth="700.0" style="-fx-background-color: #343a40; -fx-background-radius: 5 5 0 0;">
-                    <children>
-                        <Label alignment="CENTER" layoutX="0.0" layoutY="5.0" prefWidth="700.0" text="Overnote" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
+          <HBox style="-fx-background-color: transparent;">
+              <children>
+                  <VBox alignment="CENTER" prefHeight="362.0" prefWidth="281.0" styleClass="primary-color">
+                      <padding>
+                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                      </padding>
+                      <children>
+                          <Label text="Welcome Back" textFill="WHITE">
+                              <font>
+                                  <Font name="System Bold" size="24.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets bottom="15.0" />
+                              </VBox.margin>
+                     <styleClass>
+                        <String fx:value="title" />
+                        <String fx:value="title-light" />
+                     </styleClass>
+                          </Label>
+                          <Label text="New to Overnote?" textFill="WHITE">
+                              <font>
+                                  <Font size="14.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets bottom="20.0" />
+                              </VBox.margin>
                      <styleClass>
                         <String fx:value="subtitle" />
                         <String fx:value="title-light" />
                      </styleClass>
-                        </Label>
-                        <HBox alignment="CENTER_RIGHT" layoutX="621.0" layoutY="2.0" spacing="10.0">
-                            <children>
-                                <Button fx:id="minimizeButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button-minimize" text="−" textAlignment="CENTER" />
-                                <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="button-close" text="✕" textAlignment="CENTER">
-                           <font>
-                              <Font name="Inconsolata Extra Condensed Black" size="13.0" />
-                           </font></Button>
-                            </children>
-                            <padding>
-                                <Insets right="10.0" />
-                            </padding>
-                        </HBox>
-                    </children>
-                </Pane>
-                <HBox layoutY="30.0" prefHeight="420.0" prefWidth="700.0" style="-fx-background-color: transparent;">
-                    <children>
-                        <VBox alignment="CENTER" prefHeight="420.0" prefWidth="350.0" style="-fx-background-radius: 0 0 0 5;" styleClass="primary-color">
-                            <padding>
-                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                            </padding>
-                            <children>
-                                <Label text="Welcome Back" textFill="WHITE">
-                                    <font>
-                                        <Font name="System Bold" size="24.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="15.0" />
-                                    </VBox.margin>
-                           <styleClass>
-                              <String fx:value="title" />
-                              <String fx:value="title-light" />
-                           </styleClass>
-                                </Label>
-                                <Label text="New to Overnote?" textFill="WHITE">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="20.0" />
-                                    </VBox.margin>
-                           <styleClass>
-                              <String fx:value="subtitle" />
-                              <String fx:value="title-light" />
-                           </styleClass>
-                                </Label>
-                                <Button fx:id="createAccountButton" mnemonicParsing="false" styleClass="button-secondary" text="Create Account">
-                                    <padding>
-                                        <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
-                                    </padding>
-                                    <font>
-                                        <Font name="System Bold" size="18.0" />
-                                    </font>
-                                </Button>
-                            </children>
-                        </VBox>
-                        <VBox prefHeight="420.0" prefWidth="350.0" style="-fx-background-radius: 0 0 5 0;" styleClass="background-white">
-                            <padding>
-                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                            </padding>
-                            <children>
-                                <Label text="Sign In" textFill="#333333">
-                                    <font>
-                                        <Font name="System Bold" size="22.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="25.0" />
-                                    </VBox.margin>
-                           <styleClass>
-                              <String fx:value="title-dark" />
-                              <String fx:value="title" />
-                           </styleClass>
-                                </Label>
-                                <Label text="EMAIL" textFill="#666666">
-                                    <font>
-                                        <Font name="System Bold" size="11.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <TextField fx:id="emailField" promptText="example@email.com">
-                                    <VBox.margin>
-                                        <Insets bottom="15.0" />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </padding>
-                                </TextField>
-                                <Label text="PASSWORD" textFill="#666666">
-                                    <font>
-                                        <Font name="System Bold" size="11.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="5.0" />
-                                    </VBox.margin>
-                                </Label>
-                                <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="password-field">
-                                    <VBox.margin>
-                                        <Insets bottom="15.0" />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                    </padding>
-                                </PasswordField>
-                                <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
-                                    <children>
-                                        <CheckBox fx:id="rememberMeCheckbox" text="Remember me" textFill="#666666" />
-                                        <Pane HBox.hgrow="ALWAYS" />
-                                        <Label fx:id="forgotPasswordLabel" styleClass="link" text="Forgot password?" textFill="#ff5163">
-                                            <font>
-                                                <Font name="System Bold" size="12.0" />
-                                            </font>
-                                        </Label>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets bottom="25.0" />
-                                    </VBox.margin>
-                                </HBox>
-                                <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="Sign In" textAlignment="CENTER">
-                                    <padding>
-                                        <Insets bottom="10.0" top="10.0" />
-                                    </padding>
-                                    <font>
-                                        <Font name="System Bold" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets bottom="20.0" />
-                                    </VBox.margin>
-                                </Button>
-                            </children>
-                        </VBox>
-                    </children>
-                </HBox>
-            </children>
-        </AnchorPane>
+                          </Label>
+                          <Button fx:id="createAccountButton" mnemonicParsing="false" styleClass="button-secondary" text="Create Account">
+                              <padding>
+                                  <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
+                              </padding>
+                              <font>
+                                  <Font name="System Bold" size="18.0" />
+                              </font>
+                          </Button>
+                      </children>
+                  </VBox>
+                  <VBox prefHeight="362.0" prefWidth="361.0" styleClass="background-white">
+                      <padding>
+                          <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                      </padding>
+                      <children>
+                          <Label text="Sign In" textFill="#333333">
+                              <font>
+                                  <Font name="System Bold" size="22.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets bottom="25.0" />
+                              </VBox.margin>
+                     <styleClass>
+                        <String fx:value="title-dark" />
+                        <String fx:value="title" />
+                     </styleClass>
+                          </Label>
+                          <Label text="EMAIL" textFill="#666666">
+                              <font>
+                                  <Font name="System Bold" size="11.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets bottom="5.0" />
+                              </VBox.margin>
+                          </Label>
+                          <TextField fx:id="emailField" promptText="example@email.com">
+                              <VBox.margin>
+                                  <Insets bottom="15.0" />
+                              </VBox.margin>
+                              <padding>
+                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                          </TextField>
+                          <Label text="PASSWORD" textFill="#666666">
+                              <font>
+                                  <Font name="System Bold" size="11.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets bottom="5.0" />
+                              </VBox.margin>
+                          </Label>
+                          <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="password-field">
+                              <VBox.margin>
+                                  <Insets bottom="15.0" />
+                              </VBox.margin>
+                              <padding>
+                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                          </PasswordField>
+                          <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
+                              <children>
+                                  <CheckBox fx:id="rememberMeCheckbox" text="Remember me" textFill="#666666" />
+                                  <Pane HBox.hgrow="ALWAYS" />
+                                  <Label fx:id="forgotPasswordLabel" styleClass="link" text="Forgot password?" textFill="#ff5163">
+                                      <font>
+                                          <Font name="System Bold" size="12.0" />
+                                      </font>
+                                  </Label>
+                              </children>
+                              <VBox.margin>
+                                  <Insets bottom="25.0" />
+                              </VBox.margin>
+                          </HBox>
+                          <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="Sign In" textAlignment="CENTER">
+                              <padding>
+                                  <Insets bottom="10.0" top="10.0" />
+                              </padding>
+                              <font>
+                                  <Font name="System Bold" size="14.0" />
+                              </font>
+                              <VBox.margin>
+                                  <Insets bottom="20.0" />
+                              </VBox.margin>
+                          </Button>
+                      </children>
+                  </VBox>
+              </children>
+          </HBox>
     </children>
 </StackPane>

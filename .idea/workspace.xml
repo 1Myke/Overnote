@@ -4,18 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Merge custom stylesheets into styles.css">
+    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Migrate Login UI to custom css">
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/MainApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/titlebar.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/register.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/RegisterController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -50,7 +73,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BaseWindow.executor": "Run",
     "Application.LoginApplication.executor": "Run",
+    "Application.Main.executor": "Run",
     "Application.RegisterApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -64,13 +89,49 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation" />
+      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="eus.overnote.presentation" />
+      <recent name="eus.overnote" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.LoginApplication">
+    <configuration name="BaseWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.BaseWindow" />
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.presentation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.LoginApplication" />
       <module name="Overnote" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="eus.overnote.presentation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -94,6 +155,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LoginApplication" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.BaseWindow" />
         <item itemvalue="Application.RegisterApplication" />
       </list>
     </recent_temporary>
@@ -114,7 +177,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1742034909510</updated>
-      <workItem from="1742034912683" duration="10984000" />
+      <workItem from="1742034912683" duration="22472000" />
     </task>
     <task id="LOCAL-00001" summary="[REFACTOR] Merge custom stylesheets into styles.css">
       <option name="closed" value="true" />
@@ -124,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742037148470</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[REFACTOR] Migrate Login UI to custom css">
+      <option name="closed" value="true" />
+      <created>1742047217812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742047217812</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +214,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[REFACTOR] Merge custom stylesheets into styles.css" />
-    <option name="LAST_COMMIT_MESSAGE" value="[REFACTOR] Merge custom stylesheets into styles.css" />
+    <MESSAGE value="[REFACTOR] Migrate Login UI to custom css" />
+    <option name="LAST_COMMIT_MESSAGE" value="[REFACTOR] Migrate Login UI to custom css" />
   </component>
 </project>

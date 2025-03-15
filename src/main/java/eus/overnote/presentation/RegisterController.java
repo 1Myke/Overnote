@@ -2,18 +2,15 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.factories.WindowFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,19 +43,6 @@ public class RegisterController {
     private Button signInButton;
 
     @FXML
-    private Button minimizeButton;
-
-    @FXML
-    private Button closeButton;
-
-    @FXML
-    private Pane barPane;
-
-    // Variables for window dragging
-    private double xOffset = 0;
-    private double yOffset = 0;
-
-    @FXML
     public void initialize() {
         // Set up event handlers for registration functionality
         registerButton.setOnAction(event -> handleRegistration());
@@ -66,41 +50,9 @@ public class RegisterController {
         signInButton.setOnAction(event -> navigateToLogin());
         logger.debug("\"{}\" button listener initialized", signInButton.getText());
 
-        // Set up custom window control buttons
-        closeButton.setOnAction(event -> {
-            logger.debug("Close button clicked");
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.close();
-        });
-        minimizeButton.setOnAction(event -> {
-            logger.debug("Minimize button clicked");
-            Stage stage = (Stage) minimizeButton.getScene().getWindow();
-            stage.setIconified(true);
-        });
-
-        // Set up window dragging
-        barPane.setOnMousePressed(this::handleMousePressed);
-        logger.debug("Mouse pressed listener initialized");
-        barPane.setOnMouseDragged(this::handleMouseDragged);
-        logger.debug("Mouse dragged listener initialized");
-
         // Initialize business logic
         bl = new BusinessLogic();
         logger.debug("Business logic initialized");
-    }
-
-    private void handleMousePressed(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
-        logger.debug("Mouse pressed at ({}, {})", xOffset, yOffset);
-    }
-
-    private void handleMouseDragged(MouseEvent event) {
-        logger.debug("Mouse dragged to x: {}, y: {}", event.getScreenX(), event.getScreenY());
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setX(event.getScreenX() - xOffset);
-        stage.setY(event.getScreenY() - yOffset);
     }
 
     private void handleRegistration() {
@@ -125,18 +77,20 @@ public class RegisterController {
 
     private void navigateToLogin() {
         try {
-            // Load the login FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
-            Parent loginRoot = loader.load();
-            Scene loginScene = new Scene(loginRoot);
+            // Load the FXML
+            FXMLLoader loader = new FXMLLoader(LoginApplication.class.getResource("login.fxml"));
+            Pane loginContent = loader.load();
 
-            // Add CSS for styling
-            loginScene.getStylesheets().add(RegisterApplication.class.getResource("styles.css").toExternalForm());
-            loginScene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+            // Create register window using the factory
+            Stage registerWindow = WindowFactory.createWindow("Overnote - Login", loginContent);
 
-            // Get the current stage and set the new scene
-            Stage stage = (Stage) signInButton.getScene().getWindow();
-            stage.setScene(loginScene);
+            // Close the login window
+            Stage loginWindow = (Stage) signInButton.getScene().getWindow();
+            loginWindow.close();
+
+            // Show the window
+            registerWindow.show();
+
             logger.info("Navigated to login screen");
         } catch (IOException e) {
             logger.error("Failed to navigate to login screen", e);

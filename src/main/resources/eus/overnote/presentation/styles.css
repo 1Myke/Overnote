@@ -23,6 +23,21 @@
     -border-secondary: #cccccc;
     -border-white: white;
     -hover-color: rgba(255, 255, 255, 0.2);
+    -titlebar-color: rgba(52, 58, 64, 1);
+    -titlebar-dragged-color: rgba(52, 58, 64, 0.9);
+}
+
+/*************/
+/* TITLE BAR */
+/*************/
+
+.titlebar {
+    -fx-background-color: -titlebar-color;
+}
+
+.titlebar-dragged {
+    -fx-background-color: -titlebar-dragged-color;
+    -fx-cursor: closed_hand;
 }
 
 /*******************/
