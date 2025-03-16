@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[REFACTOR] Enhance window controls and improve layout responsiveness">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/CustomWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/CustomWindowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/TitleBarLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/customwindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/customwindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

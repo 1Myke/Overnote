@@ -60,12 +60,20 @@ public class CustomWindowController {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    Stage stage;
+    private double dragStartScreenX;
+    private double dragStartScreenY;
+    private double targetStageWidth;
+    private double targetStageHeight;
+
+    private Rectangle windowClip;
+
     @Getter
     private boolean resizable = true;
 
     public void initialize() {
         // Set up window clipping
-        Rectangle windowClip = new Rectangle();
+        windowClip = new Rectangle();
         windowClip.widthProperty().bind(container.widthProperty());
         windowClip.heightProperty().bind(container.heightProperty());
         windowClip.setArcWidth(10);
@@ -86,6 +94,128 @@ public class CustomWindowController {
         // Create resize panes list
         resizePanes = List.of(topLeftResize, topRightResize, bottomLeftResize, bottomRightResize,
                 topResize, bottomResize, leftResize, rightResize, topResizeHBox, bottomResizeHBox);
+
+        // Set up resize handlers
+        setResizeHandlers(topLeftResize, DragDirection.NW);
+        setResizeHandlers(topRightResize, DragDirection.NE);
+        setResizeHandlers(bottomLeftResize, DragDirection.SW);
+        setResizeHandlers(bottomRightResize, DragDirection.SE);
+        setResizeHandlers(topResize, DragDirection.N);
+        setResizeHandlers(bottomResize, DragDirection.S);
+        setResizeHandlers(leftResize, DragDirection.W);
+        setResizeHandlers(rightResize, DragDirection.E);
+        setResizeHandlers(topResizeHBox, DragDirection.N);
+        setResizeHandlers(bottomResizeHBox, DragDirection.S);
+    }
+
+    private void setResizeHandlers(Pane pane, DragDirection dragDirection) {
+        pane.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown()) {
+                stage = (Stage) container.getCenter().getScene().getWindow();
+                dragStartScreenX = event.getScreenX();
+                dragStartScreenY = event.getScreenY();
+                targetStageWidth = stage.getWidth();
+                targetStageHeight = stage.getHeight();
+                event.consume();
+            }
+        });
+
+        pane.setOnMouseDragged(event -> {
+            if (!event.isPrimaryButtonDown()) {
+                return;
+            }
+
+            double mouseScreenX = event.getScreenX();
+            double mouseScreenY = event.getScreenY();
+            double deltaX = mouseScreenX - dragStartScreenX;
+            double deltaY = mouseScreenY - dragStartScreenY;
+            dragStartScreenX = mouseScreenX;
+            dragStartScreenY = mouseScreenY;
+
+            if (deltaX == 0 && deltaY ==0) {
+                return;
+            }
+
+            logger.debug("mouseScreenX={} mouseScreenY={}\ndeltaX={} deltaY={} stageX={} stageY={} " +
+                            "stageW={} stageH={} sceneX={} sceneY={} targetStageWidth={} targetStageHeight={}",
+                    mouseScreenX, mouseScreenY, deltaX, deltaY, stage.getX(), stage.getY(),
+                    stage.getWidth(), stage.getHeight(), event.getSceneX(), event.getSceneY(),
+                    targetStageWidth,targetStageHeight);
+
+            switch (dragDirection) {
+                case N:
+                    if (mouseScreenY < stage.getY() + stage.getHeight() - stage.getMinHeight()) {
+                        stage.setY(mouseScreenY);
+                        resizeStageHeight(-deltaY);
+                    }
+                    break;
+                case NE:
+                    if (mouseScreenY < stage.getY() + stage.getHeight() - stage.getMinHeight()) {
+                        stage.setY(mouseScreenY);
+                        resizeStageHeight(-deltaY);
+                    }
+                    resizeStageWidth(deltaX);
+                    break;
+                case E:
+                    resizeStageWidth(deltaX);
+                    break;
+                case SE:
+                    resizeStageHeight(deltaY);
+                    resizeStageWidth(deltaX);
+                    break;
+                case S:
+                    resizeStageHeight(deltaY);
+                    break;
+                case SW:
+                    if (mouseScreenX < stage.getX() + stage.getWidth() - stage.getMinWidth()) {
+                        stage.setX(mouseScreenX);
+                        resizeStageWidth(-deltaX);
+                    }
+                    resizeStageHeight(deltaY);
+                    break;
+                case W:
+                    if (mouseScreenX < stage.getX() + stage.getWidth() - stage.getMinWidth()) {
+                        stage.setX(mouseScreenX);
+                        resizeStageWidth(-deltaX);
+                    }
+                    break;
+                case NW:
+                    if (mouseScreenY < stage.getY() + stage.getHeight() - stage.getMinHeight()) {
+                        stage.setY(mouseScreenY);
+                        resizeStageHeight(-deltaY);
+                    }
+                    if (mouseScreenX < stage.getX() + stage.getWidth() - stage.getMinWidth()) {
+                        stage.setX(mouseScreenX);
+                        resizeStageWidth(-deltaX);
+                    }
+                    break;
+            }
+            event.consume();
+        });
+    }
+
+    private void resizeStageWidth(double deltaX) {
+        double newWidth = targetStageWidth + deltaX;
+
+        if (newWidth >= stage.getMinWidth() && newWidth <= stage.getMaxWidth()) {
+            targetStageWidth = newWidth;
+            stage.setWidth(newWidth);
+            stage.setHeight(targetStageHeight);
+        }
+    }
+
+    private void resizeStageHeight(double deltaY) {
+        double newHeight = targetStageHeight + deltaY;
+
+        if (newHeight >= stage.getMinHeight() && newHeight <= stage.getMaxHeight()) {
+            targetStageHeight = newHeight;
+            stage.setHeight(newHeight);
+            stage.setWidth(targetStageWidth);
+        }
+    }
+
+    private enum DragDirection {
+        N, NE, E, SE, S, SW, W, NW
     }
 
     private void handleMouseClicked(MouseEvent mouseEvent) {
