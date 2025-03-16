@@ -79,17 +79,22 @@ public class CustomWindowController {
         windowClip.setArcWidth(10);
         windowClip.setArcHeight(10);
         container.setClip(windowClip);
+        logger.debug("Round window corners set");
 
         // Set up event handlers for window functionality
         minimizeButton.setOnAction(event -> minimizeWindow());
+        logger.debug("Minimize button listener set");
         closeButton.setOnAction(event -> closeWindow());
+        logger.debug("Close button listener set");
         maximizeButton.setOnAction(event -> toggleMaximizeWindow());
+        logger.debug("Maximize button listener set");
 
         // Set up event handlers for window dragging
         barPane.setOnMousePressed(this::handleMousePressed);
         barPane.setOnMouseDragged(this::handleMouseDragged);
         barPane.setOnMouseReleased(this::handleMouseReleased);
         barPane.setOnMouseClicked(this::handleMouseClicked);
+        logger.debug("Title bar listener set");
 
         // Create resize panes list
         resizePanes = List.of(topLeftResize, topRightResize, bottomLeftResize, bottomRightResize,
@@ -106,11 +111,13 @@ public class CustomWindowController {
         setResizeHandlers(rightResize, DragDirection.E);
         setResizeHandlers(topResizeHBox, DragDirection.N);
         setResizeHandlers(bottomResizeHBox, DragDirection.S);
+        logger.debug("Resize pane listeners set");
     }
 
     private void setResizeHandlers(Pane pane, DragDirection dragDirection) {
         pane.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
+                logger.debug("Window resize started in direction: {}", dragDirection);
                 dragStartScreenX = event.getScreenX();
                 dragStartScreenY = event.getScreenY();
                 targetStageWidth = stage.getWidth();
@@ -135,8 +142,8 @@ public class CustomWindowController {
                 return;
             }
 
-            logger.debug("mouseScreenX={} mouseScreenY={}\ndeltaX={} deltaY={} stageX={} stageY={} " +
-                            "stageW={} stageH={} sceneX={} sceneY={} targetStageWidth={} targetStageHeight={}",
+            logger.debug("Window resize: mouseScreenX={} mouseScreenY={}; deltaX={} deltaY={}; stageX={} stageY={}; " +
+                            "stageW={} stageH={}; sceneX={} sceneY={}; targetStageWidth={} targetStageHeight={}",
                     mouseScreenX, mouseScreenY, deltaX, deltaY, stage.getX(), stage.getY(),
                     stage.getWidth(), stage.getHeight(), event.getSceneX(), event.getSceneY(),
                     targetStageWidth,targetStageHeight);
@@ -282,10 +289,12 @@ public class CustomWindowController {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
 
-        logger.debug("Window closed");
+        logger.info("Window closed");
     }
 
     private void toggleMaximizeWindow() {
+        logger.info("Maximization toggled");
+
         // Check if window is resizable
         if (!isResizable()) return;
 
@@ -306,11 +315,12 @@ public class CustomWindowController {
         Stage stage = (Stage) minimizeButton.getScene().getWindow();
         stage.setIconified(true);
 
-        logger.debug("Window iconified");
+        logger.info("Window iconified");
     }
 
     public void setTitle(String title) {
         titleLabel.setText(title);
+        logger.debug("Window title: {}", title);
     }
 
     public void setContent(Pane content) {

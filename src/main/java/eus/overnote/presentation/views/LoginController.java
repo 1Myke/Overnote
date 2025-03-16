@@ -3,12 +3,9 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.factories.WindowFactory;
 import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +69,6 @@ public class LoginController {
         logger.info("User clicked on \"{}\"", createAccountButton.getText());
         try {
             WindowManager.openRegisterView();
-            logger.info("Navigated to register view");
         } catch (IOException e) {
             logger.error("Error changing to register view", e);
         }
