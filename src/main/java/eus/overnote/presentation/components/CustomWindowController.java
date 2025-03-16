@@ -56,7 +56,7 @@ public class CustomWindowController {
     private boolean justUnmaximized = false;
     private Dimension2D dimBeforeUnmax;
     private Point2D mouseBeforeUnmax;
-    
+
     private double xOffset = 0;
     private double yOffset = 0;
 
@@ -111,7 +111,6 @@ public class CustomWindowController {
     private void setResizeHandlers(Pane pane, DragDirection dragDirection) {
         pane.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
-                stage = (Stage) container.getCenter().getScene().getWindow();
                 dragStartScreenX = event.getScreenX();
                 dragStartScreenY = event.getScreenY();
                 targetStageWidth = stage.getWidth();
@@ -295,10 +294,10 @@ public class CustomWindowController {
         stage.setMaximized(isNowMaximized);
 
         resizePanes.forEach(
-            pane -> {
-                pane.setVisible(!isNowMaximized);
-                pane.setManaged(!isNowMaximized);
-            });
+                pane -> {
+                    pane.setVisible(!isNowMaximized);
+                    pane.setManaged(!isNowMaximized);
+                });
 
         logger.debug("Maximized: {}", isNowMaximized);
     }
@@ -316,6 +315,22 @@ public class CustomWindowController {
 
     public void setContent(Pane content) {
         this.container.setCenter(content);
+        stage = (Stage) container.getCenter().getScene().getWindow();
+        double contentPrefWidth = content.prefWidth(-1);
+        double contentPrefHeight = content.prefHeight(-1);
+        double resizePanesWidth = leftResize.getWidth() + rightResize.getWidth();
+        double resizePanesHeight = topResize.getHeight() + bottomResize.getHeight();
+        double barPaneHeight = barPane.getHeight();
+        double arbitraryHeightOffset = 6; // Haven't found a way to calculate this yet
+
+        stage.setMinWidth(contentPrefWidth + resizePanesWidth);
+        stage.setMinHeight(contentPrefHeight + resizePanesHeight + barPaneHeight + arbitraryHeightOffset);
+
+        logger.debug("Content pref width: {}, pref height: {}", contentPrefWidth, contentPrefHeight);
+        logger.debug("Resize panes width: {}, height: {}", resizePanesWidth, resizePanesHeight);
+        logger.debug("Bar pane height: {}", barPaneHeight);
+        logger.debug("Arbitrary height offset: {}", arbitraryHeightOffset);
+        logger.debug("Stage min width: {}, min height: {}", stage.getMinWidth(), stage.getMinHeight());
     }
 
     public void setResizable(boolean resizable) {

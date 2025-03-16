@@ -16,15 +16,16 @@ public class WindowFactory {
         Scene scene = new Scene(loader.load());
         scene.setFill(null);
 
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
+        stage.show();
+
         CustomWindowController controller = loader.getController();
         controller.setTitle(title);
         controller.setContent(content);
         controller.setResizable(resizable);
-
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.show();
     }
 
     public static void createWindow(String title, Pane content) throws IOException {
