@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.NoteController">
+   <children>
+      <TextArea fx:id="noteText" layoutX="3.0" layoutY="77.0" prefHeight="569.0" prefWidth="470.0" promptText="Text ..." styleClass="text-field" stylesheets="@login.css" wrapText="true" />
+      <TextField fx:id="titleBar" layoutX="3.0" layoutY="44.0" prefHeight="25.0" prefWidth="470.0" promptText="Title ..." styleClass="text-field" stylesheets="@login.css">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></TextField>
+   </children>
+</AnchorPane>

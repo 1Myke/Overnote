@@ -1,0 +1,25 @@
+/* JavaFX VBox Grey Styling */
+
+.vbox {
+    -fx-background-color: #cdcdcd;
+    -fx-padding: 10;
+    -fx-background-radius: 4;
+}
+
+/* Alternative classes if you need different shades */
+.vbox-light {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 10;
+    -fx-background-radius: 4;
+}
+
+.vbox-dark {
+    -fx-background-color: #a0a0a0;
+    -fx-padding: 10;
+    -fx-background-radius: 4;
+}
+
+/* For hover effects if needed */
+.vbox:hover {
+    -fx-background-color: #bebebe;
+}

@@ -2,6 +2,7 @@ package eus.overnote.businesslogic;
 
 import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.OvernoteUser;
+import org.hibernate.sql.ast.tree.expression.Over;
 
 public class BusinessLogic implements BlInterface {
     @Override

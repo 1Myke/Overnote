@@ -112,9 +112,11 @@ public class LoginController {
                 "\", password=\"" + password+
                 "\", rememberMe=\"" + rememberMe + "\""
         );
-
         // Call the business logic to log in the user
         bl.loginUser(email, password);
+
+        // Change to the application view
+        navigateToApplication();
     }
 
     private void navigateToRegister() {
@@ -137,6 +139,36 @@ public class LoginController {
 
         } catch (IOException e) {
             logger.error("Error changing to register view", e);
+        }
+    }
+
+    private void navigateToApplication() {
+        logger.info("User clicked on \"" + loginButton.getText() + "\"");
+        try {
+            /* Using this the bar for drawing the window is not created
+
+            // Load the login FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Application.fxml"));
+            Parent appRoot = loader.load();
+            Scene appScene = new Scene(appRoot);
+
+            // Add CSS for styling
+            appScene.getStylesheets().add(RegisterApplication.class.getResource("sidebarcolor.css").toExternalForm());
+            appScene.getStylesheets().add(RegisterApplication.class.getResource("buttons_titles.css").toExternalForm());
+            appScene.setFill(Color.TRANSPARENT);
+
+            // Get the current stage and set the new scene
+            Stage stage = (Stage) loginButton.getScene().getWindow();
+            stage.setScene(appScene);
+            */
+
+            // use the applicationView.java class to navigate to the application view
+            ApplicationView appView = new ApplicationView();
+            appView.start(new Stage());
+            logger.info("Navigated to Overnote application view");
+
+        } catch (IOException e) {
+            logger.error("Error changing to Overnote application view", e);
         }
     }
 
