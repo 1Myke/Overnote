@@ -85,7 +85,7 @@ public class RegisterController {
         logger.debug("Mouse dragged listener initialized");
 
         // Initialize business logic
-        bl = new BusinessLogic();
+        bl = BusinessLogic.getInstance();
         logger.debug("Business logic initialized");
     }
 

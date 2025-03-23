@@ -1,49 +1,91 @@
 package eus.overnote.presentation;
 
+import eus.overnote.businesslogic.BlInterface;
+import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.domain.Note;
+import eus.overnote.domain.OvernoteUser;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class ApplicationViewController {
 
-    @FXML
-    private Button aiButton;
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationViewController.class);
+    private final BlInterface bl = BusinessLogic.getInstance();
+    private OvernoteUser loggedUser;
+    private NoteController noteController;
 
     @FXML
-    private BorderPane appBorderPane;
+    private Button newNoteAiButton;
 
     @FXML
-    private Button newNodeButton;
+    private BorderPane root;
+
+    @FXML
+    private Button newNoteButton;
+
+    @FXML
+    private ComboBox<Note> noteSelectComboBox;
+    private ObservableList<Note> notes;
+
+    public void initialize() {
+        logger.debug("Initializing main application view");
+
+        // Set selection comboBox
+        notes = FXCollections.observableArrayList();
+        noteSelectComboBox.setItems(notes);
+
+        // Load Note FXML
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Note.fxml"));
+            root.setCenter(fxmlLoader.load());
+            noteController = fxmlLoader.getController();
+        } catch (Exception e) {
+            logger.error("Error loading Note.fxml", e);
+        }
+    }
+
+    void selectNote(Note note) {
+        if (loggedUser == null) {
+            logger.error("No user logged in");
+            return;
+        }
+        logger.debug("Selecting note");
+        noteController.setSelectedNote(note);
+    }
 
     @FXML
     void createNote(ActionEvent event) {
-        loadContent("note.fxml");
+        if (loggedUser == null) {
+            logger.error("No user logged in");
+            return;
+        }
+
+        logger.debug("Creating new note");
+        Note createdNote = new Note("Untitled note", "", loggedUser);
+        bl.saveNote(createdNote);
+        notes.add(createdNote);
+        noteSelectComboBox.getSelectionModel().select(createdNote);
+        selectNote(createdNote);
     }
 
-    //Juanan's method to add content in a border pain (ADAPTED)
-
-    private final Map<String, AnchorPane> contentCache = new HashMap<>();
-
-    private void loadContent(String fxmlFile) {
-        try {
-            // Check if content is already cached
-            AnchorPane content = contentCache.get(fxmlFile);
-            if (content == null) {
-                // If not cached, load it and store in cache
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-                content = loader.load();
-                contentCache.put(fxmlFile, content);
-            }
-            appBorderPane.setRight(content);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setLoggedUser(OvernoteUser user) {
+        loggedUser = user;
+        notes.addAll(user.getNotes());
+        noteSelectComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            noteController.saveNote();
+            selectNote(newValue);
+        });
     }
 }

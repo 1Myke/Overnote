@@ -23,10 +23,13 @@ public class Note {
     private String content;
 
     @Column(nullable = false)
-    private Date creationDate = new Date();
+    private final Date creationDate = new Date();
+
+    @Column(nullable = false)
+    private final Date lastModificationDate = new Date();
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(nullable = false)
     private OvernoteUser user;
 
     // Empty constructor for JPA
@@ -39,6 +42,9 @@ public class Note {
         this.title = title;
         this.content = content;
         this.user = user;
-        this.creationDate = new Date();
+    }
+
+    public void setLastModificationDate(Date date) {
+        getLastModificationDate().setTime(date.getTime());
     }
 }

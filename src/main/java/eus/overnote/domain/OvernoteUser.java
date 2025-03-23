@@ -29,12 +29,11 @@ public class OvernoteUser {
     private String password;
 
     @Column(nullable = false, updatable = false)
-    private Date registrationDate = new Date();
+    private final Date registrationDate = new Date();
 
-    /*
-Mikel Martinez: I have commented this part because it didn't work correctly, we need to correct it
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Note> notes = new ArrayList<>();*/
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Note> notes = new ArrayList<>();
 
     // Empty constructor for JPA
     protected OvernoteUser() {
@@ -46,6 +45,5 @@ Mikel Martinez: I have commented this part because it didn't work correctly, we 
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.registrationDate = new Date();
     }
 }

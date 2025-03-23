@@ -12,5 +12,6 @@
 
         <!-- Entity mapping -->
         <mapping class="eus.overnote.domain.OvernoteUser"/>
+        <mapping class="eus.overnote.domain.Note"/>
     </session-factory>
 </hibernate-configuration>

@@ -2,7 +2,7 @@
 <dataSource name="Overnote Database">
   <database-model serializer="dbm" dbms="H2" family-id="H2" format-version="4.53">
     <root id="1">
-      <ServerVersion>2.2.220</ServerVersion>
+      <ServerVersion>2.3.232</ServerVersion>
     </root>
     <database id="2" parent="1" name="DATABASE">
       <Current>1</Current>
@@ -169,95 +169,140 @@
     <schema id="162" parent="2" name="INFORMATION_SCHEMA"/>
     <schema id="163" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-03-15.10:07:55</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-03-23.20:25:04</LastIntrospectionLocalTimestamp>
     </schema>
-    <table id="164" parent="163" name="OVERNOTEUSER"/>
-    <table id="165" parent="163" name="USERS"/>
-    <column id="166" parent="164" name="ID">
+    <table id="164" parent="163" name="NOTE"/>
+    <table id="165" parent="163" name="OVERNOTEUSER"/>
+    <table id="166" parent="163" name="OVERNOTEUSER_NOTE"/>
+    <column id="167" parent="164" name="ID">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>UUID|0s</StoredType>
     </column>
-    <column id="167" parent="164" name="EMAIL">
+    <column id="168" parent="164" name="CONTENT">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="168" parent="164" name="FULLNAME">
+    <column id="169" parent="164" name="CREATIONDATE">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
-    </column>
-    <column id="169" parent="164" name="PASSWORD">
-      <NotNull>1</NotNull>
-      <Position>4</Position>
-      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
-    </column>
-    <column id="170" parent="164" name="REGISTRATIONDATE">
-      <NotNull>1</NotNull>
-      <Position>5</Position>
       <StoredType>TIMESTAMP|0s</StoredType>
     </column>
-    <index id="171" parent="164" name="PRIMARY_KEY_47">
+    <column id="170" parent="164" name="LASTMODIFICATIONDATE">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>TIMESTAMP|0s</StoredType>
+    </column>
+    <column id="171" parent="164" name="TITLE">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>CHARACTER VARYING(255)|0s</StoredType>
+    </column>
+    <column id="172" parent="164" name="USER_ID">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>UUID|0s</StoredType>
+    </column>
+    <foreign-key id="173" parent="164" name="FKT3XTL8ICSTL7FNAFNKJ4QI3AC">
+      <ColNames>USER_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefTableName>OVERNOTEUSER</RefTableName>
+    </foreign-key>
+    <index id="174" parent="164" name="PRIMARY_KEY_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="172" parent="164" name="UK_SH68FB8SDMWOXWM38RLYP6DMB_INDEX_4">
-      <ColNames>EMAIL</ColNames>
+    <index id="175" parent="164" name="FKT3XTL8ICSTL7FNAFNKJ4QI3AC_INDEX_2">
+      <ColNames>USER_ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <Unique>1</Unique>
     </index>
-    <key id="173" parent="164" name="CONSTRAINT_47">
+    <key id="176" parent="164" name="CONSTRAINT_2">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="174" parent="164" name="UK_SH68FB8SDMWOXWM38RLYP6DMB">
-      <ColNames>EMAIL</ColNames>
-    </key>
-    <column id="175" parent="165" name="ID">
+    <column id="177" parent="165" name="ID">
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>UUID|0s</StoredType>
     </column>
-    <column id="176" parent="165" name="EMAIL">
+    <column id="178" parent="165" name="EMAIL">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="177" parent="165" name="FULLNAME">
+    <column id="179" parent="165" name="FULLNAME">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="178" parent="165" name="PASSWORD">
+    <column id="180" parent="165" name="PASSWORD">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>CHARACTER VARYING(255)|0s</StoredType>
     </column>
-    <column id="179" parent="165" name="REGISTRATIONDATE">
+    <column id="181" parent="165" name="REGISTRATIONDATE">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>TIMESTAMP|0s</StoredType>
     </column>
-    <index id="180" parent="165" name="PRIMARY_KEY_4">
+    <index id="182" parent="165" name="PRIMARY_KEY_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <index id="181" parent="165" name="UK_6DOTKOTT2KJSP8VW4D0M25FB7_INDEX_4">
+    <index id="183" parent="165" name="UK_SH68FB8SDMWOXWM38RLYP6DMB_INDEX_4">
       <ColNames>EMAIL</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Unique>1</Unique>
     </index>
-    <key id="182" parent="165" name="CONSTRAINT_4">
+    <key id="184" parent="165" name="CONSTRAINT_4">
       <ColNames>ID</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
     </key>
-    <key id="183" parent="165" name="UK_6DOTKOTT2KJSP8VW4D0M25FB7">
+    <key id="185" parent="165" name="UK_SH68FB8SDMWOXWM38RLYP6DMB">
       <ColNames>EMAIL</ColNames>
+    </key>
+    <column id="186" parent="166" name="OVERNOTEUSER_ID">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>UUID|0s</StoredType>
+    </column>
+    <column id="187" parent="166" name="NOTES_ID">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>UUID|0s</StoredType>
+    </column>
+    <foreign-key id="188" parent="166" name="FKSN7OPHBUC9HQIWDYLNDCR3F5J">
+      <ColNames>OVERNOTEUSER_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_4</RefKeyName>
+      <RefTableName>OVERNOTEUSER</RefTableName>
+    </foreign-key>
+    <foreign-key id="189" parent="166" name="FK2SW0TTUJ2UMIOY356M5O306OS">
+      <ColNames>NOTES_ID</ColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+      <RefKeyName>CONSTRAINT_2</RefKeyName>
+      <RefTableName>NOTE</RefTableName>
+    </foreign-key>
+    <index id="190" parent="166" name="UK_395J9VV3X7P4V0G7GWA3INRA7_INDEX_B">
+      <ColNames>NOTES_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Unique>1</Unique>
+    </index>
+    <index id="191" parent="166" name="FKSN7OPHBUC9HQIWDYLNDCR3F5J_INDEX_B">
+      <ColNames>OVERNOTEUSER_ID</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+    </index>
+    <key id="192" parent="166" name="UK_395J9VV3X7P4V0G7GWA3INRA7">
+      <ColNames>NOTES_ID</ColNames>
     </key>
   </database-model>
 </dataSource>
