@@ -2,7 +2,7 @@
 <dataSource name="Overnote Database">
   <database-model serializer="dbm" dbms="H2" family-id="H2" format-version="4.53">
     <root id="1">
-      <ServerVersion>2.3.232</ServerVersion>
+      <ServerVersion>2.2.220</ServerVersion>
     </root>
     <database id="2" parent="1" name="DATABASE">
       <Current>1</Current>
