@@ -13,12 +13,11 @@ classDiagram
     User "1" *-- "0..*" Tag : has
     Note "0..*" *-- "0..*" Tag : is categorized by
 
-    NodeParent "1" *-- "0..*" ItemNode : contains
+    NodeParent "1" *-- "0..*" BaseNode : contains
 
     BaseNode <|-- ImageNode
     BaseNode <|-- ParagraphNode
     BaseNode <|-- ListNode
-    ItemNode <|-- BaseNode
     NodeParent <|-- Note
     NodeParent <|-- ListNode
     ListNode -- ListType : is of type
@@ -49,6 +48,7 @@ classDiagram
     class BaseNode {
         <<abstract>>
         id: UUID
+        orderIndex: int
     }
 
     class ParagraphNode {
@@ -68,10 +68,5 @@ classDiagram
     
     class NodeParent {
         <<interface>>
-    }
-    
-    class ItemNode {
-        <<interface>>
-        orderIndex: int
     }
 ```
