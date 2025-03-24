@@ -11,15 +11,15 @@
 classDiagram
     User "1" *-- "0..*" Note : owns
     User "1" *-- "0..*" Tag : has
-    Note "0..*" *-- "0..*" Tag : is categorized by
+    Note "0..*" o-- "0..*" Tag : is categorized by
 
     NodeParent "1" *-- "0..*" BaseNode : contains
 
     BaseNode <|-- ImageNode
     BaseNode <|-- ParagraphNode
     BaseNode <|-- ListNode
-    NodeParent <|-- Note
-    NodeParent <|-- ListNode
+    NodeParent <|.. Note
+    NodeParent <|.. ListNode
     ListNode -- ListType : is of type
 
     class User {
