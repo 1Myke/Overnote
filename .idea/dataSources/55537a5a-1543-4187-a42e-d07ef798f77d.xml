@@ -169,7 +169,7 @@
     <schema id="162" parent="2" name="INFORMATION_SCHEMA"/>
     <schema id="163" parent="2" name="PUBLIC">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2025-03-15.10:07:55</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2025-03-15.22:49:46</LastIntrospectionLocalTimestamp>
     </schema>
     <table id="164" parent="163" name="OVERNOTEUSER"/>
     <table id="165" parent="163" name="USERS"/>

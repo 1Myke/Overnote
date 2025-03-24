@@ -11,7 +11,13 @@ module eus.overnote.presentation {
     requires static lombok;
     requires com.h2database;
 
+    exports eus.overnote.presentation;
+    exports eus.overnote.presentation.components;
+    exports eus.overnote.factories;
+
     opens eus.overnote.domain to org.hibernate.orm.core;
     opens eus.overnote.presentation to javafx.fxml;
-    exports eus.overnote.presentation;
+    opens eus.overnote.presentation.components to javafx.fxml;
+    exports eus.overnote.presentation.views;
+    opens eus.overnote.presentation.views to javafx.fxml;
 }
