@@ -45,7 +45,7 @@ public class MainApplicationController {
 
         // Load Note FXML
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Note.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(NoteController.class.getResource("note.fxml"));
             root.setCenter(fxmlLoader.load());
             noteController = fxmlLoader.getController();
         } catch (Exception e) {

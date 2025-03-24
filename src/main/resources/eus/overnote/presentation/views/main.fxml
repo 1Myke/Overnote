@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.views.MainApplicationController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="648.0" prefWidth="1000.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.views.MainApplicationController">
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="648.0" prefWidth="231.0" spacing="20.0" styleClass="vbox-light" stylesheets="@sidebarcolor.css">
+            <VBox alignment="TOP_CENTER" prefHeight="648.0" prefWidth="231.0" spacing="20.0" styleClass="primary-color">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="app-title" stylesheets="@buttons_titles.css" text="Overnote" textAlignment="CENTER">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Overnote" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                      <font>
                         <Font size="25.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="title-light" />
+                        <String fx:value="title" />
+                     </styleClass>
                   </Label>
-                  <Button fx:id="newNoteButton" mnemonicParsing="false" onAction="#createNote" prefHeight="30.0" prefWidth="140.0" styleClass="new-note-button" stylesheets="@buttons_titles.css" text="+ New Note" textAlignment="CENTER">
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="-10.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Button fx:id="newNoteButton" mnemonicParsing="false" onAction="#createNote" prefHeight="30.0" prefWidth="140.0" styleClass="button-secondary" text="+ New Note" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="newNoteAiButton" mnemonicParsing="false" styleClass="ai-generated-button" stylesheets="@buttons_titles.css" text="+ AI Generated Note" textAlignment="CENTER">
+                  <Button fx:id="newNoteAiButton" mnemonicParsing="false" styleClass="button-secondary" text="+ AI Generated Note" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -38,10 +49,13 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <VBox>
+            <VBox spacing="10.0" styleClass="background-light">
                <children>
                   <ComboBox fx:id="noteSelectComboBox" prefWidth="150.0" />
                </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
             </VBox>
          </children>
       </HBox>
