@@ -1,9 +1,10 @@
-package eus.overnote.presentation;
+package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
+import eus.overnote.presentation.components.NoteController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,13 +16,9 @@ import javafx.scene.layout.BorderPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+public class MainApplicationController {
 
-public class ApplicationViewController {
-
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationViewController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
     private final BlInterface bl = BusinessLogic.getInstance();
     private OvernoteUser loggedUser;
     private NoteController noteController;

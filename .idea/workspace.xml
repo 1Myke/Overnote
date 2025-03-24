@@ -5,12 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[FEATURE] Set window minimum size automatically">
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/DebugMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/UI_Mockup_Overnote.svg" beforeDir="false" afterPath="$PROJECT_DIR$/doc/UI_Mockup_Overnote.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/ApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/ApplicationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/Application.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/bootstrapfx.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/buttons_titles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/note.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/note.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/note.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/sidebarcolor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/eus/overnote/presentation/bootstrapfx.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,54 +74,48 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.ApplicationView.executor&quot;: &quot;Run&quot;,
     &quot;Application.BaseWindow.executor&quot;: &quot;Run&quot;,
     &quot;Application.LoginApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainView.executor&quot;: &quot;Run&quot;,
     &quot;Application.RegisterApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.WindowManager.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#21 on refactor/window-manager&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#24 on AppView__CreateANote&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jorja/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views" />
-      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation" />
       <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components" />
+      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="eus.overnote.presentation.components" />
+      <recent name="eus.overnote.presentation.views" />
       <recent name="eus.overnote.presentation" />
       <recent name="eus.overnote" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WindowManager">
-    <configuration name="BaseWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.BaseWindow" />
+  <component name="RunManager" selected="Application.DebugMain">
+    <configuration name="DebugMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.DebugMain" />
       <module name="Overnote" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="eus.overnote.presentation.views.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.views.LoginApplication" />
-      <module name="Overnote" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="eus.overnote.presentation.views.*" />
+          <option name="PATTERN" value="eus.overnote.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,47 +136,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegisterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.RegisterApplication" />
-      <module name="Overnote" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="eus.overnote.presentation.views.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="WindowManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="eus.overnote.presentation.WindowManager" />
-      <module name="Overnote" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="eus.overnote.presentation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WindowManager" />
-        <item itemvalue="Application.LoginApplication" />
+        <item itemvalue="Application.DebugMain" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.BaseWindow" />
-        <item itemvalue="Application.RegisterApplication" />
+        <item itemvalue="Application.LoginApplication" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -247,6 +228,7 @@
     <MESSAGE value="[FEATURE] Implement window maximizing" />
     <MESSAGE value="[REFACTOR] Enhance window controls and improve layout responsiveness" />
     <MESSAGE value="[FEATURE] Set window minimum size automatically" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FEATURE] Set window minimum size automatically" />
+    <MESSAGE value="[FEATURE] Set up logging (logback)" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FEATURE] Set up logging (logback)" />
   </component>
 </project>

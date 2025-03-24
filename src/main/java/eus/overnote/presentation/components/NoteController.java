@@ -1,4 +1,4 @@
-package eus.overnote.presentation;
+package eus.overnote.presentation.components;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;

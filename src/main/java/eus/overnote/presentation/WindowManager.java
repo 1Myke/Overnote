@@ -1,6 +1,8 @@
 package eus.overnote.presentation;
 
+import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.views.LoginController;
+import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,30 +13,30 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-public class WindowManager extends Application {
+public class WindowManager {
 
-    private static final Logger logger = LoggerFactory.getLogger(WindowManager.class);
-    // Auth window
-    private static Stage authStage;
-    private static Scene loginScene;
-    private static Scene registerScene;
-    // Main window
-    private static Stage mainStage;
-    private static Scene mainScene;
+    private final Logger logger = LoggerFactory.getLogger(WindowManager.class);
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting Overnote application");
+    // Singleton
+    private static WindowManager INSTANCE;
+    private WindowManager () {
         initialize();
-
-        // The auth screen should be the first one to show
-        authStage.setScene(loginScene);
-        authStage.show();
     }
+    public static WindowManager getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new WindowManager();
+        }
+        return INSTANCE;
+    }
+
+    // Auth window
+    private Stage authStage;
+    private Scene loginScene;
+    private Scene registerScene;
+    // Main window
+    private Stage mainStage;
+    private Scene mainScene;
+    private MainApplicationController mainController;
 
     private void initialize() {
         // Creating the stages
@@ -46,7 +48,7 @@ public class WindowManager extends Application {
         // Loading the scenes
         FXMLLoader loginLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"));
         FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"));
-        FXMLLoader mainLoader = null; // TODO
+        FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"));
         try {
             loginScene = new Scene(loginLoader.load());
         } catch (IOException e) {
@@ -59,14 +61,31 @@ public class WindowManager extends Application {
             logger.error("Failed to load register scene", e);
             throw new RuntimeException(e);
         }
-        // TODO: Add the main window initialization after merging
+        try {
+            mainScene = new Scene(mainLoader.load());
+            mainController = mainLoader.getController();
+        } catch (IOException e) {
+            logger.error("Failed to load main scene", e);
+            throw new RuntimeException(e);
+        }
     }
 
-    public static void navigateToRegister() {
+    public void navigateToRegister() {
+        mainStage.hide();
         authStage.setScene(registerScene);
+        authStage.show();
     }
 
-    public static void navigateToLogin() {
+    public void navigateToLogin() {
+        mainStage.hide();
         authStage.setScene(loginScene);
+        authStage.show();
+    }
+
+    public void navigateToMain(OvernoteUser loggedUser) {
+        mainController.setLoggedUser(loggedUser);
+        mainStage.setScene(mainScene);
+        authStage.hide();
+        mainStage.show();
     }
 }

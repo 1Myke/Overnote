@@ -2,7 +2,7 @@
   <!-- Main Background -->
   <rect width="1200" height="800" fill="#f0f2f5" rx="0" ry="0" />
   
-  <!-- Application.fxml Window -->
+  <!-- main.fxml Window -->
   <rect x="50" y="50" width="1100" height="700" fill="white" stroke="#e1e4e8" stroke-width="1" rx="8" ry="8" />
   
   <!-- Left Sidebar -->

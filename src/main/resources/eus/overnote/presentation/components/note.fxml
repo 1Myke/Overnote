@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.NoteController">
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteController">
    <children>
       <TextField fx:id="noteTitle" prefHeight="25.0" prefWidth="470.0" promptText="Title ..." styleClass="text-field" stylesheets="@login.css">
          <opaqueInsets>
