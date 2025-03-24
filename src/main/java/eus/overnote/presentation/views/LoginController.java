@@ -61,17 +61,8 @@ public class LoginController {
     }
 
     private void navigateToRegister() {
-        // Close the current window
-        Stage stage = (Stage) createAccountButton.getScene().getWindow();
-        stage.close();
-
-        // Open the register view
         logger.info("User clicked on \"{}\"", createAccountButton.getText());
-        try {
-            WindowManager.openRegisterView();
-        } catch (IOException e) {
-            logger.error("Error changing to register view", e);
-        }
+        WindowManager.navigateToRegister();
     }
 
     private void handleForgotPasswordAction() {

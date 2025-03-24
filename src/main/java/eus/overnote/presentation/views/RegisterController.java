@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 public class RegisterController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
@@ -74,16 +72,7 @@ public class RegisterController {
     }
 
     private void navigateToLogin() {
-        // Close the current window
-        Stage stage = (Stage) signInButton.getScene().getWindow();
-        stage.close();
-
-        // Open the login view
         logger.info("User clicked on \"{}\"", signInButton.getText());
-        try {
-            WindowManager.openLoginView();
-        } catch (IOException e) {
-            logger.error("Failed to navigate to login screen", e);
-        }
+        WindowManager.navigateToLogin();
     }
 }

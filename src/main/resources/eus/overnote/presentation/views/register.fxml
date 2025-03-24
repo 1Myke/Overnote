@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="487.0" prefWidth="774.0" style="-fx-background-color: transparent;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.views.RegisterController">
+<StackPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: transparent;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.views.RegisterController">
     <children>
       
           <!-- Main Content -->
