@@ -1,5 +1,6 @@
 package eus.overnote.data_access;
 
+import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -76,6 +77,43 @@ public class DbAccessManager {
             db.getTransaction().rollback();
             logger.error("Error logging in user: {}", e.getMessage());
             return null;
+        }
+    }
+
+    public void saveNote(Note note) {
+        try {
+            db.getTransaction().begin();
+            note = db.merge(note);
+            note.getUser().getNotes().add(note);
+            db.getTransaction().commit();
+            logger.info("Note with id {} saved successfully", note.getId());
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error saving note: {}", e.getMessage());
+        }
+    }
+
+    public void updateNote(Note note) {
+        try {
+            db.getTransaction().begin();
+            db.merge(note);
+            db.getTransaction().commit();
+            logger.info("Note with id {} updated successfully", note.getId());
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error updating note: {}", e.getMessage());
+        }
+    }
+
+    public void deleteNote(Note note) {
+        try {
+            db.getTransaction().begin();
+            db.remove(note);
+            db.getTransaction().commit();
+            logger.info("Note with id {} deleted successfully", note.getId());
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error deleting note: {}", e.getMessage());
         }
     }
 }

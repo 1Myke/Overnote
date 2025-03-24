@@ -45,7 +45,7 @@ public class LoginController {
         logger.debug("\"{}\" label listener initialized", forgotPasswordLabel.getText());
 
         // Initialize business logic
-        bl = new BusinessLogic();
+        bl = BusinessLogic.getInstance();
         logger.debug("Business logic initialized");
     }
 
@@ -62,7 +62,7 @@ public class LoginController {
 
     private void navigateToRegister() {
         logger.info("User clicked on \"{}\"", createAccountButton.getText());
-        WindowManager.navigateToRegister();
+        WindowManager.getInstance().navigateToRegister();
     }
 
     private void handleForgotPasswordAction() {

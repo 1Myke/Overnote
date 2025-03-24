@@ -47,7 +47,7 @@ public class RegisterController {
         logger.debug("\"{}\" button listener initialized", signInButton.getText());
 
         // Initialize business logic
-        bl = new BusinessLogic();
+        bl = BusinessLogic.getInstance();
         logger.debug("Business logic initialized");
     }
 
@@ -73,6 +73,6 @@ public class RegisterController {
 
     private void navigateToLogin() {
         logger.info("User clicked on \"{}\"", signInButton.getText());
-        WindowManager.navigateToLogin();
+        WindowManager.getInstance().navigateToLogin();
     }
 }

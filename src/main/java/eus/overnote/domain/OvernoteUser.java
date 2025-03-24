@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -27,7 +29,11 @@ public class OvernoteUser {
     private String password;
 
     @Column(nullable = false, updatable = false)
-    private Date registrationDate = new Date();
+    private final Date registrationDate = new Date();
+
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Note> notes = new ArrayList<>();
 
     // Empty constructor for JPA
     protected OvernoteUser() {
@@ -39,6 +45,5 @@ public class OvernoteUser {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.registrationDate = new Date();
     }
 }
