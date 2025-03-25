@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +67,7 @@ public class RegisterController {
         }
 
         // Call the business logic to register the user
-        bl.registerUser(fullName, email, password, confirmPassword);
+        WindowManager.getInstance().navigateToMain(bl.registerUser(fullName, email, password, confirmPassword));
     }
 
     private void navigateToLogin() {

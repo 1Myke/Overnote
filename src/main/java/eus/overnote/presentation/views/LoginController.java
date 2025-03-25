@@ -6,11 +6,8 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 public class LoginController {
 
@@ -57,7 +54,7 @@ public class LoginController {
         logger.info("User tried to log in. email=\"{}\", password=\"{}\", rememberMe=\"{}\"", email, password, rememberMe);
 
         // Call the business logic to log in the user
-        bl.loginUser(email, password);
+        WindowManager.getInstance().navigateToMain(bl.loginUser(email, password));
     }
 
     private void navigateToRegister() {

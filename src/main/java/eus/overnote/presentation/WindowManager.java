@@ -4,7 +4,6 @@ import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -83,6 +82,7 @@ public class WindowManager {
     }
 
     public void navigateToMain(OvernoteUser loggedUser) {
+        if (loggedUser == null) return;
         mainController.setLoggedUser(loggedUser);
         mainStage.setScene(mainScene);
         authStage.hide();
