@@ -22,8 +22,8 @@ text editing, AI-assisted note generation[^1], and powerful search and filtering
 7. 💾 **Backup and Recovery:** Regular backups, export/import options, and version history to keep your notes safe.
 
 ## About us
-We are a young group of students working on this project for the Software Engineering 1 subject. 
-The name of our group is *Stack Underflow* and the members are, Jorge Arevalo, Mikel Lopez, Aimar Villegas and Mikel Martinez.
+We are a young group of students from the Basque Country University, knwon as EHU/UPV. We are on our second course of computer science engineering in Donosti/San Sebastian and we are working on this project for the Software Engineering 1 subject. 
+The name of our group is *Stack Underflow* and the members are, Jorge Arévalo, Mikel López, Aimar Villegas and Mikel Martinez.
 
 ## Sprint 1
-We've been working on some different points for this sprint. The main stuff of this project was the preparation and presentation of the project, that involves different parts as, the UI mockup, the wording, the use-case diagram, the domain model or the event flow. After that we were asked to start coding and to implement the Register/Login use-case and another use-case that we want to implement. We choose the "create a note" use-case, mainly because is the first action that the user would do after logging in in our application and also because withoud the creation of the note we can't continue working on some of the other use-cases.
+We've been working on some different points for this sprint. The main stuff of this project was the preparation and presentation of the project, that involves different parts as, the UI mockup, the wording, the use-case diagram, the domain model or the event flow. After that we were asked to start coding and to implement the Register/Login use-case and another use-case that we want to implement. We choose the "create a note" use-case, mainly because is the first action that the user would do after logging in in our application and also because without the creation of the note we can't continue working on some of the other use-cases.
