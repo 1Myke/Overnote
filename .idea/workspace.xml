@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[DOC] Simplify domain model diagram">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -24,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/login-register" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,12 +36,12 @@
     &quot;assignee&quot;: &quot;KingJorjai&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/1Myke/Overnote.git&quot;,
-    &quot;accountId&quot;: &quot;ce3aad4a-6428-482c-8597-55adf1f01b22&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/1Myke/Overnote.git",
+    "accountId": "8fbc3886-97cf-46f1-bad7-6eacc3061dfe"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -52,6 +53,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.ApplicationView.executor&quot;: &quot;Run&quot;,
@@ -127,6 +129,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+
         <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
         <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
       </set>
@@ -143,6 +146,8 @@
       <workItem from="1742034912683" duration="24099000" />
       <workItem from="1742078941436" duration="3253000" />
       <workItem from="1742811166072" duration="2106000" />
+      <workItem from="1742842531968" duration="24000" />
+      <workItem from="1742910592887" duration="776000" />
     </task>
     <task id="LOCAL-00001" summary="[REFACTOR] Merge custom stylesheets into styles.css">
       <option name="closed" value="true" />
@@ -192,6 +197,7 @@
       <option name="project" value="LOCAL" />
       <updated>1742817811710</updated>
     </task>
+
     <task id="LOCAL-00007" summary="[DOC] Update domain model and improve class relationships">
       <option name="closed" value="true" />
       <created>1742842416197</created>
@@ -234,6 +240,7 @@
     <MESSAGE value="[FEATURE] Set window minimum size automatically" />
     <MESSAGE value="[FEATURE] Set up logging (logback)" />
     <MESSAGE value="[MERGE] Update to the new features in main" />
+
     <MESSAGE value="[DOC] Update domain model and improve class relationships" />
     <MESSAGE value="[DOC] Simplify domain model diagram" />
     <option name="LAST_COMMIT_MESSAGE" value="[DOC] Simplify domain model diagram" />
