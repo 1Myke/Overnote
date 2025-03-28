@@ -2,6 +2,7 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -67,7 +68,8 @@ public class RegisterController {
         }
 
         // Call the business logic to register the user
-        WindowManager.getInstance().navigateToMain(bl.registerUser(fullName, email, password, confirmPassword));
+        OvernoteUser user = bl.registerUser(fullName, email, password, confirmPassword);
+        WindowManager.getInstance().navigateToMain();
     }
 
     private void navigateToLogin() {

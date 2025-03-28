@@ -10,6 +10,7 @@ module eus.overnote.presentation {
     requires org.hibernate.orm.core;
     requires static lombok;
     requires com.h2database;
+    requires jbcrypt;
 
     exports eus.overnote;
     exports eus.overnote.presentation;

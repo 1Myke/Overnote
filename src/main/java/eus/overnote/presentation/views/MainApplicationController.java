@@ -20,7 +20,6 @@ public class MainApplicationController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
     private final BlInterface bl = BusinessLogic.getInstance();
-    private OvernoteUser loggedUser;
     private NoteController noteController;
 
     @FXML
@@ -39,9 +38,15 @@ public class MainApplicationController {
     public void initialize() {
         logger.debug("Initializing main application view");
 
+        // Initialize note list
+        notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
+
         // Set selection comboBox
-        notes = FXCollections.observableArrayList();
         noteSelectComboBox.setItems(notes);
+        noteSelectComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            noteController.saveNote();
+            selectNote(newValue);
+        });
 
         // Load Note FXML
         try {
@@ -54,7 +59,7 @@ public class MainApplicationController {
     }
 
     void selectNote(Note note) {
-        if (loggedUser == null) {
+        if (bl.getLoggedInUser() == null) {
             logger.error("No user logged in");
             return;
         }
@@ -64,25 +69,16 @@ public class MainApplicationController {
 
     @FXML
     void createNote(ActionEvent event) {
-        if (loggedUser == null) {
+        if (bl.getLoggedInUser() == null) {
             logger.error("No user logged in");
             return;
         }
 
         logger.debug("Creating new note");
-        Note createdNote = new Note("Untitled note", "", loggedUser);
+        Note createdNote = new Note("Untitled note", "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
         noteSelectComboBox.getSelectionModel().select(createdNote);
         selectNote(createdNote);
-    }
-
-    public void setLoggedUser(OvernoteUser user) {
-        loggedUser = user;
-        notes.addAll(user.getNotes());
-        noteSelectComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            noteController.saveNote();
-            selectNote(newValue);
-        });
     }
 }

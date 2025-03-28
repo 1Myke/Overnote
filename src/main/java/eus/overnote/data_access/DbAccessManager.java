@@ -80,6 +80,23 @@ public class DbAccessManager {
         }
     }
 
+    public OvernoteUser getUserByEmail(String email) {
+        try {
+            TypedQuery<OvernoteUser> query = db.createQuery("SELECT u FROM OvernoteUser u WHERE u.email = :email", OvernoteUser.class);
+            query.setParameter("email", email);
+            if (query.getResultList().isEmpty()) {
+                logger.info("User with email \"{}\" not found", email);
+                return null;
+            }
+            logger.info("User with email \"{}\" found", email);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error getting user by email: {}", e.getMessage());
+            return null;
+        }
+    }
+
     public void saveNote(Note note) {
         try {
             db.getTransaction().begin();
