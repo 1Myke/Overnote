@@ -11,9 +11,8 @@ public class DebugMain extends Application {
     public void start(javafx.stage.Stage stage) {
         BlInterface bl = BusinessLogic.getInstance();
         bl.registerUser("Debug User", "debug@overnote.eus", "debug", "debug");
-        OvernoteUser debugUser = bl.loginUser("debug@overnote.eus", "debug");
-
-        eus.overnote.presentation.WindowManager.getInstance().navigateToMain(debugUser);
+        bl.loginUser("debug@overnote.eus", "debug");
+        eus.overnote.presentation.WindowManager.getInstance().navigateToMain();
     }
 
     public static void main(String[] args) {

@@ -7,6 +7,9 @@ public interface BlInterface {
     // User
     OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword);
     OvernoteUser loginUser(String email, String password);
+    OvernoteUser getLoggedInUser();
+    boolean isUserLoggedIn();
+
     // Note
     void saveNote(Note note);
     void updateNote(Note note);

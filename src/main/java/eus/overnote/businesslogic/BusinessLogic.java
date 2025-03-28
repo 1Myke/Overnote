@@ -3,11 +3,15 @@ package eus.overnote.businesslogic;
 import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
+import lombok.Getter;
+import lombok.Setter;
 
 public class BusinessLogic implements BlInterface {
 
     private static BusinessLogic instance;
     private final DbAccessManager db;
+    @Getter
+    private OvernoteUser loggedInUser;
 
     private BusinessLogic() {
         db = new DbAccessManager();
@@ -26,15 +30,22 @@ public class BusinessLogic implements BlInterface {
             return null;
         }
 
-        return db.registerUser(fullName, email, password);
+        OvernoteUser user = db.registerUser(fullName, email, password);
+        loggedInUser = user;
+        return user;
     }
 
     @Override
     public OvernoteUser loginUser(String email, String password) {
-        return db.loginUser(email, password);
+        OvernoteUser user = db.loginUser(email, password);
+        loggedInUser = user;
+        return user;
     }
 
-    // Notes
+    @Override
+    public boolean isUserLoggedIn() {
+        return loggedInUser != null;
+    }
 
     @Override
     public void saveNote(Note note) {

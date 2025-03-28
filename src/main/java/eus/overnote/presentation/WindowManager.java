@@ -1,5 +1,7 @@
 package eus.overnote.presentation;
 
+import eus.overnote.businesslogic.BlInterface;
+import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
@@ -15,6 +17,7 @@ import java.io.IOException;
 public class WindowManager {
 
     private final Logger logger = LoggerFactory.getLogger(WindowManager.class);
+
 
     // Singleton
     private static WindowManager INSTANCE;
@@ -47,7 +50,6 @@ public class WindowManager {
         // Loading the scenes
         FXMLLoader loginLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"));
         FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"));
-        FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"));
         try {
             loginScene = new Scene(loginLoader.load());
         } catch (IOException e) {
@@ -58,13 +60,6 @@ public class WindowManager {
             registerScene = new Scene(registerLoader.load());
         } catch (IOException e) {
             logger.error("Failed to load register scene", e);
-            throw new RuntimeException(e);
-        }
-        try {
-            mainScene = new Scene(mainLoader.load());
-            mainController = mainLoader.getController();
-        } catch (IOException e) {
-            logger.error("Failed to load main scene", e);
             throw new RuntimeException(e);
         }
     }
@@ -81,9 +76,19 @@ public class WindowManager {
         authStage.show();
     }
 
-    public void navigateToMain(OvernoteUser loggedUser) {
-        if (loggedUser == null) return;
-        mainController.setLoggedUser(loggedUser);
+    public void navigateToMain() {
+        BlInterface bl = BusinessLogic.getInstance();
+        if (!bl.isUserLoggedIn()) return;
+
+        FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"));
+        try {
+            mainScene = new Scene(mainLoader.load());
+            mainController = mainLoader.getController();
+        } catch (IOException e) {
+            logger.error("Failed to load main scene", e);
+            throw new RuntimeException(e);
+        }
+
         mainStage.setScene(mainScene);
         authStage.hide();
         mainStage.show();
