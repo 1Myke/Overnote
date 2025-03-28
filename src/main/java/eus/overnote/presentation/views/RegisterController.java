@@ -67,6 +67,7 @@ public class RegisterController {
         boolean emailValid = m.matches();
         if (!emailValid) {
             ErrorInEmail.setText("Invalid email");
+            ErrorInEmail.setStyle("-fx-text-fill: red;");
             logger.debug("Error in email, Invalid email");
             problem = true;
             }
@@ -78,6 +79,7 @@ public class RegisterController {
         boolean passwordValid = m.matches();
         if (!passwordValid) {
             ErrorInPassword.setText("Password must contain at least 8 characters, including UPPER/lowercase and numbers");
+            ErrorInPassword.setStyle("-fx-text-fill: red;");
             logger.debug("Error in password, Specification not met");
             problem = true;
         }
