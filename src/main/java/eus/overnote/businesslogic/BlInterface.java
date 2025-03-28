@@ -10,6 +10,10 @@ public interface BlInterface {
     OvernoteUser getLoggedInUser();
     boolean isUserLoggedIn();
 
+    String hashPassword(String password);
+
+    boolean checkPassword(String password, String hashedPassword);
+
     // Note
     void saveNote(Note note);
     void updateNote(Note note);
