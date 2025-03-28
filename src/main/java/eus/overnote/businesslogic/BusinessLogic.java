@@ -39,6 +39,9 @@ public class BusinessLogic implements BlInterface {
     @Override
     public OvernoteUser loginUser(String email, String password) {
         OvernoteUser user = db.getUserByEmail(email);
+        if (user == null) {
+            return null;
+        }
         if (checkPassword(password, user.getPassword())) {
             loggedInUser = user;
             return user;
