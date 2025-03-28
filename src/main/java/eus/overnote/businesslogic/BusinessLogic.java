@@ -4,7 +4,6 @@ import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import lombok.Getter;
-import lombok.Setter;
 
 public class BusinessLogic implements BlInterface {
 
@@ -40,6 +39,11 @@ public class BusinessLogic implements BlInterface {
         OvernoteUser user = db.loginUser(email, password);
         loggedInUser = user;
         return user;
+    }
+
+    @Override
+    public void logoutUser() {
+        loggedInUser = null;
     }
 
     @Override

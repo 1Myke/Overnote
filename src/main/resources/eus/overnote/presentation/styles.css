@@ -192,3 +192,46 @@
 .check-box:selected .box {
     -fx-background-color: -primary-color;
 }
+
+/***************/
+/* MENU BUTTON */
+/***************/
+
+.menu-button {
+    -fx-cursor: hand;
+    -fx-background-color: -background-white;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+    -fx-border-radius: 20;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-light;
+}
+
+.menu-button:hover {
+    -fx-background-color: -background-light;
+}
+
+.menu-button:pressed {
+    -fx-background-color: -background-white;
+}
+
+/* Hide the arrow button */
+.menu-button > .arrow-button, .menu-button > .arrow-button > .arrow { -fx-padding: 0; }
+
+/*************/
+/* MENU ITEM */
+/*************/
+
+.menu-item {
+    -fx-background-color: -background-white;
+    -fx-text-fill: -text-dark;
+    -fx-padding: 8px;
+}
+.menu-item:hover {
+    -fx-background-color: -background-light;
+    -fx-cursor: hand;
+}
+.menu-item:pressed {
+    -fx-background-color: -background-white;
+}

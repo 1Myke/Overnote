@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane styleClass="root" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.ProfileBannerController">
+   <children>
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subtitle" text="Text" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </Text>
+            <VBox alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="151.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                     <image>
+                        <Image url="@../images/profile.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</StackPane>
