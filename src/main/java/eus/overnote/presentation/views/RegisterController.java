@@ -5,17 +5,21 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.regex.*;
 
 public class RegisterController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
     private BlInterface bl;
+
+    @FXML
+    private Label ErrorInPassword;
+
+    @FXML
+    private Label ErrorInEmail;
 
     @FXML
     private TextField fullNameField;
@@ -56,6 +60,34 @@ public class RegisterController {
         String fullName = fullNameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+        boolean problem = false;
+
+        Pattern Email = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        Matcher m = Email.matcher(email);
+        boolean emailValid = m.matches();
+        if (!emailValid) {
+            ErrorInEmail.setText("Invalid email");
+            logger.debug("Error in email, Invalid email");
+            problem = true;
+            }
+        else{
+            ErrorInEmail.setText("");
+        }
+        Pattern Password = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$");
+        m = Password.matcher(password);
+        boolean passwordValid = m.matches();
+        if (!passwordValid) {
+            ErrorInPassword.setText("Password must contain at least 8 characters, including UPPER/lowercase and numbers");
+            logger.debug("Error in password, Specification not met");
+            problem = true;
+        }
+        else{
+            ErrorInPassword.setText("");
+        }
+        if (problem) {
+            return;
+        }
+
         String confirmPassword = confirmPasswordField.getText();
         boolean termsAccepted = termsCheckbox.isSelected();
 
