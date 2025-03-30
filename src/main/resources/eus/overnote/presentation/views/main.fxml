@@ -18,7 +18,7 @@
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" spacing="20.0" styleClass="primary-color">
+            <VBox alignment="TOP_CENTER" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" spacing="20.0" styleClass="primary-color">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Overnote" textAlignment="CENTER">
                      <VBox.margin>
@@ -58,7 +58,7 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <VBox spacing="10.0" styleClass="background-light">
+            <VBox maxWidth="200.0" minWidth="200.0" prefWidth="200.0" spacing="10.0" styleClass="background-light">
                <children>
                   <ComboBox fx:id="noteSelectComboBox" />
                </children>
