@@ -7,18 +7,17 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <StackPane stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteController">
    <children>
       <VBox alignment="TOP_CENTER">
          <children>
-            <TextField fx:id="noteTitle" prefHeight="25.0" prefWidth="470.0" promptText="Title ..." styleClass="text-field">
+            <TextField fx:id="noteTitle" promptText="Title ..." styleClass="text-field">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <Separator prefWidth="200.0" />
-            <TextArea fx:id="noteText" prefHeight="569.0" prefWidth="470.0" promptText="Text ..." wrapText="true" VBox.vgrow="ALWAYS">
+            <Separator />
+            <TextArea fx:id="noteText" promptText="Text ..." wrapText="true" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
