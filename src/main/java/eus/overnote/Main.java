@@ -7,7 +7,7 @@ public class Main extends Application {
 
     @Override
     public void start(javafx.stage.Stage stage) {
-        WindowManager.getInstance().navigateToLogin();
+        WindowManager.getInstance().openApplication();
     }
 
     public static void main(String[] args) {

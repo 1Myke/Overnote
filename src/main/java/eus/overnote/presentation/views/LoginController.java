@@ -3,7 +3,6 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -55,7 +54,7 @@ public class LoginController {
         logger.info("User tried to log in. email=\"{}\", password=\"{}\", rememberMe=\"{}\"", email, password, rememberMe);
 
         // Call the business logic to log in the user
-        bl.loginUser(email, password);
+        bl.loginUser(email, password, rememberMe);
         WindowManager.getInstance().navigateToMain();
     }
 
