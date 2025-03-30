@@ -76,4 +76,13 @@ public class RegisterController {
         logger.info("User clicked on \"{}\"", signInButton.getText());
         WindowManager.getInstance().navigateToLogin();
     }
+
+    public void clearFields() {
+        // Clear the fields
+        fullNameField.clear();
+        emailField.clear();
+        passwordField.clear();
+        confirmPasswordField.clear();
+        termsCheckbox.setSelected(false);
+    }
 }

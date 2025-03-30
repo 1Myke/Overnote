@@ -39,6 +39,8 @@ public class WindowManager {
     private Stage mainStage;
     private Scene mainScene;
     private MainApplicationController mainController;
+    private LoginController loginController;
+    private RegisterController registerController;
 
     private void initialize() {
         // Creating the stages
@@ -52,12 +54,14 @@ public class WindowManager {
         FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"));
         try {
             loginScene = new Scene(loginLoader.load());
+            loginController = loginLoader.getController();
         } catch (IOException e) {
             logger.error("Failed to load login scene", e);
             throw new RuntimeException(e);
         }
         try {
             registerScene = new Scene(registerLoader.load());
+            registerController = registerLoader.getController();
         } catch (IOException e) {
             logger.error("Failed to load register scene", e);
             throw new RuntimeException(e);
@@ -77,6 +81,10 @@ public class WindowManager {
     }
 
     public void navigateToMain() {
+        // Clear the fields of the credentials of the auth stage
+        loginController.clearFields();
+        registerController.clearFields();
+
         BlInterface bl = BusinessLogic.getInstance();
         if (!bl.isUserLoggedIn()) return;
 
