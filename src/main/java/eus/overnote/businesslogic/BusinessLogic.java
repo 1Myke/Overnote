@@ -109,6 +109,11 @@ public class BusinessLogic implements BlInterface {
     }
 
     @Override
+    public void logoutUser() {
+        loggedInUser = null;
+    }
+
+    @Override
     public boolean isUserLoggedIn() {
         return loggedInUser != null;
     }

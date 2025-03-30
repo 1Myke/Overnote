@@ -67,4 +67,16 @@ public class LoginController {
     private void handleForgotPasswordAction() {
         logger.info("User clicked on \"" + forgotPasswordLabel.getText() + "\"");
     }
+
+    public void clearFields() {
+        if (rememberMeCheckbox.isSelected()) {
+            logger.debug("The fields are not cleared because \"{}\" is selected", rememberMeCheckbox.getText());
+        } else {
+            // Clear the fields if "Remember Me" is not selected
+            emailField.clear();
+            passwordField.clear();
+            rememberMeCheckbox.setSelected(false);
+            logger.debug("The fields are cleared because \"{}\" is not selected", rememberMeCheckbox.getText());
+        }
+    }
 }
