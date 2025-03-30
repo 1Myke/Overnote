@@ -44,15 +44,15 @@ public class MainApplicationController {
     public void initialize() {
         logger.debug("Initializing main application view");
 
+        // Initialize note list
         notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
+
+        // Set selection comboBox
+        noteSelectComboBox.setItems(notes);
         noteSelectComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             noteController.saveNote();
             selectNote(newValue);
         });
-
-        // Set selection comboBox
-        notes = FXCollections.observableArrayList();
-        noteSelectComboBox.setItems(notes);
 
         // Load the profile banner FXML
         try {

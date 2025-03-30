@@ -4,6 +4,7 @@ import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import lombok.Getter;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class BusinessLogic implements BlInterface {
 
@@ -29,16 +30,23 @@ public class BusinessLogic implements BlInterface {
             return null;
         }
 
-        OvernoteUser user = db.registerUser(fullName, email, password);
+        String hashedPassword = hashPassword(password);
+        OvernoteUser user = db.registerUser(fullName, email, hashedPassword);
         loggedInUser = user;
         return user;
     }
 
     @Override
     public OvernoteUser loginUser(String email, String password) {
-        OvernoteUser user = db.loginUser(email, password);
-        loggedInUser = user;
-        return user;
+        OvernoteUser user = db.getUserByEmail(email);
+        if (user == null) {
+            return null;
+        }
+        if (checkPassword(password, user.getPassword())) {
+            loggedInUser = user;
+            return user;
+        } else
+            return null;
     }
 
     @Override
@@ -49,6 +57,16 @@ public class BusinessLogic implements BlInterface {
     @Override
     public boolean isUserLoggedIn() {
         return loggedInUser != null;
+    }
+
+    @Override
+    public String hashPassword(String password) {
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+    }
+
+    @Override
+    public boolean checkPassword(String password, String hashedPassword) {
+        return BCrypt.checkpw(password, hashedPassword);
     }
 
     @Override
