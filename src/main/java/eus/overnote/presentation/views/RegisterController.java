@@ -68,7 +68,7 @@ public class RegisterController {
         }
 
         // Call the business logic to register the user
-        OvernoteUser user = bl.registerUser(fullName, email, password, confirmPassword);
+        bl.registerUser(fullName, email, password, confirmPassword);
         WindowManager.getInstance().navigateToMain();
     }
 
