@@ -13,7 +13,9 @@ public interface BlInterface {
     String hashPassword(String password);
 
     boolean checkPassword(String password, String hashedPassword);
-
+    boolean validateEmail(String email);
+    boolean validatePassword(String password);
+    boolean validatePasswordMatch(String password, String confirmPassword);
     // Note
     void saveNote(Note note);
     void updateNote(Note note);

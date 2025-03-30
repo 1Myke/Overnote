@@ -87,6 +87,10 @@
     -fx-font-size: 11px;
     -fx-text-fill: -text-dark;
 }
+.label-error {
+    -fx-font-size: 11px;
+    -fx-text-fill: red;
+}
 
 .link {
     -fx-cursor: hand;

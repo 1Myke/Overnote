@@ -1,5 +1,6 @@
 package eus.overnote.businesslogic;
 
+import eus.overnote.domain.OvernoteUser;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,19 @@ public class BusinessLogicTest {
         String hashedPassword = businessLogic.hashPassword(password);
         Assert.assertNotNull(hashedPassword);
         Assert.assertNotEquals(password, hashedPassword);
+    }
+    @Test
+    public void testRegisterUser() {
+
+
+        String email = "john.doe@example.com";
+        String password = "Password123";
+        String confirmPassword = "Password123";
+
+        Assert.assertTrue(businessLogic.validateEmail(email));
+        Assert.assertTrue(businessLogic.validatePassword(password));
+        Assert.assertTrue(businessLogic.validatePasswordMatch(password, confirmPassword));
+
     }
 
     @Test

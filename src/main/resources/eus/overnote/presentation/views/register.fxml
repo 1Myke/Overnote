@@ -54,7 +54,6 @@
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </TextField>
-                  <Label fx:id="ErrorInEmail" textFill="RED" />
       
                           <!-- Email Field -->
                           <Label text="EMAIL" textFill="#666666">
@@ -73,7 +72,7 @@
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </TextField>
-                  <Label fx:id="ErrorInPassword" textFill="RED" />
+                  <Label fx:id="errorInEmail" styleClass="label-error" textFill="RED" />
       
                           <!-- Password Field -->
                           <Label text="PASSWORD" textFill="#666666">
@@ -92,6 +91,7 @@
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </PasswordField>
+                  <Label fx:id="errorInPassword" styleClass="label-error" textFill="RED" />
       
                           <!-- Confirm Password Field -->
                           <Label text="CONFIRM PASSWORD" textFill="#666666">
@@ -110,6 +110,7 @@
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </PasswordField>
+                  <Label fx:id="passwordMismatch" styleClass="label-error" />
       
                           <!-- Terms Checkbox -->
                           <CheckBox fx:id="termsCheckbox" text="I agree to the Terms of Service and Privacy Policy" textFill="#666666">
