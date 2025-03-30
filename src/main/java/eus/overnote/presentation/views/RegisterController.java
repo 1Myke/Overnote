@@ -68,12 +68,21 @@ public class RegisterController {
         }
 
         // Call the business logic to register the user
-        OvernoteUser user = bl.registerUser(fullName, email, password, confirmPassword);
+        bl.registerUser(fullName, email, password, confirmPassword);
         WindowManager.getInstance().navigateToMain();
     }
 
     private void navigateToLogin() {
         logger.info("User clicked on \"{}\"", signInButton.getText());
         WindowManager.getInstance().navigateToLogin();
+    }
+
+    public void clearFields() {
+        // Clear the fields
+        fullNameField.clear();
+        emailField.clear();
+        passwordField.clear();
+        confirmPasswordField.clear();
+        termsCheckbox.setSelected(false);
     }
 }
