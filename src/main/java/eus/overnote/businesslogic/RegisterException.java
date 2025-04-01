@@ -1,7 +1,7 @@
 package eus.overnote.businesslogic;
 
 public class RegisterException extends RuntimeException {
-  boolean isEmailValid;
+  boolean emailValid;
     boolean isPasswordValid;
     boolean isPasswordsMatch;
 
@@ -9,13 +9,11 @@ public class RegisterException extends RuntimeException {
 
   public RegisterException(String message, boolean isEmailValid, boolean isPasswordValid, boolean isPasswordsMatch) {
     super(message);
-    this.isEmailValid = isEmailValid;
+    this.emailValid = isEmailValid;
     this.isPasswordValid = isPasswordValid;
     this.isPasswordsMatch = isPasswordsMatch;
   }
-  public boolean isEmailValid() {
-    return isEmailValid;
-  }
+  public boolean isEmailValid() {return emailValid;}
 
   public boolean isPasswordValid() {
     return isPasswordValid;

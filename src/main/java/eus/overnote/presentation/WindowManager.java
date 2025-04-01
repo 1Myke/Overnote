@@ -71,12 +71,16 @@ public class WindowManager {
     public void navigateToRegister() {
         mainStage.hide();
         authStage.setScene(registerScene);
+        authStage.setWidth(1000);
+        authStage.setHeight(750);
         authStage.show();
     }
 
     public void navigateToLogin() {
         mainStage.hide();
         authStage.setScene(loginScene);
+        authStage.setWidth(1000);
+        authStage.setHeight(750);
         authStage.show();
     }
 
@@ -98,6 +102,8 @@ public class WindowManager {
         }
 
         mainStage.setScene(mainScene);
+        mainStage.setWidth(1000);
+        mainStage.setHeight(750);
         authStage.hide();
         mainStage.show();
     }

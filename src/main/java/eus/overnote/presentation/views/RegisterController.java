@@ -60,6 +60,9 @@ public class RegisterController {
         // Initialize business logic
         bl = BusinessLogic.getInstance();
         logger.debug("Business logic initialized");
+        errorInEmail.setVisible(false);
+        errorInPassword.setVisible(false);
+        passwordMismatch.setVisible(false);
     }
 
     private void toggleCreation() {
@@ -88,19 +91,19 @@ public class RegisterController {
         catch (RegisterException e) {
             logger.error("Error registering user", e);
             if (!e.isEmailValid()) {
-                errorInEmail.setText("Email is not valid");
+                errorInEmail.setVisible(true);
             } else {
-                errorInEmail.setText("");
+                errorInEmail.setVisible(false);
             }
             if (!e.isPasswordValid()) {
-                errorInPassword.setText("Password is not valid");
+                errorInPassword.setVisible(true);
             } else {
-                errorInPassword.setText("");
+                errorInPassword.setVisible(false);
             }
             if (!e.isPasswordsMatch()) {
-                passwordMismatch.setText("Passwords do not match");
+                passwordMismatch.setVisible(true);
             } else {
-                passwordMismatch.setText("");
+                passwordMismatch.setVisible(false);
             }
 
             return;

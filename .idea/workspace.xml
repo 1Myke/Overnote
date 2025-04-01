@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="[FEATURE] Add email and password validation to registration form">
+    <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="file that was forgotten to be added in the last commit">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_35_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_35__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BlInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BlInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/eus/overnote/businesslogic/BusinessLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eus/overnote/businesslogic/BusinessLogicTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,24 +59,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "JUnit.BusinessLogicTest.testRegisterUser.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#49 on Regex",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Mikel/AppData/Local/SceneBuilder/SceneBuilder.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BusinessLogicTest.testRegisterUser.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#49 on Regex&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mikel/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
@@ -126,6 +131,8 @@
       <option name="presentableId" value="Default" />
       <updated>1743201701546</updated>
       <workItem from="1743201702888" duration="1411000" />
+      <workItem from="1743456266611" duration="1229000" />
+      <workItem from="1743521187848" duration="256000" />
     </task>
     <task id="LOCAL-00001" summary="[FEATURE] Add email and password validation to registration form">
       <option name="closed" value="true" />
@@ -135,7 +142,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743202919956</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded).">
+      <option name="closed" value="true" />
+      <created>1743376985904</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743376985904</updated>
+    </task>
+    <task id="LOCAL-00003" summary="file that was forgotten to be added in the last commit">
+      <option name="closed" value="true" />
+      <created>1743377316671</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743377316671</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,7 +188,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="[FEATURE] Enhance registration form with email and password validation error styling" />
     <MESSAGE value="[FEATURE] Add email and password validation to registration form" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FEATURE] Add email and password validation to registration form" />
+    <MESSAGE value="[FEATURE] Implement email and password validation for user registration" />
+    <MESSAGE value="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded)." />
+    <MESSAGE value="file that was forgotten to be added in the last commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="file that was forgotten to be added in the last commit" />
   </component>
 </project>
