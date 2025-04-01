@@ -34,6 +34,23 @@ public class BusinessLogicTest {
         Assert.assertTrue(businessLogic.validatePasswordMatch(password, confirmPassword));
 
     }
+    @Test
+    public void testValidEmail(){
+        String email = "john.doe@example.com";
+        Assert.assertTrue(businessLogic.validateEmail(email));
+
+    }
+    @Test
+    public void testValidPassword(){
+        String password = "Password123";
+        Assert.assertTrue(businessLogic.validatePassword(password));
+    }
+    @Test
+    public void testValidPasswordMatch(){
+        String password = "Password123";
+        String confirmPassword = "Password123";
+        Assert.assertTrue(businessLogic.validatePasswordMatch(password, confirmPassword));
+    }
 
     @Test
     public void testCheckPassword() {

@@ -4,20 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="file that was forgotten to be added in the last commit">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33__Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_35_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_35__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/factories/WindowFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
+    <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="changed failed password verification label text and resized the windows to have the whole message readable">
+      <change beforePath="$PROJECT_DIR$/src/test/java/eus/overnote/businesslogic/BusinessLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eus/overnote/businesslogic/BusinessLogicTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +65,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.BusinessLogicTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
       <module name="Overnote" />
@@ -87,6 +75,21 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusinessLogicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.businesslogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="eus.overnote.businesslogic" />
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.businesslogic.BusinessLogicTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -109,6 +112,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BusinessLogicTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.BusinessLogicTest.testRegisterUser" />
       </list>
@@ -132,7 +136,7 @@
       <updated>1743201701546</updated>
       <workItem from="1743201702888" duration="1411000" />
       <workItem from="1743456266611" duration="1229000" />
-      <workItem from="1743521187848" duration="256000" />
+      <workItem from="1743521187848" duration="574000" />
     </task>
     <task id="LOCAL-00001" summary="[FEATURE] Add email and password validation to registration form">
       <option name="closed" value="true" />
@@ -158,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743377316671</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="changed failed password verification label text and resized the windows to have the whole message readable">
+      <option name="closed" value="true" />
+      <created>1743521538777</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743521538777</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +205,7 @@
     <MESSAGE value="[FEATURE] Implement email and password validation for user registration" />
     <MESSAGE value="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded)." />
     <MESSAGE value="file that was forgotten to be added in the last commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="file that was forgotten to be added in the last commit" />
+    <MESSAGE value="changed failed password verification label text and resized the windows to have the whole message readable" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed failed password verification label text and resized the windows to have the whole message readable" />
   </component>
 </project>
