@@ -21,6 +21,7 @@ public class BusinessLogicTest {
         Assert.assertNotNull(hashedPassword);
         Assert.assertNotEquals(password, hashedPassword);
     }
+
     @Test
     public void testRegisterUser() {
 
@@ -45,6 +46,22 @@ public class BusinessLogicTest {
         String password = "Password123";
         Assert.assertTrue(businessLogic.validatePassword(password));
     }
+    @Test
+    public void testInvalidPasswordCaps(){
+        String password = "password123";
+        Assert.assertFalse(businessLogic.validatePassword(password));
+    }
+    @Test
+    public void testInvalidPasswordNumbers(){
+        String password = "Password";
+        Assert.assertFalse(businessLogic.validatePassword(password));
+    }
+    @Test
+    public void testInvalidPasswordLength(){
+        String password = "Pass123";
+        Assert.assertFalse(businessLogic.validatePassword(password));
+    }
+
     @Test
     public void testValidPasswordMatch(){
         String password = "Password123";
