@@ -25,7 +25,6 @@ public class NoteController {
     @FXML
     private TextField noteTitle;
 
-
     public void setSelectedNote(Note note) {
         selectedNote = note;
         noteTitle.setText(note.getTitle());

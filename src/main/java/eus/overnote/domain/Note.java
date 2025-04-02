@@ -28,9 +28,16 @@ public class Note {
     @Column(nullable = false)
     private final Date lastModificationDate = new Date();
 
+    @Column(nullable = false)
+    private final Date deleteDate = new Date();
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private OvernoteUser user;
+
+    @Column(nullable = false)
+    @Setter
+    private boolean deleted = false;
 
     // Empty constructor for JPA
     protected Note() {
@@ -46,5 +53,9 @@ public class Note {
 
     public void setLastModificationDate(Date date) {
         getLastModificationDate().setTime(date.getTime());
+    }
+
+    public void setDeleteDate(Date date) {
+        getDeleteDate().setTime(date.getTime());
     }
 }
