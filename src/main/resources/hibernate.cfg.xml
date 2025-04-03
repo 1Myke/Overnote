@@ -14,5 +14,6 @@
         <mapping class="eus.overnote.domain.OvernoteUser"/>
         <mapping class="eus.overnote.domain.Note"/>
         <mapping class="eus.overnote.domain.Session"/>
+        <mapping class="eus.overnote.domain.Tag"/>
     </session-factory>
 </hibernate-configuration>

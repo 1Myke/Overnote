@@ -7,6 +7,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,8 @@ public class NoteController {
 
     private static final Logger logger = LoggerFactory.getLogger(NoteController.class);
     private Note selectedNote;
+    @Setter
+    private NoteThumbnailController thumbnailController;
     private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
     BlInterface bl = BusinessLogic.getInstance();
 

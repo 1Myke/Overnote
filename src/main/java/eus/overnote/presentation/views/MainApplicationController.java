@@ -5,16 +5,20 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteController;
+import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.components.ProfileBannerController;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +28,9 @@ public class MainApplicationController {
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
     private final BlInterface bl = BusinessLogic.getInstance();
     private NoteController noteController;
+
+    @FXML
+    private VBox sidebarVBox;
 
     @FXML
     private Button newNoteAiButton;
@@ -37,22 +44,14 @@ public class MainApplicationController {
     @FXML
     private MenuButton profileMenuButton;
 
-    @FXML
-    private ComboBox<Note> noteSelectComboBox;
     private ObservableList<Note> notes;
+    private ObservableList<Node> thumbnails;
 
     public void initialize() {
         logger.debug("Initializing main application view");
 
         // Initialize note list
         notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
-
-        // Set selection comboBox
-        noteSelectComboBox.setItems(notes);
-        noteSelectComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            noteController.saveNote();
-            selectNote(newValue);
-        });
 
         // Load the profile banner FXML
         try {
@@ -71,6 +70,11 @@ public class MainApplicationController {
         } catch (Exception e) {
             logger.error("Error loading Note.fxml", e);
         }
+
+        // Initialize the sidebar
+        thumbnails = FXCollections.observableArrayList();
+        Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
+        notes.forEach(this::addNewThumbnail);
     }
 
     void selectNote(Note note) {
@@ -78,7 +82,18 @@ public class MainApplicationController {
             logger.error("No user logged in");
             return;
         }
+
+        // Save the previous note
+        Note previousNote = bl.getSelectedNote();
+        if (previousNote != null) {
+            logger.debug("Saving previous note");
+            noteController.saveNote();
+        } else {
+            logger.debug("No previous note to save");
+        }
+
         logger.debug("Selecting note");
+        bl.selectNote(note);
         noteController.setSelectedNote(note);
     }
 
@@ -93,7 +108,7 @@ public class MainApplicationController {
         Note createdNote = new Note("Untitled note", "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
-        noteSelectComboBox.getSelectionModel().select(createdNote);
+        addNewThumbnail(createdNote);
         selectNote(createdNote);
     }
 
@@ -102,5 +117,22 @@ public class MainApplicationController {
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();
+    }
+
+    private void addNewThumbnail(Note note) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
+            Node thumbnail = fxmlLoader.load();
+            NoteThumbnailController controller = fxmlLoader.getController();
+            controller.setNote(note);
+            // Listener to select the clicked note
+            thumbnail.setOnMouseClicked(event -> {
+                logger.debug("Thumbnail clicked");
+                selectNote(note);
+            });
+            thumbnails.add(thumbnail);
+        } catch (Exception e) {
+            logger.error("Error loading note thumbnail", e);
+        }
     }
 }

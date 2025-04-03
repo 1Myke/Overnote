@@ -31,6 +31,9 @@ public class OvernoteUser {
     @Column(nullable = false, updatable = false)
     private final Date registrationDate = new Date();
 
+    @OneToOne
+    @Setter
+    private Note selectedNote;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Note> notes = new ArrayList<>();

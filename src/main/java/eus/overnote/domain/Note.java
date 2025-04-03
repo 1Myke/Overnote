@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -31,6 +33,10 @@ public class Note {
     @ManyToOne
     @JoinColumn(nullable = false)
     private OvernoteUser user;
+
+    @ManyToMany
+    @JoinColumn(nullable = false)
+    private final Set<Tag> tags = new HashSet<>();
 
     // Empty constructor for JPA
     protected Note() {

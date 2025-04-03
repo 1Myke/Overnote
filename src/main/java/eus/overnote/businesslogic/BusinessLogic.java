@@ -6,9 +6,12 @@ import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
 import lombok.Getter;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BusinessLogic implements BlInterface {
 
+    private final Logger logger = LoggerFactory.getLogger(BusinessLogic.class);
     private static BusinessLogic instance;
     private final DbAccessManager db;
     @Getter
@@ -72,6 +75,25 @@ public class BusinessLogic implements BlInterface {
     @Override
     public boolean checkPassword(String password, String hashedPassword) {
         return BCrypt.checkpw(password, hashedPassword);
+    }
+
+    @Override
+    public void selectNote(Note note) {
+        if (isUserLoggedIn()) {
+            loggedInUser.setSelectedNote(note);
+            // It is not necessary to save it in the database
+            // It will be done when closing the application
+            // So the next time the user logs in, the selected
+            // note will be the same.
+        }
+    }
+
+    @Override
+    public Note getSelectedNote() {
+        if (isUserLoggedIn()) {
+            return loggedInUser.getSelectedNote();
+        }
+        return null;
     }
 
     @Override

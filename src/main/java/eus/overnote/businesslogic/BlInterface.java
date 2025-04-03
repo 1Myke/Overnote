@@ -18,6 +18,11 @@ public interface BlInterface {
     boolean checkPassword(String password, String hashedPassword);
 
     // Note
+
+    void selectNote(Note note);
+
+    Note getSelectedNote();
+
     void saveNote(Note note);
     void updateNote(Note note);
     void deleteNote(Note note);

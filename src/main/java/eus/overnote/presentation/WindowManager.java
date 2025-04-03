@@ -2,6 +2,7 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
@@ -42,6 +43,9 @@ public class WindowManager {
     private MainApplicationController mainController;
     private LoginController loginController;
     private RegisterController registerController;
+    // Components
+    private Scene noteThumbnailScene;
+    private NoteThumbnailController noteThumbnailController;
 
     private void initialize() {
         bl = BusinessLogic.getInstance();
@@ -67,6 +71,15 @@ public class WindowManager {
             registerController = registerLoader.getController();
         } catch (IOException e) {
             logger.error("Failed to load register scene", e);
+            throw new RuntimeException(e);
+        }
+        // Loading the note thumbnail scene
+        FXMLLoader noteThumbnailLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
+        try {
+            noteThumbnailScene = new Scene(noteThumbnailLoader.load());
+            noteThumbnailController = noteThumbnailLoader.getController();
+        } catch (IOException e) {
+            logger.error("Failed to load note thumbnail scene", e);
             throw new RuntimeException(e);
         }
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<StackPane maxHeight="150.0" maxWidth="400.0" prefHeight="150.0" prefWidth="400.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteThumbnailController">
+   <children>
+      <VBox spacing="5.0">
+         <children>
+            <HBox>
+               <children>
+                  <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="arrow" text="Title of the note" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="23:15 - 01/04/2025" />
+               </children>
+            </HBox>
+            <Separator />
+            <FlowPane fx:id="tagFlowPane" hgap="10.0" vgap="10.0">
+               <children>
+                  <Label text="Tag 1" />
+                  <Label layoutX="10.0" layoutY="10.0" text="Tag 2" />
+               </children>
+            </FlowPane>
+            <Separator />
+            <TextFlow>
+               <children>
+                  <Text fx:id="previewText" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+               </children>
+            </TextFlow>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>
