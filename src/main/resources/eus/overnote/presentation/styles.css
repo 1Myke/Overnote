@@ -235,3 +235,30 @@
 .menu-item:pressed {
     -fx-background-color: -background-white;
 }
+
+/******************/
+/* NOTE THUMBNAIL */
+/******************/
+
+.note-thumbnail {
+    -fx-background-color: -background-light;
+    -fx-border-color: -border-secondary;
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+}
+
+.note-thumbnail:hover {
+    -fx-background-color: -background-white;
+    -fx-border-color: -border-primary;
+}
+
+.note-thumbnail:pressed {
+    -fx-background-color: -background-light;
+    -fx-border-color: -border-primary;
+}
+
+.note-thumbnail.selected {
+    -fx-background-color: -primary-color;
+    -fx-border-color: -border-primary;
+}
