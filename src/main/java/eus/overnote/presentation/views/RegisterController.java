@@ -90,22 +90,11 @@ public class RegisterController {
         }
         catch (RegisterException e) {
             logger.error("Error registering user", e);
-            if (!e.isEmailValid()) {
-                errorInEmail.setVisible(true);
-            } else {
-                errorInEmail.setVisible(false);
-            }
-            if (!e.isPasswordValid()) {
-                errorInPassword.setVisible(true);
-            } else {
-                errorInPassword.setVisible(false);
-            }
-            if (!e.isPasswordsMatch()) {
-                passwordMismatch.setVisible(true);
-            } else {
-                passwordMismatch.setVisible(false);
-            }
+            errorInEmail.setVisible(!e.isEmailValid());
 
+            errorInPassword.setVisible(!e.isPasswordValid());
+
+            passwordMismatch.setVisible(!e.isPasswordsMatch());
             return;
         }
 

@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="changed failed password verification label text and resized the windows to have the whole message readable">
-      <change beforePath="$PROJECT_DIR$/src/test/java/eus/overnote/businesslogic/BusinessLogicTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/eus/overnote/businesslogic/BusinessLogicTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +71,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.BusinessLogicTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
       <module name="Overnote" />
@@ -112,8 +118,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BusinessLogicTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.BusinessLogicTest" />
         <item itemvalue="JUnit.BusinessLogicTest.testRegisterUser" />
       </list>
     </recent_temporary>
@@ -137,6 +143,8 @@
       <workItem from="1743201702888" duration="1411000" />
       <workItem from="1743456266611" duration="1229000" />
       <workItem from="1743521187848" duration="574000" />
+      <workItem from="1743665274750" duration="40000" />
+      <workItem from="1743758073830" duration="708000" />
     </task>
     <task id="LOCAL-00001" summary="[FEATURE] Add email and password validation to registration form">
       <option name="closed" value="true" />
