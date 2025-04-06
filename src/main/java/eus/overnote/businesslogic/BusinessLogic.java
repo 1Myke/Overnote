@@ -98,34 +98,35 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void selectNote(Note note) {
-        if (isUserLoggedIn()) {
-            loggedInUser.setSelectedNote(note);
-            noteControllerMap.forEach((mappedNote,thumbnailController) -> {
-                thumbnailController.setSelectedStyle(false);
-                StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
-                StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+        if (!isUserLoggedIn()) {
+           throw new IllegalStateException("User is not logged in");
+        }
 
-                thumbnailText.unbind();
-                thumbnailTitle.unbind();
-            });
-
-            NoteThumbnailController thumbnailController = noteControllerMap.get(note);
-            thumbnailController.setSelectedStyle(true);
-
+        // Unbind the thumbnail to the editor
+        loggedInUser.setSelectedNote(note);
+        noteControllerMap.forEach((mappedNote,thumbnailController) -> {
+            thumbnailController.setSelectedStyle(false);
             StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
             StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-            StringProperty editorText = noteEditorController.getNoteText().textProperty();
-            StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
 
-            thumbnailText.bind(editorText);
-            thumbnailTitle.bind(editorTitle);
+            thumbnailText.unbind();
+            thumbnailTitle.unbind();
+        });
 
+        // Change the selected note
+        noteEditorController.setSelectedNote(note);
 
-            // It is not necessary to save it in the database
-            // It will be done when closing the application
-            // So the next time the user logs in, the selected
-            // note will be the same.
-        }
+        // Bind the thumbnail to the editor
+        NoteThumbnailController thumbnailController = noteControllerMap.get(note);
+        thumbnailController.setSelectedStyle(true);
+
+        StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
+        StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+        StringProperty editorText = noteEditorController.getNoteText().textProperty();
+        StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
+
+        thumbnailText.bind(editorText);
+        thumbnailTitle.bind(editorTitle);
     }
 
     @Override
