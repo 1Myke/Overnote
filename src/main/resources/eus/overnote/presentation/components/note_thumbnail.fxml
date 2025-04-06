@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<StackPane maxHeight="150.0" maxWidth="400.0" prefHeight="150.0" prefWidth="400.0" styleClass="note-thumbnail" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteThumbnailController">
+<StackPane fx:id="root" maxHeight="150.0" maxWidth="400.0" onMouseClicked="#selectNote" prefHeight="150.0" prefWidth="400.0" styleClass="note-thumbnail" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteThumbnailController">
    <children>
       <VBox spacing="5.0">
          <children>

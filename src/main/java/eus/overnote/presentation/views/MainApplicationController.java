@@ -5,7 +5,6 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteController;
-import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.components.ProfileBannerController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -15,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -63,16 +61,10 @@ public class MainApplicationController {
         }
 
         // Load Note FXML
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(NoteController.class.getResource("note.fxml"));
-            root.setCenter(fxmlLoader.load());
-            noteController = fxmlLoader.getController();
-        } catch (Exception e) {
-            logger.error("Error loading Note.fxml", e);
-        }
+        root.setCenter(WindowManager.getInstance().getNoteEditorParent());
 
         // Initialize the sidebar
-        thumbnails = FXCollections.observableArrayList();
+        thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
         notes.forEach(this::addNewThumbnail);
     }
@@ -120,19 +112,6 @@ public class MainApplicationController {
     }
 
     private void addNewThumbnail(Note note) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
-            Node thumbnail = fxmlLoader.load();
-            NoteThumbnailController controller = fxmlLoader.getController();
-            controller.setNote(note);
-            // Listener to select the clicked note
-            thumbnail.setOnMouseClicked(event -> {
-                logger.debug("Thumbnail clicked");
-                selectNote(note);
-            });
-            thumbnails.add(thumbnail);
-        } catch (Exception e) {
-            logger.error("Error loading note thumbnail", e);
-        }
+        bl.addNewThumbnail(note);
     }
 }

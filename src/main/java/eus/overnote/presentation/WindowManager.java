@@ -2,17 +2,23 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.domain.Note;
+import eus.overnote.presentation.components.NoteController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WindowManager {
 
@@ -44,8 +50,12 @@ public class WindowManager {
     private LoginController loginController;
     private RegisterController registerController;
     // Components
-    private Scene noteThumbnailScene;
-    private NoteThumbnailController noteThumbnailController;
+    @Getter
+    private Parent noteThumbnailParent;
+    @Getter
+    private Parent noteEditorParent;
+    @Getter
+    private NoteController noteEditorController;
 
     private void initialize() {
         bl = BusinessLogic.getInstance();
@@ -73,15 +83,16 @@ public class WindowManager {
             logger.error("Failed to load register scene", e);
             throw new RuntimeException(e);
         }
-        // Loading the note thumbnail scene
-        FXMLLoader noteThumbnailLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
+
+        // Load the note editor scene
+        FXMLLoader fxmlLoader = new FXMLLoader(NoteController.class.getResource("note.fxml"));
         try {
-            noteThumbnailScene = new Scene(noteThumbnailLoader.load());
-            noteThumbnailController = noteThumbnailLoader.getController();
-        } catch (IOException e) {
-            logger.error("Failed to load note thumbnail scene", e);
-            throw new RuntimeException(e);
+            noteEditorParent = fxmlLoader.load();
+            noteEditorController = fxmlLoader.getController();
+        } catch (Exception e) {
+            logger.error("Error loading note.fxml", e);
         }
+        bl.setNoteEditorController(noteEditorController);
     }
 
     public void openApplication() {
@@ -120,5 +131,13 @@ public class WindowManager {
         mainStage.setScene(mainScene);
         authStage.hide();
         mainStage.show();
+    }
+
+    public Scene getNoteEditorScene() {
+        if (noteEditorParent == null) {
+            logger.error("Note editor scene is not loaded");
+            throw new NullPointerException("Note editor scene is not loaded");
+        }
+        return new Scene(noteEditorParent);
     }
 }

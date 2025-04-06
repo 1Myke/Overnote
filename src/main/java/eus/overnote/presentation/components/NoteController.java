@@ -4,9 +4,14 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.Property;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import lombok.Getter;
 import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +28,11 @@ public class NoteController {
     BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
+    @Getter
     private TextArea noteText;
 
     @FXML
+    @Getter
     private TextField noteTitle;
 
 
@@ -36,6 +43,10 @@ public class NoteController {
     }
 
     public void initialize() {
+
+        // Bind the content of the fields to the attributes of the class
+
+
         savePause.setOnFinished(event -> saveNote());
         noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
@@ -51,4 +62,5 @@ public class NoteController {
             logger.debug("{}'s notes: {}", selectedNote.getUser().getEmail(), selectedNote.getUser().getNotes());
         }
     }
+    
 }

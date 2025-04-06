@@ -258,7 +258,10 @@
     -fx-border-color: -border-primary;
 }
 
-.note-thumbnail.selected {
-    -fx-background-color: -primary-color;
+.note-thumbnail-selected {
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+    -fx-background-color: -background-white;
     -fx-border-color: -border-primary;
 }

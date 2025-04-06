@@ -4,10 +4,22 @@ import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
+import eus.overnote.presentation.components.NoteController;
+import eus.overnote.presentation.components.NoteThumbnailController;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import lombok.Getter;
+import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BusinessLogic implements BlInterface {
 
@@ -16,10 +28,16 @@ public class BusinessLogic implements BlInterface {
     private final DbAccessManager db;
     @Getter
     private OvernoteUser loggedInUser;
+    private Map<Note, NoteThumbnailController> noteControllerMap;
+    @Setter
+    private NoteController noteEditorController;
+    @Getter
+    private ObservableList<Node> thumbnails;
 
     private BusinessLogic() {
         db = new DbAccessManager();
         loggedInUser = db.getSession().getCurrentUser();
+        noteControllerMap = new HashMap<>();
     }
 
     public static BusinessLogic getInstance() {
@@ -49,6 +67,7 @@ public class BusinessLogic implements BlInterface {
         }
         if (checkPassword(password, user.getPassword())) {
             setLoggedInUser(user, rememberMe);
+            thumbnails = FXCollections.observableArrayList();
             return user;
         } else
             return null;
@@ -81,6 +100,27 @@ public class BusinessLogic implements BlInterface {
     public void selectNote(Note note) {
         if (isUserLoggedIn()) {
             loggedInUser.setSelectedNote(note);
+            noteControllerMap.forEach((mappedNote,thumbnailController) -> {
+                thumbnailController.setSelectedStyle(false);
+                StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
+                StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+
+                thumbnailText.unbind();
+                thumbnailTitle.unbind();
+            });
+
+            NoteThumbnailController thumbnailController = noteControllerMap.get(note);
+            thumbnailController.setSelectedStyle(true);
+
+            StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
+            StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+            StringProperty editorText = noteEditorController.getNoteText().textProperty();
+            StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
+
+            thumbnailText.bind(editorText);
+            thumbnailTitle.bind(editorTitle);
+
+
             // It is not necessary to save it in the database
             // It will be done when closing the application
             // So the next time the user logs in, the selected
@@ -123,5 +163,25 @@ public class BusinessLogic implements BlInterface {
         Session session = db.getSession();
         session.setRememberMe(rememberMe);
         db.saveSession(session);
+    }
+
+    @Override
+    public List<Note> getNotes() {
+        return loggedInUser.getNotes();
+    }
+
+    @Override
+    public void addNewThumbnail(Note note) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
+            Node thumbnail = fxmlLoader.load();
+            NoteThumbnailController controller = fxmlLoader.getController();
+            controller.setNote(note);
+            noteControllerMap.put(note, controller);
+            thumbnails.add(thumbnail);
+        } catch (Exception e) {
+            logger.error("Error loading note thumbnail", e);
+        }
+
     }
 }
