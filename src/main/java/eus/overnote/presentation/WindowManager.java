@@ -2,9 +2,7 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.domain.Note;
 import eus.overnote.presentation.components.NoteController;
-import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
@@ -17,8 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class WindowManager {
 
@@ -112,6 +108,11 @@ public class WindowManager {
         authStage.show();
     }
 
+    /**
+     * Clears the fields of the credentials of the auth stage,
+     * checks if the user is logged in and loads the main scene.
+     * It hides the auth stage and shows the main stage.
+     */
     public void navigateToMain() {
         // Clear the fields of the credentials of the auth stage
         loginController.clearFields();
@@ -131,13 +132,5 @@ public class WindowManager {
         mainStage.setScene(mainScene);
         authStage.hide();
         mainStage.show();
-    }
-
-    public Scene getNoteEditorScene() {
-        if (noteEditorParent == null) {
-            logger.error("Note editor scene is not loaded");
-            throw new NullPointerException("Note editor scene is not loaded");
-        }
-        return new Scene(noteEditorParent);
     }
 }

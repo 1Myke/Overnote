@@ -2,7 +2,6 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.WindowManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,6 +50,11 @@ public class RegisterController {
         logger.debug("Business logic initialized");
     }
 
+    /**
+     * This method is called when the user clicks on the register button.
+     * It retrieves the values from the text fields and checkboxes,
+     * and calls the business logic to register the user.
+     */
     private void handleRegistration() {
         // Get form values
         String fullName = fullNameField.getText();

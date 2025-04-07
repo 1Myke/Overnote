@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BusinessLogic implements BlInterface {
@@ -28,10 +27,13 @@ public class BusinessLogic implements BlInterface {
     private final DbAccessManager db;
     @Getter
     private OvernoteUser loggedInUser;
-    private Map<Note, NoteThumbnailController> noteControllerMap;
+    /// A map that contains the {@link Note} class and its corresponding {@link NoteThumbnailController}.
+    private final Map<Note, NoteThumbnailController> noteControllerMap;
     @Setter
+    /// The controller of the note editor component.
     private NoteController noteEditorController;
     @Getter
+    /// The list of note thumbnail components that are displayed in the note list.
     private ObservableList<Node> thumbnails;
 
     private BusinessLogic() {
@@ -96,30 +98,42 @@ public class BusinessLogic implements BlInterface {
         return BCrypt.checkpw(password, hashedPassword);
     }
 
+    /**
+     * Sets the note that the user has currently selected.
+     * The binding between the note editor and the thumbnail of the previous
+     */
     @Override
     public void selectNote(Note note) {
+        // Check if the user is logged in
         if (!isUserLoggedIn()) {
            throw new IllegalStateException("User is not logged in");
         }
 
-        // Unbind the thumbnail to the editor
-        loggedInUser.setSelectedNote(note);
-        noteControllerMap.forEach((mappedNote,thumbnailController) -> {
-            thumbnailController.setSelectedStyle(false);
+        // Unbind the thumbnail of the previous selected note
+        Note previousNote = loggedInUser.getSelectedNote();
+        if (previousNote != null) {
+            NoteThumbnailController thumbnailController = noteControllerMap.get(previousNote);
             StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
             StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
 
             thumbnailText.unbind();
             thumbnailTitle.unbind();
-        });
+        }
+
+        // Set the unselected style for all the thumbnails
+        loggedInUser.setSelectedNote(note);
+        noteControllerMap.forEach((mappedNote,thumbnailController) ->
+                thumbnailController.setSelectedStyle(false)
+        );
 
         // Change the selected note
         noteEditorController.setSelectedNote(note);
 
-        // Bind the thumbnail to the editor
+        // Get the controller of the selected note
         NoteThumbnailController thumbnailController = noteControllerMap.get(note);
+        // Set the selected style for the selected thumbnail
         thumbnailController.setSelectedStyle(true);
-
+        // Bind the thumbnail to the editor
         StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
         StringProperty editorText = noteEditorController.getNoteText().textProperty();
@@ -166,11 +180,10 @@ public class BusinessLogic implements BlInterface {
         db.saveSession(session);
     }
 
-    @Override
-    public List<Note> getNotes() {
-        return loggedInUser.getNotes();
-    }
-
+    /**
+     * Creates a new thumbnail for the note and adds it to the list of thumbnails.
+     * @param note the note associated to the new thumbnail.
+     */
     @Override
     public void addNewThumbnail(Note note) {
         try {

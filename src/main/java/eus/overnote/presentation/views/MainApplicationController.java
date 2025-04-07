@@ -66,29 +66,37 @@ public class MainApplicationController {
         // Initialize the sidebar
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
-        notes.forEach(this::addNewThumbnail);
+        notes.forEach(bl::addNewThumbnail);
     }
 
-    void selectNote(Note note) {
+    /**
+     * Calls the controller of the note editor to save the noted that
+     * was previously selected. Calls the business logic to select the
+     * new note.
+     *
+     * @param note the note to select.
+     */
+    private void selectNote(Note note) {
         if (bl.getLoggedInUser() == null) {
             logger.error("No user logged in");
             return;
         }
 
         // Save the previous note
-        Note previousNote = bl.getSelectedNote();
-        if (previousNote != null) {
-            logger.debug("Saving previous note");
-            noteController.saveNote();
-        } else {
-            logger.debug("No previous note to save");
-        }
+        logger.info("Saving the current note before selecting the next.");
+        noteController.saveNote();
 
         logger.debug("Selecting note");
         bl.selectNote(note);
-        noteController.setSelectedNote(note);
     }
 
+    /**
+     * This method is called when the button for creating notes is pressed.
+     * Creates a new instance of {@link Note} and calls the business logic to
+     * save it in the database. It automatically selects the created note.
+     *
+     * @param event the {@link ActionEvent} created on the interaction.
+     */
     @FXML
     void createNote(ActionEvent event) {
         if (bl.getLoggedInUser() == null) {
@@ -100,18 +108,21 @@ public class MainApplicationController {
         Note createdNote = new Note("Untitled note", "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
-        addNewThumbnail(createdNote);
+        bl.addNewThumbnail(createdNote);
         selectNote(createdNote);
     }
 
+    /**
+     * This method is called when the log out option is selected from the
+     * profile menu. It calls the business logic to log out the user and
+     * navigates to the login view.
+     *
+     * @param event the {@link ActionEvent} created on the interaction.
+     */
     @FXML
     void onLogout(ActionEvent event) {
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();
-    }
-
-    private void addNewThumbnail(Note note) {
-        bl.addNewThumbnail(note);
     }
 }

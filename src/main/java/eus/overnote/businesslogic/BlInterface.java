@@ -6,8 +6,6 @@ import eus.overnote.presentation.components.NoteController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
-import java.util.List;
-
 public interface BlInterface {
     // User
     OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword);
@@ -20,8 +18,6 @@ public interface BlInterface {
     String hashPassword(String password);
     boolean checkPassword(String password, String hashedPassword);
 
-    // Note
-    List<Note> getNotes();
     void selectNote(Note note);
     Note getSelectedNote();
     void addNewThumbnail(Note note);

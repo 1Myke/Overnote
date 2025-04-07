@@ -4,15 +4,10 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.Property;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,8 +17,7 @@ public class NoteController {
 
     private static final Logger logger = LoggerFactory.getLogger(NoteController.class);
     private Note selectedNote;
-    @Setter
-    private NoteThumbnailController thumbnailController;
+    /// The timer to detect user inactivity.
     private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
     BlInterface bl = BusinessLogic.getInstance();
 
@@ -44,14 +38,17 @@ public class NoteController {
 
     public void initialize() {
 
-        // Bind the content of the fields to the attributes of the class
-
-
+        // Set a timer to save the note after the user idles
         savePause.setOnFinished(event -> saveNote());
         noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
     }
 
+    /**
+     * This method is called when the user clicks on the save button.
+     * It updates the attributes of the selected note with the values of the text fields
+     * and calls the business logic to update the note in the database.
+     */
     public void saveNote() {
         if (selectedNote != null){
             selectedNote.setTitle(noteTitle.getText());
