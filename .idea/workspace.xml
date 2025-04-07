@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[DOC] Simplify domain model diagram">
+    <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="changed failed password verification label text and resized the windows to have the whole message readable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,16 +21,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="AnnotationType" />
-        <option value="FxmlFile" />
-        <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="d570ba1e2cf92905b470670468d967dfc4abbcde" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,78 +36,42 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;KingJorjai&quot;
+    &quot;assignee&quot;: &quot;Mikelikx&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/1Myke/Overnote.git",
-    "accountId": "8fbc3886-97cf-46f1-bad7-6eacc3061dfe"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/1Myke/Overnote.git&quot;,
+    &quot;accountId&quot;: &quot;3dba5054-8491-45e3-acaa-34aeef4599db&quot;
   }
-}]]></component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
+}</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2uLjmQysjHMMj0c02WajLyREMw6" />
+  <component name="ProjectId" id="2uxskLxDIa62TaqA4nkNhDLjfBS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ApplicationView.executor": "Run",
-    "Application.BaseWindow.executor": "Run",
-    "Application.DebugMain.executor": "Run",
-    "Application.LoginApplication.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MainView.executor": "Run",
-    "Application.RegisterApplication.executor": "Run",
-    "Application.WindowManager.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jorja/AppData/Local/SceneBuilder/SceneBuilder.exe",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BusinessLogicTest.testRegisterUser.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#49 on Regex&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mikel/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views" />
-      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components" />
-      <recent name="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="eus.overnote.presentation.components" />
-      <recent name="eus.overnote.presentation.views" />
-      <recent name="eus.overnote.presentation" />
-      <recent name="eus.overnote" />
-    </key>
-  </component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="DebugMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="eus.overnote.DebugMain" />
-      <module name="Overnote" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="eus.overnote.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
       <module name="Overnote" />
@@ -121,102 +85,100 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BusinessLogicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.businesslogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="eus.overnote.businesslogic" />
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.businesslogic.BusinessLogicTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusinessLogicTest.testRegisterUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.businesslogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="eus.overnote.businesslogic" />
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.businesslogic.BusinessLogicTest" />
+      <option name="METHOD_NAME" value="testRegisterUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.DebugMain" />
+        <item itemvalue="JUnit.BusinessLogicTest" />
+        <item itemvalue="JUnit.BusinessLogicTest.testRegisterUser" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="981b5e21-db4b-4177-8e78-39e5a5996ac0" name="Changes" comment="[FEATURE] Implement user registration and login functionality" />
-      <created>1742034909510</created>
+      <changelist id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="" />
+      <created>1743201701546</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1742034909510</updated>
-      <workItem from="1742034912683" duration="24099000" />
-      <workItem from="1742078941436" duration="3253000" />
-      <workItem from="1742811166072" duration="2106000" />
-      <workItem from="1742842531968" duration="24000" />
-      <workItem from="1742910592887" duration="776000" />
+      <updated>1743201701546</updated>
+      <workItem from="1743201702888" duration="1411000" />
+      <workItem from="1743456266611" duration="1229000" />
+      <workItem from="1743521187848" duration="574000" />
+      <workItem from="1743665274750" duration="40000" />
+      <workItem from="1743758073830" duration="708000" />
     </task>
-    <task id="LOCAL-00001" summary="[REFACTOR] Merge custom stylesheets into styles.css">
+    <task id="LOCAL-00001" summary="[FEATURE] Add email and password validation to registration form">
       <option name="closed" value="true" />
-      <created>1742037148470</created>
+      <created>1743202919956</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1742037148470</updated>
+      <updated>1743202919956</updated>
     </task>
-    <task id="LOCAL-00002" summary="[REFACTOR] Migrate Login UI to custom css">
+    <task id="LOCAL-00002" summary="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded).">
       <option name="closed" value="true" />
-      <created>1742047217812</created>
+      <created>1743376985904</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1742047217812</updated>
+      <updated>1743376985904</updated>
     </task>
-    <task id="LOCAL-00003" summary="[FEATURE] Implement custom window decoration">
+    <task id="LOCAL-00003" summary="file that was forgotten to be added in the last commit">
       <option name="closed" value="true" />
-      <created>1742058845462</created>
+      <created>1743377316671</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1742058845462</updated>
+      <updated>1743377316671</updated>
     </task>
-    <task id="LOCAL-00004" summary="[FEATURE] Implement window maximizing">
+    <task id="LOCAL-00004" summary="changed failed password verification label text and resized the windows to have the whole message readable">
       <option name="closed" value="true" />
-      <created>1742080806413</created>
+      <created>1743521538777</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1742080806413</updated>
+      <updated>1743521538777</updated>
     </task>
-    <task id="LOCAL-00005" summary="[FEATURE] Set window minimum size automatically">
-      <option name="closed" value="true" />
-      <created>1742130116885</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1742130116885</updated>
-    </task>
-    <task id="LOCAL-00006" summary="[MERGE] Update to the new features in main">
-      <option name="closed" value="true" />
-      <created>1742817811710</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1742817811710</updated>
-    </task>
-
-    <task id="LOCAL-00007" summary="[DOC] Update domain model and improve class relationships">
-      <option name="closed" value="true" />
-      <created>1742842416197</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1742842416197</updated>
-    </task>
-    <task id="LOCAL-00008" summary="[DOC] Simplify domain model diagram">
-      <option name="closed" value="true" />
-      <created>1742842770635</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1742842770635</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,28 +189,31 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Regex" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[REFACTOR] Merge custom stylesheets into styles.css" />
-    <MESSAGE value="[REFACTOR] Migrate Login UI to custom css" />
-    <MESSAGE value="[FEATURE] Implement custom window decoration" />
-    <MESSAGE value="[FEATURE] Implement window maximizing" />
-    <MESSAGE value="[REFACTOR] Enhance window controls and improve layout responsiveness" />
-    <MESSAGE value="[FEATURE] Set window minimum size automatically" />
-    <MESSAGE value="[FEATURE] Set up logging (logback)" />
-    <MESSAGE value="[MERGE] Update to the new features in main" />
-
-    <MESSAGE value="[DOC] Update domain model and improve class relationships" />
-    <MESSAGE value="[DOC] Simplify domain model diagram" />
-    <option name="LAST_COMMIT_MESSAGE" value="[DOC] Simplify domain model diagram" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="[FEATURE] Enhance registration form with email and password validation error styling" />
+    <MESSAGE value="[FEATURE] Add email and password validation to registration form" />
+    <MESSAGE value="[FEATURE] Implement email and password validation for user registration" />
+    <MESSAGE value="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded)." />
+    <MESSAGE value="file that was forgotten to be added in the last commit" />
+    <MESSAGE value="changed failed password verification label text and resized the windows to have the whole message readable" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed failed password verification label text and resized the windows to have the whole message readable" />
   </component>
 </project>
