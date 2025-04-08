@@ -9,9 +9,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
-<StackPane fx:id="root" maxHeight="150.0" maxWidth="400.0" onMouseClicked="#selectNote" prefHeight="150.0" prefWidth="400.0" styleClass="note-thumbnail" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteThumbnailController">
+<StackPane fx:id="root" maxHeight="115.0" maxWidth="400.0" onMouseClicked="#selectNote" prefHeight="115.0" prefWidth="400.0" styleClass="note-thumbnail" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteThumbnailController">
    <children>
       <VBox spacing="5.0">
          <children>
@@ -23,18 +22,14 @@
                </children>
             </HBox>
             <Separator />
-            <FlowPane fx:id="tagFlowPane" hgap="10.0" vgap="10.0">
+            <FlowPane fx:id="tagFlowPane" hgap="10.0" prefWrapLength="362.0" vgap="10.0">
                <children>
-                  <Label text="Tag 1" />
-                  <Label layoutX="10.0" layoutY="10.0" text="Tag 2" />
+                  <Label styleClass="link" text="Tag 1" />
+                  <Label layoutX="10.0" layoutY="10.0" styleClass="link" text="Tag 2" />
                </children>
             </FlowPane>
             <Separator />
-            <TextFlow>
-               <children>
-                  <Text fx:id="previewText" strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
-               </children>
-            </TextFlow>
+            <Label fx:id="previewTextLabel" styleClass="text" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
          </children>
          <StackPane.margin>
             <Insets />

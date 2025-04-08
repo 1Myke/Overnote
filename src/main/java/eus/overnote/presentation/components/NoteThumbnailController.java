@@ -4,6 +4,7 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -22,7 +23,7 @@ public class NoteThumbnailController {
 
     @FXML
     @Getter
-    private Text previewText;
+    private Label previewTextLabel;
 
     @FXML
     private FlowPane tagFlowPane;
@@ -30,6 +31,9 @@ public class NoteThumbnailController {
     @FXML
     @Getter
     private Text titleText;
+
+    public void initialize() {
+    }
 
     /**
      * Sets the {@link NoteThumbnailController#note} attribute of this
@@ -41,7 +45,7 @@ public class NoteThumbnailController {
         this.note = note;
         // Values updated via bindings
         titleText.setText(note.getTitle());
-        previewText.setText(note.getContent());
+        previewTextLabel.setText(note.getContent());
         // Manual update
         updateContent();
     }
