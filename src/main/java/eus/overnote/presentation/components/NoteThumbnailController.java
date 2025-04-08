@@ -39,15 +39,11 @@ public class NoteThumbnailController {
      */
     public void setNote(Note note) {
         this.note = note;
-
+        // Values updated via bindings
         titleText.setText(note.getTitle());
         previewText.setText(note.getContent());
-        dateText.setText(note.getLastModificationDate().toString());
-        tagFlowPane.getChildren().clear();
-        note.getTags().forEach(tag -> {
-            Text tagText = new Text(tag.toString());
-            tagFlowPane.getChildren().add(tagText);
-        });
+        // Manual update
+        updateContent();
     }
 
     /**
@@ -70,6 +66,15 @@ public class NoteThumbnailController {
         } else {
             root.getStyleClass().setAll("note-thumbnail");
         }
+    }
+
+    public void updateContent() {
+        dateText.setText(note.getLastModificationDate().toString());
+        tagFlowPane.getChildren().clear();
+        note.getTags().forEach(tag -> {
+            Text tagText = new Text(tag.toString());
+            tagFlowPane.getChildren().add(tagText);
+        });
     }
 
 

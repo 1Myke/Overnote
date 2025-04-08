@@ -28,7 +28,7 @@ public class BusinessLogic implements BlInterface {
     @Getter
     private OvernoteUser loggedInUser;
     /// A map that contains the {@link Note} class and its corresponding {@link NoteThumbnailController}.
-    private final Map<Note, NoteThumbnailController> noteControllerMap;
+    private final Map<Note, NoteThumbnailController> noteThumbnailControllerMap;
     @Setter
     @Getter
     /// The controller of the note editor component.
@@ -41,7 +41,7 @@ public class BusinessLogic implements BlInterface {
         db = new DbAccessManager();
         loggedInUser = db.getSession().getCurrentUser();
         thumbnails = FXCollections.observableArrayList();
-        noteControllerMap = new HashMap<>();
+        noteThumbnailControllerMap = new HashMap<>();
     }
 
     public static BusinessLogic getInstance() {
@@ -117,7 +117,7 @@ public class BusinessLogic implements BlInterface {
         // Unbind the thumbnail of the previous selected note
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
-            NoteThumbnailController thumbnailController = noteControllerMap.get(previousNote);
+            NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
             StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
             StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
 
@@ -127,7 +127,7 @@ public class BusinessLogic implements BlInterface {
 
         // Set the unselected style for all the thumbnails
         loggedInUser.setSelectedNote(note);
-        noteControllerMap.forEach((mappedNote,thumbnailController) ->
+        noteThumbnailControllerMap.forEach((mappedNote, thumbnailController) ->
                 thumbnailController.setSelectedStyle(false)
         );
 
@@ -135,7 +135,7 @@ public class BusinessLogic implements BlInterface {
         noteEditorController.setSelectedNote(note);
 
         // Get the controller of the selected note
-        NoteThumbnailController thumbnailController = noteControllerMap.get(note);
+        NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(note);
         // Set the selected style for the selected thumbnail
         thumbnailController.setSelectedStyle(true);
         // Bind the thumbnail to the editor
@@ -163,6 +163,7 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void updateNote(Note note) {
+        noteThumbnailControllerMap.get(note).updateContent();
         db.updateNote(note);
     }
 
@@ -196,7 +197,7 @@ public class BusinessLogic implements BlInterface {
             Node thumbnail = fxmlLoader.load();
             NoteThumbnailController controller = fxmlLoader.getController();
             controller.setNote(note);
-            noteControllerMap.put(note, controller);
+            noteThumbnailControllerMap.put(note, controller);
             thumbnails.add(thumbnail);
         } catch (Exception e) {
             logger.error("Error loading note thumbnail", e);

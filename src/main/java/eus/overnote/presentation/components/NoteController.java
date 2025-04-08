@@ -34,6 +34,7 @@ public class NoteController {
         selectedNote = note;
         noteTitle.setText(note.getTitle());
         noteText.setText(note.getContent());
+        savePause.stop();
     }
 
     public void initialize() {
