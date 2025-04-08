@@ -111,6 +111,9 @@ public class BusinessLogic implements BlInterface {
            throw new IllegalStateException("User is not logged in");
         }
 
+        // Update the previous note in the database
+        noteEditorController.saveNote();
+
         // Unbind the thumbnail of the previous selected note
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
