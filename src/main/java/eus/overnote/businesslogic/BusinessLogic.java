@@ -118,7 +118,7 @@ public class BusinessLogic implements BlInterface {
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
             NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
-            StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
+            StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
             StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
 
             thumbnailText.unbind();
@@ -139,7 +139,7 @@ public class BusinessLogic implements BlInterface {
         // Set the selected style for the selected thumbnail
         thumbnailController.setSelectedStyle(true);
         // Bind the thumbnail to the editor
-        StringProperty thumbnailText = thumbnailController.getPreviewText().textProperty();
+        StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
         StringProperty editorText = noteEditorController.getNoteText().textProperty();
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
