@@ -48,6 +48,8 @@ public class MainApplicationController {
     public void initialize() {
         logger.debug("Initializing main application view");
 
+        noteController = bl.getNoteEditorController();
+
         // Initialize note list
         notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
 

@@ -30,6 +30,7 @@ public class BusinessLogic implements BlInterface {
     /// A map that contains the {@link Note} class and its corresponding {@link NoteThumbnailController}.
     private final Map<Note, NoteThumbnailController> noteControllerMap;
     @Setter
+    @Getter
     /// The controller of the note editor component.
     private NoteController noteEditorController;
     @Getter
@@ -39,6 +40,7 @@ public class BusinessLogic implements BlInterface {
     private BusinessLogic() {
         db = new DbAccessManager();
         loggedInUser = db.getSession().getCurrentUser();
+        thumbnails = FXCollections.observableArrayList();
         noteControllerMap = new HashMap<>();
     }
 

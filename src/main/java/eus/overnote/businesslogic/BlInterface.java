@@ -25,6 +25,7 @@ public interface BlInterface {
     void saveNote(Note note);
     void updateNote(Note note);
     void setNoteEditorController(NoteController noteEditorController);
+    NoteController getNoteEditorController();
 
     void deleteNote(Note note);
 }
