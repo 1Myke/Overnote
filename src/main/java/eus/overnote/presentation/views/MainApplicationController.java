@@ -127,6 +127,7 @@ public class MainApplicationController {
             return;
         }
         logger.debug("Selecting deleted note");
+        selectedNote = note;
         noteController.setSelectedNote(note);
     }
 

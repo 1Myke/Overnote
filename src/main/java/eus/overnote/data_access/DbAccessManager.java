@@ -11,7 +11,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -100,11 +99,11 @@ public class DbAccessManager {
         }
     }
 
-    // DbAccessManager.java
     public void saveNote(Note note) {
         try {
             db.getTransaction().begin();
-            db.persist(note);
+            note = db.merge(note);
+            note.getUser().getNotes().add(note);
             db.getTransaction().commit();
             logger.info("Note with id {} saved successfully", note.getId());
         } catch (Exception e) {
@@ -128,8 +127,7 @@ public class DbAccessManager {
     public void deleteNote(Note note) {
         try {
             db.getTransaction().begin();
-            note.setDeleted(true);
-            note.setDeleteDate(new Date());
+            note.moveToTrash();
             db.merge(note);
             db.getTransaction().commit();
             logger.info("Note with id {} marked as deleted successfully", note.getId());

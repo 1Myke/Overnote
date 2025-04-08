@@ -27,8 +27,14 @@ public class NoteController {
 
     public void setSelectedNote(Note note) {
         selectedNote = note;
-        noteTitle.setText(note.getTitle());
-        noteText.setText(note.getContent());
+        if (note != null) {
+            noteTitle.setText(note.getTitle());
+            noteText.setText(note.getContent());
+        } else {
+            noteTitle.clear();
+            noteText.clear();
+        }
+
     }
 
     public void initialize() {
