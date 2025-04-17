@@ -32,7 +32,7 @@ public class OvernoteUser {
     private final Date registrationDate = new Date();
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Note> notes = new ArrayList<>();
 
     // Empty constructor for JPA
