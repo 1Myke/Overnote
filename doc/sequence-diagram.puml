@@ -1,0 +1,62 @@
+
+@startuml
+title Login Use Case
+
+actor User
+participant UI
+participant BusinessLogic
+participant OvernoteUser
+participant Session
+participant DbAccessManager
+database EntityManager
+
+User -> UI: Enter email and password
+opt if the user wants the session to be remembered
+    User -> UI: Check "Remember me" checkbox
+end
+User -> UI: Click "Login" button
+
+UI -> BusinessLogic: loginUser(email, password, rememberMe)
+BusinessLogic -> DbAccessManager: getUserByEmail(email)
+DbAccessManager -> EntityManager: Execute query Q1
+note right
+    Q1:
+    SELECT u
+    FROM OvernoteUser u
+    WHERE u.email = :email
+end note
+EntityManager --> DbAccessManager: Return user
+DbAccessManager --> BusinessLogic: Return user
+
+alt if the user exists
+    BusinessLogic -> OvernoteUser: getPassword()
+    OvernoteUser --> BusinessLogic: Return userPassword
+    BusinessLogic -> BusinessLogic: checkPassword(password, userPassword)
+    alt if the password is correct
+        BusinessLogic -> DbAccessManager: getSession()
+        DbAccessManager -> EntityManager: Execute query Q2
+        note right
+            Q2:
+            SELECT s
+            FROM Session s
+        end note
+        EntityManager --> DbAccessManager: Return session
+        DbAccessManager --> BusinessLogic: Return session
+        BusinessLogic -> Session: setRememberMe(rememberMe)
+        BusinessLogic -> Session: setCurrentUser(user)
+        BusinessLogic -> DbAccessManager: saveSession(session)
+        DbAccessManager -> EntityManager: getTransaction().begin()
+        DbAccessManager -> EntityManager: merge(session)
+        DbAccessManager -> EntityManager: getTransaction().commit()
+    else if the password is incorrect
+        BusinessLogic -> UI: Show error message "Invalid credentials"
+    end
+else if the user does not exist
+    BusinessLogic -> UI: Show error message "User not found"
+end
+alt if there is valid a session
+    UI -> UI: Show the main application screen
+else if the session is invalid
+    UI -> UI: Stay in the login screen
+end
+@enduml
