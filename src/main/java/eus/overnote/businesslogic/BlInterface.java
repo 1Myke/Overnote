@@ -20,5 +20,6 @@ public interface BlInterface {
     // Note
     void saveNote(Note note);
     void updateNote(Note note);
+    void moveToDeleteNote(Note note);
     void deleteNote(Note note);
 }

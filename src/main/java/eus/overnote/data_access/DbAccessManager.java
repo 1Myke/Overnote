@@ -124,7 +124,7 @@ public class DbAccessManager {
         }
     }
 
-    public void deleteNote(Note note) {
+    public void moveToDeleteNote(Note note) {
         try {
             db.getTransaction().begin();
             note.moveToTrash();
@@ -134,6 +134,19 @@ public class DbAccessManager {
         } catch (Exception e) {
             db.getTransaction().rollback();
             logger.error("Error marking note as deleted: {}", e.getMessage());
+        }
+    }
+
+    public void deleteNote(Note note) {
+        try {
+            db.getTransaction().begin();
+            note.getUser().getNotes().remove(note);
+            db.remove(note);
+            db.getTransaction().commit();
+            logger.info("Note with id {} deleted successfully", note.getId());
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error deleting note: {}", e.getMessage());
         }
     }
 }

@@ -19,6 +19,11 @@ import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 public class MainApplicationController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
@@ -62,11 +67,19 @@ public class MainApplicationController {
         }
 
         // Initialize deleted notes list
+        List<Note> notesToDelete = new ArrayList<>();
         deletedNotes = FXCollections.observableArrayList();
         for (Note note : bl.getLoggedInUser().getNotes()) {
             if (note.isDeleted()) {
-                deletedNotes.add(note);
+                if (isDateOlderThanOneMonth(note.getDeleteDate())) {
+                    notesToDelete.add(note);
+                }else {
+                    deletedNotes.add(note);
+                }
             }
+        }
+        for (Note note : notesToDelete) {
+            bl.deleteNote(note);
         }
 
         // Set selection comboBox
@@ -131,6 +144,13 @@ public class MainApplicationController {
         noteController.setSelectedNote(note);
     }
 
+    boolean isDateOlderThanOneMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -1);
+        Date oneMonthAgo = calendar.getTime();
+        return date.before(oneMonthAgo);
+    }
+
     @FXML
     void createNote(ActionEvent event) {
         if (bl.getLoggedInUser() == null) {
@@ -158,7 +178,7 @@ public class MainApplicationController {
     @FXML
     void onDelete(ActionEvent event) {
         if (selectedNote != null) {
-            bl.deleteNote(selectedNote);
+            bl.moveToDeleteNote(selectedNote);
             logger.debug("Note {} deleted for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
 
             WindowManager.getInstance().navigateToMain();
