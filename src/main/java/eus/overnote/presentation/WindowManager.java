@@ -2,7 +2,6 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
@@ -17,6 +16,8 @@ import java.io.IOException;
 public class WindowManager {
 
     private final Logger logger = LoggerFactory.getLogger(WindowManager.class);
+    private BlInterface bl;
+
 
 
     // Singleton
@@ -43,6 +44,8 @@ public class WindowManager {
     private RegisterController registerController;
 
     private void initialize() {
+        bl = BusinessLogic.getInstance();
+
         // Creating the stages
         authStage = new Stage();
         authStage.setTitle("Overnote");
@@ -68,6 +71,11 @@ public class WindowManager {
         }
     }
 
+    public void openApplication() {
+        if (bl.isUserLoggedIn()) navigateToMain();
+        else navigateToLogin();
+    }
+
     public void navigateToRegister() {
         mainStage.hide();
         authStage.setScene(registerScene);
@@ -85,7 +93,6 @@ public class WindowManager {
         loginController.clearFields();
         registerController.clearFields();
 
-        BlInterface bl = BusinessLogic.getInstance();
         if (!bl.isUserLoggedIn()) return;
 
         FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"));

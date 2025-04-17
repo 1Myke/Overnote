@@ -2,20 +2,29 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.businesslogic.RegisterException;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.WindowManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.regex.*;
 
 public class RegisterController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
     private BlInterface bl;
+
+    @FXML
+    private Label passwordMismatch;
+
+    @FXML
+    private Label errorInPassword;
+
+    @FXML
+    private Label errorInEmail;
 
     @FXML
     private TextField fullNameField;
@@ -42,13 +51,23 @@ public class RegisterController {
     public void initialize() {
         // Set up event handlers for registration functionality
         registerButton.setOnAction(event -> handleRegistration());
+        registerButton.setDisable(true);
         logger.debug("\"{}\" button listener initialized", registerButton.getText());
         signInButton.setOnAction(event -> navigateToLogin());
         logger.debug("\"{}\" button listener initialized", signInButton.getText());
-
+        termsCheckbox.setOnAction(event -> { toggleCreation();});
+        logger.debug("\"{}\" checkbox listener initialized", termsCheckbox.getText());
         // Initialize business logic
         bl = BusinessLogic.getInstance();
         logger.debug("Business logic initialized");
+        errorInEmail.setVisible(false);
+        errorInPassword.setVisible(false);
+        passwordMismatch.setVisible(false);
+    }
+
+    private void toggleCreation() {
+        registerButton.setDisable(!termsCheckbox.isSelected());
+
     }
 
     private void handleRegistration() {
@@ -56,19 +75,31 @@ public class RegisterController {
         String fullName = fullNameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+
+
         String confirmPassword = confirmPasswordField.getText();
         boolean termsAccepted = termsCheckbox.isSelected();
 
         logger.info("User tried to register. fullName=\"{}\", email=\"{}\", password=\"{}\", confirmPassword=\"{}\", termsAccepted=\"{}\"", fullName, email, password, confirmPassword, termsAccepted);
 
-        // Check if the terms have been accepted (likely to be removed)
-        if (!termsAccepted) {
-            logger.info("User did not accept the terms and conditions. Registration aborted.");
+
+
+        // Call the business logic to register the user
+        try{
+        OvernoteUser user = bl.registerUser(fullName, email, password, confirmPassword);
+        }
+        catch (RegisterException e) {
+            logger.error("Error registering user", e);
+            errorInEmail.setVisible(!e.isEmailValid());
+
+            errorInPassword.setVisible(!e.isPasswordValid());
+
+            passwordMismatch.setVisible(!e.isPasswordsMatch());
             return;
         }
 
-        // Call the business logic to register the user
-        bl.registerUser(fullName, email, password, confirmPassword);
+
+
         WindowManager.getInstance().navigateToMain();
     }
 

@@ -25,7 +25,6 @@ public class WindowFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
-
         stage.show();
         logger.debug("Showing window");
 

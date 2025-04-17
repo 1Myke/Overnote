@@ -22,16 +22,18 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/note.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/note.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="d570ba1e2cf92905b470670468d967dfc4abbcde" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,6 +42,7 @@
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;Aimarville&quot;
+
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
@@ -52,6 +55,7 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2v54cXPHG5BoNonoxmwalISFSol" />
+
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -65,29 +69,18 @@
     &quot;git-widget-placeholder&quot;: &quot;feature/delete__note&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/aimar/Desktop/Unibertsitatea/SceneBuilder.lnk&quot;,
+
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RunManager" selected="Application.Main">
-    <configuration name="DebugMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="eus.overnote.DebugMain" />
-      <module name="Overnote" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="eus.overnote.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
       <module name="Overnote" />
@@ -101,10 +94,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BusinessLogicTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.businesslogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="eus.overnote.businesslogic" />
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.businesslogic.BusinessLogicTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BusinessLogicTest.testRegisterUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Overnote" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="eus.overnote.businesslogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="eus.overnote.businesslogic" />
+      <option name="MAIN_CLASS_NAME" value="eus.overnote.businesslogic.BusinessLogicTest" />
+      <option name="METHOD_NAME" value="testRegisterUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.DebugMain" />
+        <item itemvalue="JUnit.BusinessLogicTest" />
+        <item itemvalue="JUnit.BusinessLogicTest.testRegisterUser" />
       </list>
     </recent_temporary>
   </component>
@@ -113,6 +138,7 @@
       <set>
         <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.153" />
         <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.153" />
+
       </set>
     </attachedChunks>
   </component>
@@ -130,6 +156,7 @@
       <workItem from="1743522897646" duration="6754000" />
       <workItem from="1743629233600" duration="445000" />
     </task>
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,5 +165,6 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+
   </component>
 </project>

@@ -1,5 +1,6 @@
 package eus.overnote.businesslogic;
 
+import eus.overnote.domain.OvernoteUser;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,53 @@ public class BusinessLogicTest {
         String hashedPassword = businessLogic.hashPassword(password);
         Assert.assertNotNull(hashedPassword);
         Assert.assertNotEquals(password, hashedPassword);
+    }
+
+    @Test
+    public void testRegisterUser() {
+
+
+        String email = "john.doe@example.com";
+        String password = "Password123";
+        String confirmPassword = "Password123";
+
+        Assert.assertTrue(businessLogic.validateEmail(email));
+        Assert.assertTrue(businessLogic.validatePassword(password));
+        Assert.assertTrue(businessLogic.validatePasswordMatch(password, confirmPassword));
+
+    }
+    @Test
+    public void testValidEmail(){
+        String email = "john.doe@example.com";
+        Assert.assertTrue(businessLogic.validateEmail(email));
+
+    }
+    @Test
+    public void testValidPassword(){
+        String password = "Password123";
+        Assert.assertTrue(businessLogic.validatePassword(password));
+    }
+    @Test
+    public void testInvalidPasswordCaps(){
+        String password = "password123";
+        Assert.assertFalse(businessLogic.validatePassword(password));
+    }
+    @Test
+    public void testInvalidPasswordNumbers(){
+        String password = "Password";
+        Assert.assertFalse(businessLogic.validatePassword(password));
+    }
+    @Test
+    public void testInvalidPasswordLength(){
+        String password = "Pass123";
+        Assert.assertFalse(businessLogic.validatePassword(password));
+    }
+
+    @Test
+    public void testValidPasswordMatch(){
+        String password = "Password123";
+        String confirmPassword = "Password123";
+        Assert.assertTrue(businessLogic.validatePasswordMatch(password, confirmPassword));
     }
 
     @Test

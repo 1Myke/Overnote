@@ -2,6 +2,7 @@ package eus.overnote.data_access;
 
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
+import eus.overnote.domain.Session;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
@@ -41,6 +42,42 @@ public class DbAccessManager {
         logger.info("Database connection closed");
     }
 
+    public Session getSession() {
+        try {
+            TypedQuery<Session> query = db.createQuery("select s from Session as s", Session.class);
+            Session session;
+            db.getTransaction().begin();
+            if (query.getResultList().isEmpty()) {
+                session = new Session();
+                session = db.merge(session);
+                logger.info("Session not found, creating a new one");
+                db.getTransaction().commit();
+                return session;
+            } else {
+                session = query.getSingleResult();
+                logger.info("Session found");
+                db.getTransaction().commit();
+                return session;
+            }
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error getting session: {}", e.getMessage());
+            return null;
+        }
+    }
+
+    public void saveSession(Session session) {
+        try {
+            db.getTransaction().begin();
+            db.merge(session);
+            db.getTransaction().commit();
+            logger.info("Session saved successfully");
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error saving session: {}", e.getMessage());
+        }
+    }
+
     public OvernoteUser registerUser(String fullName, String email, String password) {
         try {
             TypedQuery<OvernoteUser> query = db.createQuery("SELECT u FROM OvernoteUser u WHERE u.email = :email", OvernoteUser.class);
@@ -60,24 +97,6 @@ public class DbAccessManager {
         } catch (Exception e) {
             db.getTransaction().rollback();
             logger.error("Error registering user: {}", e.getMessage());
-            return null;
-        }
-    }
-
-    public OvernoteUser loginUser(String email, String password) {
-        try {
-            TypedQuery<OvernoteUser> query = db.createQuery("SELECT u FROM OvernoteUser u WHERE u.email = :email AND u.password = :password", OvernoteUser.class);
-            query.setParameter("email", email);
-            query.setParameter("password", password);
-            if (query.getResultList().isEmpty()) {
-                logger.info("User with email \"{}\" not found or password incorrect", email);
-                return null;
-            }
-            logger.info("User with email \"{}\" logged in successfully", email);
-            return query.getSingleResult();
-        } catch (Exception e) {
-            db.getTransaction().rollback();
-            logger.error("Error logging in user: {}", e.getMessage());
             return null;
         }
     }
