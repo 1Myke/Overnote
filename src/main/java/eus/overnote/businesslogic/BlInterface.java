@@ -11,28 +11,25 @@ public interface BlInterface {
     OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword);
     OvernoteUser loginUser(String email, String password, boolean rememberMe);
     OvernoteUser getLoggedInUser();
-
     void logoutUser();
-
     boolean isUserLoggedIn();
 
     // Security
     String hashPassword(String password);
     boolean checkPassword(String password, String hashedPassword);
-
-    void selectNote(Note note);
-    Note getSelectedNote();
-    void addNewThumbnail(Note note);
-    ObservableList<Node> getThumbnails();
     boolean validateEmail(String email);
     boolean validatePassword(String password);
     boolean validatePasswordMatch(String password, String confirmPassword);
+
     // Note
+    void selectNote(Note note);
     void saveNote(Note note);
     void updateNote(Note note);
     void setNoteEditorController(NoteController noteEditorController);
     NoteController getNoteEditorController();
-
-    void moveToDeleteNote(Note note);
+    void addNewThumbnail(Note note);
+    ObservableList<Node> getThumbnails();
+    Note getSelectedNote();
+    void moveNoteToTrash(Note note);
     void deleteNote(Note note);
 }

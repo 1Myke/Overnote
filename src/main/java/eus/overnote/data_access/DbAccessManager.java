@@ -12,8 +12,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
-
 
 public class DbAccessManager {
 
@@ -143,7 +141,7 @@ public class DbAccessManager {
         }
     }
 
-    public void moveToDeleteNote(Note note) {
+    public void moveNoteToTrash(Note note) {
         try {
             db.getTransaction().begin();
             note.moveToTrash();
