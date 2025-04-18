@@ -1,0 +1,69 @@
+
+@startuml
+title "Edit a note" use case
+
+actor User
+participant JavaFX_UI as UI
+participant MainApplicationController
+participant NoteController
+participant BusinessLogic
+participant OvernoteUser
+participant Note
+participant DbAccessManager
+database EntityManager
+
+MainApplicationController -> BusinessLogic: getLoggedInUser()
+BusinessLogic --> MainApplicationController: Return loggedInUser
+MainApplicationController -> OvernoteUser: getNotes()
+OvernoteUser --> MainApplicationController: Return notes
+
+MainApplicationController ->  BusinessLogic: getThumbnails()
+BusinessLogic --> MainApplicationController: Return thumbnails
+MainApplicationController -> UI: Bind thumbnails to UI sidebar
+
+note right
+    The notes are automatically
+    displayed in the sidebar in
+    the moment they are added.
+end note
+
+loop for each note in user's notes
+    MainApplicationController -> BusinessLogic: addNewThumbnail(note)
+end loop
+
+User -> UI: Click on thumbnail
+UI -> MainApplicationController: selectNote(note)
+note right
+    The selected note is the associated
+    with the thumbnail that was clicked.
+end note
+
+MainApplicationController -> BusinessLogic: selectNote(note)
+BusinessLogic -> NoteController: saveNote()
+note right
+    The NoteController has the
+    note being edited associated.
+end note
+NoteController -> UI: Get text from the title field
+UI --> NoteController: Return title
+NoteController -> UI: Get text from the content field
+UI --> NoteController: Return content
+NoteController -> Note: setTitle(title)
+NoteController -> Note: setContent(content)
+NoteController -> Note: setLastModificationDate(new Date())
+note right
+    The last modification date is
+    set to the current instant.
+end note
+
+NoteController -> DbAccessManager: updateNote(selectedNote)
+DbAccessManager -> EntityManager: getTransaction().begin()
+DbAccessManager -> EntityManager: merge(selectedNote)
+DbAccessManager -> EntityManager: getTransaction().commit()
+
+BusinessLogic -> OvernoteUser: setSelectedNote(note)
+BusinessLogic -> NoteController: setSelectedNote(note)
+NoteController -> UI: Show the title and content of the selected note in the editor
+
+
+@enduml
