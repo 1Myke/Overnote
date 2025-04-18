@@ -51,40 +51,6 @@ public class BusinessLogic implements BlInterface {
         return instance;
     }
 
-    /*
-     boolean problem = false;
-
-        Pattern Email = Pattern.compile("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-        Matcher m = Email.matcher(email);
-        boolean emailValid = m.matches();
-        if (!emailValid) {
-            errorInEmail.setText("Invalid email");
-            errorInEmail.setStyle("-fx-text-fill: red;");
-            logger.debug("Error in email, Invalid email");
-            problem = true;
-            }
-        else{
-            errorInEmail.setText("");
-        }
-        Pattern Password = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$");
-        m = Password.matcher(password);
-        boolean passwordValid = m.matches();
-        if (!passwordValid) {
-            errorInPassword.setText("Password must contain at least 8 characters, including UPPER/lowercase and numbers");
-            errorInPassword.setStyle("-fx-text-fill: red;");
-            logger.debug("Error in password, Specification not met");
-            problem = true;
-        }
-        else{
-            errorInPassword.setText("");
-        }
-        if (problem) {
-            return;
-        }
-
-
-
-     */
     @Override
     public boolean validateEmail(String email) {
         return email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
@@ -229,6 +195,7 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void moveNoteToTrash(Note note) {
+        noteEditorController.saveNote();
         db.moveNoteToTrash(note);
         removeThumbnail(note);
         noteEditorController.clearEditor();
@@ -259,20 +226,28 @@ public class BusinessLogic implements BlInterface {
      */
     @Override
     public void addNewThumbnail(Note note) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
-            Node thumbnail = fxmlLoader.load();
-            NoteThumbnailController controller = fxmlLoader.getController();
-            controller.setNote(note);
-            noteThumbnailControllerMap.put(note, controller);
-            thumbnails.add(thumbnail);
-        } catch (Exception e) {
-            logger.error("Error loading note thumbnail", e);
+        if (noteThumbnailControllerMap.containsKey(note))
+        {
+            logger.debug("Thumbnail already exists for note: {}", note.getTitle());
+            noteThumbnailControllerMap.get(note).show();
+        } else {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
+                Node thumbnail = fxmlLoader.load();
+                NoteThumbnailController controller = fxmlLoader.getController();
+                controller.setNote(note);
+                noteThumbnailControllerMap.put(note, controller);
+                thumbnails.add(thumbnail);
+
+                // Don't show the thumbnail if the note is deleted
+                if (note.isDeleted()) controller.hide();
+            } catch (Exception e) {
+                logger.error("Error loading note thumbnail", e);
+            }
         }
     }
 
     private void removeThumbnail(Note note) {
-        NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(note);
-        thumbnailController.hide();
+        noteThumbnailControllerMap.get(note).hide();
     }
 }
