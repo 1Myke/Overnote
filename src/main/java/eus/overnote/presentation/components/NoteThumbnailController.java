@@ -84,9 +84,11 @@ public class NoteThumbnailController {
 
     public void hide() {
         root.setManaged(false);
+        root.setVisible(false);
     }
 
     public void show() {
         root.setManaged(true);
+        root.setVisible(true);
     }
 }

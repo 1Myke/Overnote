@@ -7,6 +7,8 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,9 @@ public class NoteEditorController {
     BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
+    private StackPane root;
+
+    @FXML
     @Getter
     private TextArea noteText;
 
@@ -34,10 +39,11 @@ public class NoteEditorController {
         noteTitle.setText(note.getTitle());
         noteText.setText(note.getContent());
         savePause.stop();
+        root.setVisible(true);
     }
 
     public void initialize() {
-
+        root.setVisible(false);
         // Set a timer to save the note after the user idles
         savePause.setOnFinished(event -> saveNote());
         noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
@@ -63,8 +69,15 @@ public class NoteEditorController {
     @FXML
     public void moveToTrash() {
         if (selectedNote != null) {
-            bl.moveNoteToTrash(selectedNote);
             logger.debug("Note {} moved to trash for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+            bl.moveNoteToTrash(selectedNote);
         }
+    }
+
+    public void clearEditor() {
+        root.setVisible(false);
+        noteText.clear();
+        noteTitle.clear();
+        savePause.stop();
     }
 }

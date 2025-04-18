@@ -165,9 +165,10 @@ public class BusinessLogic implements BlInterface {
      */
     @Override
     public void selectNote(Note note) {
+
         // Check if the user is logged in
         if (!isUserLoggedIn()) {
-           throw new IllegalStateException("User is not logged in");
+            throw new IllegalStateException("User is not logged in");
         }
 
         // Update the previous note in the database
@@ -228,8 +229,9 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void moveNoteToTrash(Note note) {
-        removeThumbnail(note);
         db.moveNoteToTrash(note);
+        removeThumbnail(note);
+        noteEditorController.clearEditor();
     }
 
     @Override
