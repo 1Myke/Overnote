@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: transparent;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.views.RegisterController">
+<StackPane prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: transparent;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.views.RegisterController">
     <children>
       
           <!-- Main Content -->
@@ -66,12 +66,16 @@
                           </Label>
                           <TextField fx:id="emailField" promptText="example@email.com">
                               <VBox.margin>
-                                  <Insets bottom="15.0" />
+                                  <Insets />
                               </VBox.margin>
                               <padding>
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </TextField>
+                  <Label fx:id="errorInEmail" styleClass="label-error" text="Invalid Email" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin></Label>
       
                           <!-- Password Field -->
                           <Label text="PASSWORD" textFill="#666666">
@@ -82,14 +86,21 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <PasswordField fx:id="passwordField" promptText="At least 8 characters">
+                          <PasswordField fx:id="passwordField" prefHeight="35.0" prefWidth="388.0" promptText="your password">
                               <VBox.margin>
-                                  <Insets bottom="15.0" />
+                                  <Insets />
                               </VBox.margin>
                               <padding>
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                           </PasswordField>
+                  <Label fx:id="errorInPassword" styleClass="label-error" text="Password must contain 8 characters and at least one upercase, lowercase and a number" textFill="RED">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin></Label>
       
                           <!-- Confirm Password Field -->
                           <Label text="CONFIRM PASSWORD" textFill="#666666">
@@ -102,12 +113,16 @@
                           </Label>
                           <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password">
                               <VBox.margin>
-                                  <Insets bottom="25.0" />
+                                  <Insets />
                               </VBox.margin>
                               <padding>
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </PasswordField>
+                  <Label fx:id="passwordMismatch" styleClass="label-error" text="The passwords do not match">
+                     <VBox.margin>
+                        <Insets bottom="25.0" />
+                     </VBox.margin></Label>
       
                           <!-- Terms Checkbox -->
                           <CheckBox fx:id="termsCheckbox" text="I agree to the Terms of Service and Privacy Policy" textFill="#666666">

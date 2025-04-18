@@ -11,7 +11,9 @@ public interface BlInterface {
     OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword);
     OvernoteUser loginUser(String email, String password, boolean rememberMe);
     OvernoteUser getLoggedInUser();
+
     void logoutUser();
+
     boolean isUserLoggedIn();
 
     // Security
@@ -22,6 +24,10 @@ public interface BlInterface {
     Note getSelectedNote();
     void addNewThumbnail(Note note);
     ObservableList<Node> getThumbnails();
+    boolean validateEmail(String email);
+    boolean validatePassword(String password);
+    boolean validatePasswordMatch(String password, String confirmPassword);
+    // Note
     void saveNote(Note note);
     void updateNote(Note note);
     void setNoteEditorController(NoteController noteEditorController);
