@@ -27,3 +27,8 @@ The name of our group is *Stack Underflow* and the members are, Jorge Arévalo, 
 
 ## Sprint 1
 We've been working on some different points for this sprint. The main stuff of this project was the preparation and presentation of the project, that involves different parts as, the UI mockup, the wording, the use-case diagram, the domain model or the event flow. After that we were asked to start coding and to implement the Register/Login use-case and another use-case that we want to implement. We choose the "create a note" use-case, mainly because is the first action that the user would do after logging in in our application and also because without the creation of the note we can't continue working on some of the other use-cases.
+
+## Sprint 2
+For this second sprint of the project, we've implemented a security feature for storing passwords as hashes. This was done using the Bcrypt library. To enhance password security, we now require users to create robust passwords by applying regular expressions.
+In addition, two new use cases were implemented in Overnote. One allows the user to edit notes, making note usage more comfortable. The other allows the user to delete a note. In this last case, the user can also access the bin. For the next sprint, we would like to implement the "recover a note" use case, which will allow users to restore a note from the bin within 30 days of deletion.
+Finally, we have improved and fixed the errors from the first sprint and created the sequence diagram for the "Edit a note" use case.
