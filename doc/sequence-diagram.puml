@@ -1,62 +1,69 @@
 
 @startuml
-title Login Use Case
+title "Edit a note" use case
 
 actor User
-participant UI
+participant JavaFX_UI as UI
+participant MainApplicationController
+participant NoteController
 participant BusinessLogic
 participant OvernoteUser
-participant Session
+participant Note
 participant DbAccessManager
 database EntityManager
 
-User -> UI: Enter email and password
-opt if the user wants the session to be remembered
-    User -> UI: Check "Remember me" checkbox
-end
-User -> UI: Click "Login" button
+MainApplicationController -> BusinessLogic: getLoggedInUser()
+BusinessLogic --> MainApplicationController: Return loggedInUser
+MainApplicationController -> OvernoteUser: getNotes()
+OvernoteUser --> MainApplicationController: Return notes
 
-UI -> BusinessLogic: loginUser(email, password, rememberMe)
-BusinessLogic -> DbAccessManager: getUserByEmail(email)
-DbAccessManager -> EntityManager: Execute query Q1
+MainApplicationController ->  BusinessLogic: getThumbnails()
+BusinessLogic --> MainApplicationController: Return thumbnails
+MainApplicationController -> UI: Bind thumbnails to UI sidebar
+
 note right
-    Q1:
-    SELECT u
-    FROM OvernoteUser u
-    WHERE u.email = :email
+    The notes are automatically
+    displayed in the sidebar in
+    the moment they are added.
 end note
-EntityManager --> DbAccessManager: Return user
-DbAccessManager --> BusinessLogic: Return user
 
-alt if the user exists
-    BusinessLogic -> OvernoteUser: getPassword()
-    OvernoteUser --> BusinessLogic: Return userPassword
-    BusinessLogic -> BusinessLogic: checkPassword(password, userPassword)
-    alt if the password is correct
-        BusinessLogic -> DbAccessManager: getSession()
-        DbAccessManager -> EntityManager: Execute query Q2
-        note right
-            Q2:
-            SELECT s
-            FROM Session s
-        end note
-        EntityManager --> DbAccessManager: Return session
-        DbAccessManager --> BusinessLogic: Return session
-        BusinessLogic -> Session: setRememberMe(rememberMe)
-        BusinessLogic -> Session: setCurrentUser(user)
-        BusinessLogic -> DbAccessManager: saveSession(session)
-        DbAccessManager -> EntityManager: getTransaction().begin()
-        DbAccessManager -> EntityManager: merge(session)
-        DbAccessManager -> EntityManager: getTransaction().commit()
-    else if the password is incorrect
-        BusinessLogic -> UI: Show error message "Invalid credentials"
-    end
-else if the user does not exist
-    BusinessLogic -> UI: Show error message "User not found"
-end
-alt if there is valid a session
-    UI -> UI: Show the main application screen
-else if the session is invalid
-    UI -> UI: Stay in the login screen
-end
+loop for each note in user's notes
+    MainApplicationController -> BusinessLogic: addNewThumbnail(note)
+end loop
+
+User -> UI: Click on thumbnail
+UI -> MainApplicationController: selectNote(note)
+note right
+    The selected note is the associated
+    with the thumbnail that was clicked.
+end note
+
+MainApplicationController -> BusinessLogic: selectNote(note)
+BusinessLogic -> NoteController: saveNote()
+note right
+    The NoteController has the
+    note being edited associated.
+end note
+NoteController -> UI: Get text from the title field
+UI --> NoteController: Return title
+NoteController -> UI: Get text from the content field
+UI --> NoteController: Return content
+NoteController -> Note: setTitle(title)
+NoteController -> Note: setContent(content)
+NoteController -> Note: setLastModificationDate(new Date())
+note right
+    The last modification date is
+    set to the current instant.
+end note
+
+NoteController -> DbAccessManager: updateNote(selectedNote)
+DbAccessManager -> EntityManager: getTransaction().begin()
+DbAccessManager -> EntityManager: merge(selectedNote)
+DbAccessManager -> EntityManager: getTransaction().commit()
+
+BusinessLogic -> OvernoteUser: setSelectedNote(note)
+BusinessLogic -> NoteController: setSelectedNote(note)
+NoteController -> UI: Show the title and content of the selected note in the editor
+
+
 @enduml
