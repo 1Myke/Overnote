@@ -33,5 +33,6 @@ public interface BlInterface {
     void setNoteEditorController(NoteController noteEditorController);
     NoteController getNoteEditorController();
 
+    void moveToDeleteNote(Note note);
     void deleteNote(Note note);
 }

@@ -29,7 +29,6 @@ public class NoteController {
     @Getter
     private TextField noteTitle;
 
-
     public void setSelectedNote(Note note) {
         selectedNote = note;
         noteTitle.setText(note.getTitle());
@@ -60,5 +59,4 @@ public class NoteController {
             logger.debug("{}'s notes: {}", selectedNote.getUser().getEmail(), selectedNote.getUser().getNotes());
         }
     }
-    
 }

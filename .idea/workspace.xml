@@ -4,27 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="changed failed password verification label text and resized the windows to have the whole message readable">
+    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/55537a5a-1543-4187-a42e-d07ef798f77d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/RegisterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_33__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_35_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_03_2025_9_35__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/RegisterException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/WindowManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/Note.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/OvernoteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/OvernoteUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/note.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/components/note.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/eus/overnote/presentation/views/register.fxml" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Exception" />
-      </list>
-    </option>
-  </component>
+
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -36,38 +41,42 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Mikelikx&quot;
+    &quot;assignee&quot;: &quot;Aimarville&quot;
+
   }
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/1Myke/Overnote.git&quot;,
-    &quot;accountId&quot;: &quot;3dba5054-8491-45e3-acaa-34aeef4599db&quot;
+    &quot;accountId&quot;: &quot;8fbc3886-97cf-46f1-bad7-6eacc3061dfe&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2uxskLxDIa62TaqA4nkNhDLjfBS" />
+  <component name="ProjectId" id="2v54cXPHG5BoNonoxmwalISFSol" />
+
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.DebugMain.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.BusinessLogicTest.testRegisterUser.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#49 on Regex&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/delete__note&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mikel/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aimar/Desktop/Unibertsitatea/SceneBuilder.lnk&quot;,
+
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -127,93 +136,35 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.153" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.153" />
+
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ce1b8a5d-1fb5-490c-9dc5-6721ec7ea38f" name="Changes" comment="" />
-      <created>1743201701546</created>
+      <changelist id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment="" />
+      <created>1743421680262</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1743201701546</updated>
-      <workItem from="1743201702888" duration="1411000" />
-      <workItem from="1743456266611" duration="1229000" />
-      <workItem from="1743521187848" duration="574000" />
-      <workItem from="1743665274750" duration="40000" />
-      <workItem from="1743758073830" duration="708000" />
+      <updated>1743421680262</updated>
+      <workItem from="1743421681539" duration="1040000" />
+      <workItem from="1743433103176" duration="7892000" />
+      <workItem from="1743521835714" duration="1041000" />
+      <workItem from="1743522897646" duration="6754000" />
+      <workItem from="1743629233600" duration="445000" />
     </task>
-    <task id="LOCAL-00001" summary="[FEATURE] Add email and password validation to registration form">
-      <option name="closed" value="true" />
-      <created>1743202919956</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1743202919956</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded).">
-      <option name="closed" value="true" />
-      <created>1743376985904</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1743376985904</updated>
-    </task>
-    <task id="LOCAL-00003" summary="file that was forgotten to be added in the last commit">
-      <option name="closed" value="true" />
-      <created>1743377316671</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1743377316671</updated>
-    </task>
-    <task id="LOCAL-00004" summary="changed failed password verification label text and resized the windows to have the whole message readable">
-      <option name="closed" value="true" />
-      <created>1743521538777</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1743521538777</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Regex" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="[FEATURE] Enhance registration form with email and password validation error styling" />
-    <MESSAGE value="[FEATURE] Add email and password validation to registration form" />
-    <MESSAGE value="[FEATURE] Implement email and password validation for user registration" />
-    <MESSAGE value="Changed location of validation of username, password and password match into bussiness logic.&#10;Created a RegisterException class in order to simplify the&#10; last point.&#10; Added test for validation of aforementioned values.&#10;Added three new functions into BussinessLogic.java to make the said test without having to create a new user in the database everytime the test is used.&#10;Added label for password match.&#10;Added feature disabling creating a new user if terms not accepted.&#10;Moved css code to the respective file (before hardcoded)." />
-    <MESSAGE value="file that was forgotten to be added in the last commit" />
-    <MESSAGE value="changed failed password verification label text and resized the windows to have the whole message readable" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed failed password verification label text and resized the windows to have the whole message readable" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+
   </component>
 </project>

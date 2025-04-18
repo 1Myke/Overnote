@@ -30,6 +30,8 @@ public class Note {
     @Column(nullable = false)
     private final Date lastModificationDate = new Date();
 
+    private Date deleteDate;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private OvernoteUser user;
@@ -37,6 +39,9 @@ public class Note {
     @ManyToMany
     @JoinColumn(nullable = false)
     private final Set<Tag> tags = new HashSet<>();
+
+    @Column(nullable = false)
+    private boolean deleted = false;
 
     // Empty constructor for JPA
     protected Note() {
@@ -52,5 +57,14 @@ public class Note {
 
     public void setLastModificationDate(Date date) {
         getLastModificationDate().setTime(date.getTime());
+    }
+
+    private void setDeleteDate(Date date) {
+        this.deleteDate = date;
+    }
+
+    public void moveToTrash() {
+        this.deleted = true;
+        setDeleteDate(new Date());
     }
 }
