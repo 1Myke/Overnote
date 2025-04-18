@@ -97,9 +97,26 @@ public class BusinessLogic implements BlInterface {
         if (checkPassword(password, user.getPassword())) {
             setLoggedInUser(user, rememberMe);
             thumbnails = FXCollections.observableArrayList();
+            checkNotesForDeletion();
             return user;
         } else
             return null;
+    }
+
+    /**
+     * Delete the notes that are marked as trashed
+     * if they were deleted more than 30 days ago.
+     */
+    private void checkNotesForDeletion() {
+        for (Note note : loggedInUser.getNotes()) {
+            if (note.isDeleted()) {
+                long diff = System.currentTimeMillis() - note.getDeleteDate().getTime();
+                long days = diff / (1000 * 60 * 60 * 24);
+                if (days > 30) {
+                    db.deleteNote(note);
+                }
+            }
+        }
     }
 
     @Override
@@ -196,8 +213,8 @@ public class BusinessLogic implements BlInterface {
     @Override
     public void moveNoteToTrash(Note note) {
         noteEditorController.saveNote();
-        db.moveNoteToTrash(note);
         removeThumbnail(note);
+        db.moveNoteToTrash(note);
         noteEditorController.clearEditor();
     }
 
@@ -249,5 +266,11 @@ public class BusinessLogic implements BlInterface {
 
     private void removeThumbnail(Note note) {
         noteThumbnailControllerMap.get(note).hide();
+
+        // Unbind the thumbnail from the editor
+        StringProperty thumbnailText = noteThumbnailControllerMap.get(note).getPreviewTextLabel().textProperty();
+        StringProperty thumbnailTitle = noteThumbnailControllerMap.get(note).getTitleText().textProperty();
+        thumbnailText.unbind();
+        thumbnailTitle.unbind();
     }
 }
