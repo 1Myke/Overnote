@@ -107,14 +107,7 @@ public class MainApplicationController {
             logger.error("Error loading profile banner", e);
         }
 
-        // Load Note FXML
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(NoteController.class.getResource("note.fxml"));
-            root.setCenter(fxmlLoader.load());
-            noteController = fxmlLoader.getController();
-        } catch (Exception e) {
-            logger.error("Error loading Note.fxml", e);
-        }
+
 
         updateDeleteButtonState();
     }
@@ -129,6 +122,7 @@ public class MainApplicationController {
             logger.error("No user logged in");
             return;
         }
+        DisplayBlankNote();
         logger.debug("Selecting note");
         selectedNote = note;
         noteController.setSelectedNote(note);
@@ -164,6 +158,9 @@ public class MainApplicationController {
         notes.add(createdNote);
         noteSelectComboBox.getSelectionModel().select(createdNote);
         selectNote(createdNote);
+        DisplayBlankNote();
+        // Load Note FXML
+
     }
 
     @FXML
@@ -174,6 +171,22 @@ public class MainApplicationController {
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();
     }
+
+    void DisplayBlankNote(){
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(NoteController.class.getResource("note.fxml"));
+            root.setCenter(fxmlLoader.load());
+            noteController = fxmlLoader.getController();
+        } catch (Exception e) {
+            logger.error("Error loading Note.fxml", e);
+        }
+
+
+    }
+
+
+
 
     @FXML
     void onDelete(ActionEvent event) {
