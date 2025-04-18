@@ -16,6 +16,7 @@ public class NoteThumbnailController {
     private final BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
+    @Getter
     private StackPane root;
 
     @FXML
@@ -81,5 +82,11 @@ public class NoteThumbnailController {
         });
     }
 
+    public void hide() {
+        root.setManaged(false);
+    }
 
+    public void show() {
+        root.setManaged(true);
+    }
 }

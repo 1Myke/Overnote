@@ -2,7 +2,7 @@ package eus.overnote.businesslogic;
 
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
-import eus.overnote.presentation.components.NoteController;
+import eus.overnote.presentation.components.NoteEditorController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
@@ -25,8 +25,8 @@ public interface BlInterface {
     void selectNote(Note note);
     void saveNote(Note note);
     void updateNote(Note note);
-    void setNoteEditorController(NoteController noteEditorController);
-    NoteController getNoteEditorController();
+    void setNoteEditorController(NoteEditorController noteEditorController);
+    NoteEditorController getNoteEditorController();
     void addNewThumbnail(Note note);
     ObservableList<Node> getThumbnails();
     Note getSelectedNote();

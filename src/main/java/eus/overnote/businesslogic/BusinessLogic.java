@@ -4,7 +4,7 @@ import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
-import eus.overnote.presentation.components.NoteController;
+import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -32,7 +32,7 @@ public class BusinessLogic implements BlInterface {
     @Setter
     @Getter
     /// The controller of the note editor component.
-    private NoteController noteEditorController;
+    private NoteEditorController noteEditorController;
     @Getter
     /// The list of note thumbnail components that are displayed in the note list.
     private ObservableList<Node> thumbnails;
@@ -228,6 +228,7 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void moveNoteToTrash(Note note) {
+        removeThumbnail(note);
         db.moveNoteToTrash(note);
     }
 
@@ -266,6 +267,10 @@ public class BusinessLogic implements BlInterface {
         } catch (Exception e) {
             logger.error("Error loading note thumbnail", e);
         }
+    }
 
+    private void removeThumbnail(Note note) {
+        NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(note);
+        thumbnailController.hide();
     }
 }

@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
-public class NoteController {
+public class NoteEditorController {
 
-    private static final Logger logger = LoggerFactory.getLogger(NoteController.class);
+    private static final Logger logger = LoggerFactory.getLogger(NoteEditorController.class);
     private Note selectedNote;
     /// The timer to detect user inactivity.
     private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
@@ -57,6 +57,14 @@ public class NoteController {
             bl.updateNote(selectedNote);
             logger.debug("Note {} saved for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             logger.debug("{}'s notes: {}", selectedNote.getUser().getEmail(), selectedNote.getUser().getNotes());
+        }
+    }
+
+    @FXML
+    public void moveToTrash() {
+        if (selectedNote != null) {
+            bl.moveNoteToTrash(selectedNote);
+            logger.debug("Note {} moved to trash for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
         }
     }
 }

@@ -4,7 +4,7 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
-import eus.overnote.presentation.components.NoteController;
+import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.ProfileBannerController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -25,7 +25,7 @@ public class MainApplicationController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
     private final BlInterface bl = BusinessLogic.getInstance();
-    private NoteController noteController;
+    private NoteEditorController noteEditorController;
 
     @FXML
     private VBox sidebarVBox;
@@ -48,7 +48,7 @@ public class MainApplicationController {
     public void initialize() {
         logger.debug("Initializing main application view");
 
-        noteController = bl.getNoteEditorController();
+        noteEditorController = bl.getNoteEditorController();
 
         // Initialize note list
         notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
@@ -86,7 +86,7 @@ public class MainApplicationController {
 
         // Save the previous note
         logger.info("Saving the current note before selecting the next.");
-        noteController.saveNote();
+        noteEditorController.saveNote();
 
         logger.debug("Selecting note");
         bl.selectNote(note);

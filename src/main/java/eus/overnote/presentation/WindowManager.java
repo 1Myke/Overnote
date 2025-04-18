@@ -2,7 +2,7 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.presentation.components.NoteController;
+import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
@@ -51,7 +51,7 @@ public class WindowManager {
     @Getter
     private Parent noteEditorParent;
     @Getter
-    private NoteController noteEditorController;
+    private NoteEditorController noteEditorController;
 
     private void initialize() {
         bl = BusinessLogic.getInstance();
@@ -81,12 +81,12 @@ public class WindowManager {
         }
 
         // Load the note editor scene
-        FXMLLoader fxmlLoader = new FXMLLoader(NoteController.class.getResource("note.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(NoteEditorController.class.getResource("note_editor.fxml"));
         try {
             noteEditorParent = fxmlLoader.load();
             noteEditorController = fxmlLoader.getController();
         } catch (Exception e) {
-            logger.error("Error loading note.fxml", e);
+            logger.error("Error loading note_editor.fxml", e);
         }
         bl.setNoteEditorController(noteEditorController);
     }
