@@ -19,6 +19,11 @@ import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 public class MainApplicationController {
 
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
@@ -38,20 +43,59 @@ public class MainApplicationController {
     private MenuButton profileMenuButton;
 
     @FXML
+    private Button deleteButton;
+
+    @FXML
     private ComboBox<Note> noteSelectComboBox;
     private ObservableList<Note> notes;
+
+    @FXML
+    private ComboBox<Note> noteDeleteComboBox;
+    private ObservableList<Note> deletedNotes;
+
+    private Note selectedNote;
 
     public void initialize() {
         logger.debug("Initializing main application view");
 
         // Initialize note list
-        notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
+        notes = FXCollections.observableArrayList();
+        for (Note note : bl.getLoggedInUser().getNotes()) {
+            if (!note.isDeleted()) {
+                notes.add(note);
+            }
+        }
+
+        // Initialize deleted notes list
+        List<Note> notesToDelete = new ArrayList<>();
+        deletedNotes = FXCollections.observableArrayList();
+        for (Note note : bl.getLoggedInUser().getNotes()) {
+            if (note.isDeleted()) {
+                if (isDateOlderThanOneMonth(note.getDeleteDate())) {
+                    notesToDelete.add(note);
+                }else {
+                    deletedNotes.add(note);
+                }
+            }
+        }
+        for (Note note : notesToDelete) {
+            bl.deleteNote(note);
+        }
 
         // Set selection comboBox
         noteSelectComboBox.setItems(notes);
         noteSelectComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             noteController.saveNote();
             selectNote(newValue);
+            updateDeleteButtonState();
+        });
+
+        // Set delete comboBox with deleted notes
+        noteDeleteComboBox.setItems(deletedNotes);
+        noteDeleteComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            noteController.saveNote();
+            selectDeletedNote(newValue);
+            updateDeleteButtonState();
         });
 
         // Load the profile banner FXML
@@ -71,6 +115,13 @@ public class MainApplicationController {
         } catch (Exception e) {
             logger.error("Error loading Note.fxml", e);
         }
+
+        updateDeleteButtonState();
+    }
+
+    private void updateDeleteButtonState() {
+        boolean isNoteSelected = noteSelectComboBox.getSelectionModel().getSelectedItem() != null;
+        deleteButton.setDisable(!isNoteSelected);
     }
 
     void selectNote(Note note) {
@@ -79,7 +130,25 @@ public class MainApplicationController {
             return;
         }
         logger.debug("Selecting note");
+        selectedNote = note;
         noteController.setSelectedNote(note);
+    }
+
+    void selectDeletedNote(Note note) {
+        if (bl.getLoggedInUser() == null) {
+            logger.error("No user logged in");
+            return;
+        }
+        logger.debug("Selecting deleted note");
+        selectedNote = note;
+        noteController.setSelectedNote(note);
+    }
+
+    boolean isDateOlderThanOneMonth(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, -1);
+        Date oneMonthAgo = calendar.getTime();
+        return date.before(oneMonthAgo);
     }
 
     @FXML
@@ -99,8 +168,20 @@ public class MainApplicationController {
 
     @FXML
     void onLogout(ActionEvent event) {
+        //bl.deleteNote(notes.get(0));
+
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();
+    }
+
+    @FXML
+    void onDelete(ActionEvent event) {
+        if (selectedNote != null) {
+            bl.moveToDeleteNote(selectedNote);
+            logger.debug("Note {} deleted for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+
+            WindowManager.getInstance().navigateToMain();
+        }
     }
 }

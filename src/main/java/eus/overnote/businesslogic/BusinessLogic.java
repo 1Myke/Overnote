@@ -144,6 +144,11 @@ public class BusinessLogic implements BlInterface {
     }
 
     @Override
+    public void moveToDeleteNote(Note note) {
+        db.moveToDeleteNote(note);
+    }
+
+    @Override
     public void deleteNote(Note note) {
         db.deleteNote(note);
     }

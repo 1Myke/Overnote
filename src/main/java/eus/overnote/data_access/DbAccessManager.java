@@ -12,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
+
 
 public class DbAccessManager {
 
@@ -141,9 +143,23 @@ public class DbAccessManager {
         }
     }
 
+    public void moveToDeleteNote(Note note) {
+        try {
+            db.getTransaction().begin();
+            note.moveToTrash();
+            db.merge(note);
+            db.getTransaction().commit();
+            logger.info("Note with id {} marked as deleted successfully", note.getId());
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error marking note as deleted: {}", e.getMessage());
+        }
+    }
+
     public void deleteNote(Note note) {
         try {
             db.getTransaction().begin();
+            note.getUser().getNotes().remove(note);
             db.remove(note);
             db.getTransaction().commit();
             logger.info("Note with id {} deleted successfully", note.getId());
