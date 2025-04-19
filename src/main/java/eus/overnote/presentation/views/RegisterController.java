@@ -3,14 +3,11 @@ package eus.overnote.presentation.views;
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.businesslogic.RegisterException;
-import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.WindowManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.regex.*;
 
 public class RegisterController {
 
@@ -55,7 +52,7 @@ public class RegisterController {
         logger.debug("\"{}\" button listener initialized", registerButton.getText());
         signInButton.setOnAction(event -> navigateToLogin());
         logger.debug("\"{}\" button listener initialized", signInButton.getText());
-        termsCheckbox.setOnAction(event -> { toggleCreation();});
+        termsCheckbox.setOnAction(event -> toggleCreation());
         logger.debug("\"{}\" checkbox listener initialized", termsCheckbox.getText());
         // Initialize business logic
         bl = BusinessLogic.getInstance();
@@ -70,6 +67,11 @@ public class RegisterController {
 
     }
 
+    /**
+     * This method is called when the user clicks on the register button.
+     * It retrieves the values from the text fields and checkboxes,
+     * and calls the business logic to register the user.
+     */
     private void handleRegistration() {
         // Get form values
         String fullName = fullNameField.getText();
@@ -86,7 +88,7 @@ public class RegisterController {
 
         // Call the business logic to register the user
         try{
-        OvernoteUser user = bl.registerUser(fullName, email, password, confirmPassword);
+            bl.registerUser(fullName, email, password, confirmPassword);
         }
         catch (RegisterException e) {
             logger.error("Error registering user", e);

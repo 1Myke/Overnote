@@ -92,6 +92,11 @@
     -fx-text-fill: -secondary-color;
 }
 
+.label-title {
+    -fx-font-size: 13px;
+    -fx-text-fill: -title-dark;
+}
+
 .link {
     -fx-cursor: hand;
     -fx-text-fill: -primary-color;
@@ -238,4 +243,34 @@
 }
 .menu-item:pressed {
     -fx-background-color: -background-white;
+}
+
+/******************/
+/* NOTE THUMBNAIL */
+/******************/
+
+.note-thumbnail {
+    -fx-background-color: -background-light;
+    -fx-border-color: -border-secondary;
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+}
+
+.note-thumbnail:hover {
+    -fx-background-color: -background-white;
+    -fx-border-color: -border-primary;
+}
+
+.note-thumbnail:pressed {
+    -fx-background-color: -background-light;
+    -fx-border-color: -border-primary;
+}
+
+.note-thumbnail-selected {
+    -fx-border-radius: 4;
+    -fx-padding: 8;
+    -fx-cursor: hand;
+    -fx-background-color: -background-white;
+    -fx-border-color: -border-primary;
 }

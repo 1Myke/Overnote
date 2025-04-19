@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -58,16 +59,17 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <VBox maxWidth="200.0" minWidth="200.0" prefWidth="200.0" spacing="10.0" styleClass="background-light">
-               <children>
-                  <ComboBox fx:id="noteSelectComboBox" />
-                  <ComboBox fx:id="noteDeleteComboBox" prefHeight="23.0" prefWidth="45.0" />
-                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDelete" text="Delete note" />
-               </children>
+            <ScrollPane fitToWidth="true" minWidth="415.0" HBox.hgrow="ALWAYS">
+               <content>
+                  <VBox fx:id="sidebarVBox" spacing="10.0" styleClass="background-light" />
+               </content>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
                <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
-            </VBox>
+            </ScrollPane>
          </children>
       </HBox>
    </left>

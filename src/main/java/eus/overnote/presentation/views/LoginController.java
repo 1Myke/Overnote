@@ -46,6 +46,18 @@ public class LoginController {
         logger.debug("Business logic initialized");
     }
 
+    /**
+     * Handles the actions performed when the login button is pressed:
+     * <ul>
+     *     <li>
+     *         Retrieves the credentials from the text fields and calls the
+     *         business logic to log in the user.
+     *     </li>
+     *     <li>
+     *         Tries to open the main view of the application.
+     *     </li>
+     * </ul>
+     */
     private void handleLoginButtonAction() {
         String email = emailField.getText();
         String password = passwordField.getText();
@@ -58,6 +70,9 @@ public class LoginController {
         WindowManager.getInstance().navigateToMain();
     }
 
+    /**
+     * Calls the {@link WindowManager} to change the scene to the register view.
+     */
     private void navigateToRegister() {
         logger.info("User clicked on \"{}\"", createAccountButton.getText());
         WindowManager.getInstance().navigateToRegister();
@@ -67,6 +82,9 @@ public class LoginController {
         logger.info("User clicked on \"" + forgotPasswordLabel.getText() + "\"");
     }
 
+    /**
+     * Clears all the fields of the login view.
+     */
     public void clearFields() {
         if (rememberMeCheckbox.isSelected()) {
             logger.debug("The fields are not cleared because \"{}\" is selected", rememberMeCheckbox.getText());

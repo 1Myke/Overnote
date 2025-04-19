@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="root" maxHeight="115.0" maxWidth="400.0" onMouseClicked="#selectNote" prefHeight="115.0" prefWidth="400.0" styleClass="note-thumbnail" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eus.overnote.presentation.components.NoteThumbnailController">
+   <children>
+      <VBox spacing="5.0">
+         <children>
+            <HBox>
+               <children>
+                  <Label fx:id="titleText" styleClass="label-title" text="Very very very very very very very very very long title" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="23:15 - 01/04/2025" />
+               </children>
+            </HBox>
+            <Separator />
+            <FlowPane fx:id="tagFlowPane" hgap="10.0" prefWrapLength="362.0" vgap="10.0">
+               <children>
+                  <Label styleClass="link" text="Tag 1" />
+                  <Label layoutX="10.0" layoutY="10.0" styleClass="link" text="Tag 2" />
+               </children>
+            </FlowPane>
+            <Separator />
+            <Label fx:id="previewTextLabel" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>

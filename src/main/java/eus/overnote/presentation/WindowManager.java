@@ -2,12 +2,15 @@ package eus.overnote.presentation;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.views.LoginController;
 import eus.overnote.presentation.views.MainApplicationController;
 import eus.overnote.presentation.views.RegisterController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +45,13 @@ public class WindowManager {
     private MainApplicationController mainController;
     private LoginController loginController;
     private RegisterController registerController;
+    // Components
+    @Getter
+    private Parent noteThumbnailParent;
+    @Getter
+    private Parent noteEditorParent;
+    @Getter
+    private NoteEditorController noteEditorController;
 
     private void initialize() {
         bl = BusinessLogic.getInstance();
@@ -69,6 +79,16 @@ public class WindowManager {
             logger.error("Failed to load register scene", e);
             throw new RuntimeException(e);
         }
+
+        // Load the note editor scene
+        FXMLLoader fxmlLoader = new FXMLLoader(NoteEditorController.class.getResource("note_editor.fxml"));
+        try {
+            noteEditorParent = fxmlLoader.load();
+            noteEditorController = fxmlLoader.getController();
+        } catch (Exception e) {
+            logger.error("Error loading note_editor.fxml", e);
+        }
+        bl.setNoteEditorController(noteEditorController);
     }
 
     public void openApplication() {
@@ -88,6 +108,11 @@ public class WindowManager {
         authStage.show();
     }
 
+    /**
+     * Clears the fields of the credentials of the auth stage,
+     * checks if the user is logged in and loads the main scene.
+     * It hides the auth stage and shows the main stage.
+     */
     public void navigateToMain() {
         // Clear the fields of the credentials of the auth stage
         loginController.clearFields();
