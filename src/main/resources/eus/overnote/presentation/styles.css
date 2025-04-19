@@ -92,6 +92,11 @@
     -fx-text-fill: -secondary-color;
 }
 
+.label-title {
+    -fx-font-size: 13px;
+    -fx-text-fill: -title-dark;
+}
+
 .link {
     -fx-cursor: hand;
     -fx-text-fill: -primary-color;

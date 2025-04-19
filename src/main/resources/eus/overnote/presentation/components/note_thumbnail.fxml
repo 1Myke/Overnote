@@ -16,7 +16,7 @@
          <children>
             <HBox>
                <children>
-                  <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="arrow" text="Title of the note" />
+                  <Label fx:id="titleText" styleClass="label-title" text="Very very very very very very very very very long title" />
                   <Pane HBox.hgrow="ALWAYS" />
                   <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="23:15 - 01/04/2025" />
                </children>

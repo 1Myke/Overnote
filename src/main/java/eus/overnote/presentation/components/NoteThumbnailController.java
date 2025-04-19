@@ -31,7 +31,7 @@ public class NoteThumbnailController {
 
     @FXML
     @Getter
-    private Text titleText;
+    private Label titleText;
 
     public void initialize() {
     }
