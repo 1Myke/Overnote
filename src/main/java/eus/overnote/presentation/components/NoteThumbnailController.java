@@ -10,6 +10,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class NoteThumbnailController {
 
     private Note note;
@@ -74,12 +77,22 @@ public class NoteThumbnailController {
     }
 
     public void updateContent() {
-        dateText.setText(note.getLastModificationDate().toString());
+        dateText.setText(formatNoteDate());
         tagFlowPane.getChildren().clear();
         note.getTags().forEach(tag -> {
             Text tagText = new Text(tag.toString());
             tagFlowPane.getChildren().add(tagText);
         });
+    }
+
+    private String formatNoteDate() {
+        // Format to "HH:mm - dd/MM/yyyy" using java.time API
+        LocalDateTime lastModDate = note.getLastModificationDate().toInstant()
+                .atZone(java.time.ZoneId.systemDefault())
+                .toLocalDateTime();
+        return lastModDate.format(DateTimeFormatter.ofPattern(
+                "HH:mm - dd/MM/yyyy"
+        ));
     }
 
     public void hide() {
