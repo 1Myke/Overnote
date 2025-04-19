@@ -254,7 +254,7 @@ public class BusinessLogic implements BlInterface {
                 NoteThumbnailController controller = fxmlLoader.getController();
                 controller.setNote(note);
                 noteThumbnailControllerMap.put(note, controller);
-                thumbnails.add(thumbnail);
+                thumbnails.add(0,thumbnail);
 
                 // Don't show the thumbnail if the note is deleted
                 if (note.isDeleted()) controller.hide();
