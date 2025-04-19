@@ -32,3 +32,6 @@ We've been working on some different points for this sprint. The main stuff of t
 For this second sprint of the project, we've implemented a security feature for storing passwords as hashes. This was done using the Bcrypt library. To enhance password security, we now require users to create robust passwords by applying regular expressions.
 In addition, two new use cases were implemented in Overnote. One allows the user to edit notes, making note usage more comfortable. The other allows the user to delete a note. In this last case, the user can also access the bin. For the next sprint, we would like to implement the "recover a note" use case, which will allow users to restore a note from the bin within 30 days of deletion.
 Finally, we have improved and fixed the errors from the first sprint and created the sequence diagram for the "Edit a note" use case.
+
+# Sprint 2 PD:
+There is an error in the creation of the notes that we need to fix for the 3rd sprint. Notes are duplicated when we create one, in other words, when you create one note in the databes two notes are created and we are still working on the fix of this
