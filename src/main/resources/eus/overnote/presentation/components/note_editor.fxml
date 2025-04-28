@@ -15,12 +15,12 @@
          <children>
             <HBox spacing="10.0">
                <children>
-                  <TextField fx:id="noteTitle" promptText="Title ..." styleClass="text-field" HBox.hgrow="ALWAYS">
+                  <TextField fx:id="noteTitle" promptText="%component.editor.field.title.placeholder" styleClass="text-field" HBox.hgrow="ALWAYS">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#moveToTrash" styleClass="button-primary" text="Delete">
+                  <Button mnemonicParsing="false" onAction="#moveToTrash" styleClass="button-primary" text="%component.editor.button.delete">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -28,7 +28,7 @@
                </children>
             </HBox>
             <Separator />
-            <TextArea fx:id="noteText" promptText="Text ..." wrapText="true" VBox.vgrow="ALWAYS">
+            <TextArea fx:id="noteText" promptText="%component.editor.field.content.placeholder" wrapText="true" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
