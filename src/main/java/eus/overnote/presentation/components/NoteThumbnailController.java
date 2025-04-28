@@ -12,6 +12,8 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class NoteThumbnailController {
 
@@ -85,14 +87,20 @@ public class NoteThumbnailController {
         });
     }
 
+    /**
+     * Formats the last modification date of the note to a string, using the default locale.
+     * @return The formatted date string.
+     */
     private String formatNoteDate() {
-        // Format to "HH:mm - dd/MM/yyyy" using java.time API
         LocalDateTime lastModDate = note.getLastModificationDate().toInstant()
                 .atZone(java.time.ZoneId.systemDefault())
                 .toLocalDateTime();
-        return lastModDate.format(DateTimeFormatter.ofPattern(
-                "HH:mm - dd/MM/yyyy"
-        ));
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.SHORT)
+                .withLocale(Locale.getDefault());
+        String formattedDate = lastModDate.format(formatter);
+        String formattedTime = lastModDate.format(DateTimeFormatter.ofPattern("HH:mm"));
+        return String.format("%s - %s", formattedTime, formattedDate);
     }
 
     public void hide() {

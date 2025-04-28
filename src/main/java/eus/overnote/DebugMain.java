@@ -11,7 +11,7 @@ public class DebugMain extends Application {
     @Override
     public void start(javafx.stage.Stage stage) {
         // Set the locale for debugging
-        Locale.setDefault(new Locale("es", "ES"));
+        Locale.setDefault(new Locale("eu", "ES"));
 
         BlInterface bl = BusinessLogic.getInstance();
         bl.registerUser("Debug User", "debug@overnote.eus", "Debug12345?", "Debug12345?");
