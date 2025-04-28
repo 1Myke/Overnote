@@ -32,7 +32,7 @@ public class Note {
 
     private Date deleteDate;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(nullable = false)
     private OvernoteUser user;
 

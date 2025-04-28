@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +44,7 @@ public class NoteEditorController {
     public void initialize() {
         root.setVisible(false);
         // Set a timer to save the note after the user idles
-        savePause.setOnFinished(event -> saveNote());
+        savePause.setOnFinished(event -> updateNote());
         noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
     }
@@ -55,7 +54,7 @@ public class NoteEditorController {
      * It updates the attributes of the selected note with the values of the text fields
      * and calls the business logic to update the note in the database.
      */
-    public void saveNote() {
+    public void updateNote() {
         if (selectedNote != null){
             selectedNote.setTitle(noteTitle.getText());
             selectedNote.setContent(noteText.getText());

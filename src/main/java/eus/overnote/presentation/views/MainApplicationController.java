@@ -86,7 +86,7 @@ public class MainApplicationController {
 
         // Save the previous note
         logger.info("Saving the current note before selecting the next.");
-        noteEditorController.saveNote();
+        noteEditorController.updateNote();
 
         logger.debug("Selecting note");
         bl.selectNote(note);

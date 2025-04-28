@@ -155,7 +155,7 @@ public class BusinessLogic implements BlInterface {
         }
 
         // Update the previous note in the database
-        noteEditorController.saveNote();
+        noteEditorController.updateNote();
 
         // Unbind the thumbnail of the previous selected note
         Note previousNote = loggedInUser.getSelectedNote();
@@ -212,7 +212,7 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void moveNoteToTrash(Note note) {
-        noteEditorController.saveNote();
+        noteEditorController.updateNote();
         removeThumbnail(note);
         db.moveNoteToTrash(note);
         noteEditorController.clearEditor();
