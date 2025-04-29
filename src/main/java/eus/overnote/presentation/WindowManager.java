@@ -15,12 +15,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class WindowManager {
 
     private final Logger logger = LoggerFactory.getLogger(WindowManager.class);
     private BlInterface bl;
-
+    private ResourceBundle rb;
 
 
     // Singleton
@@ -56,6 +58,13 @@ public class WindowManager {
     private void initialize() {
         bl = BusinessLogic.getInstance();
 
+        try {
+            rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", Locale.getDefault());
+        } catch (Exception e) {
+            // Default to english
+            rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", Locale.ENGLISH);
+        }
+
         // Creating the stages
         authStage = new Stage();
         authStage.setTitle("Overnote");
@@ -63,8 +72,8 @@ public class WindowManager {
         mainStage.setTitle("Overnote");
 
         // Loading the scenes
-        FXMLLoader loginLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"));
-        FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"));
+        FXMLLoader loginLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"), rb);
+        FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"), rb);
         try {
             loginScene = new Scene(loginLoader.load());
             loginController = loginLoader.getController();
@@ -81,7 +90,7 @@ public class WindowManager {
         }
 
         // Load the note editor scene
-        FXMLLoader fxmlLoader = new FXMLLoader(NoteEditorController.class.getResource("note_editor.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(NoteEditorController.class.getResource("note_editor.fxml"), rb);
         try {
             noteEditorParent = fxmlLoader.load();
             noteEditorController = fxmlLoader.getController();
@@ -120,7 +129,7 @@ public class WindowManager {
 
         if (!bl.isUserLoggedIn()) return;
 
-        FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"), rb);
         try {
             mainScene = new Scene(mainLoader.load());
             mainController = mainLoader.getController();

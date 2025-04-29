@@ -22,7 +22,7 @@
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>
                       <children>
-                          <Label text="Welcome Back" textFill="WHITE">
+                          <Label text="%auth.login.label.welcome" textFill="WHITE">
                               <font>
                                   <Font name="System Bold" size="24.0" />
                               </font>
@@ -34,7 +34,7 @@
                         <String fx:value="title-light" />
                      </styleClass>
                           </Label>
-                          <Label text="New to Overnote?" textFill="WHITE">
+                          <Label text="%auth.login.label.new-user" textFill="WHITE">
                               <font>
                                   <Font size="14.0" />
                               </font>
@@ -46,7 +46,7 @@
                         <String fx:value="title-light" />
                      </styleClass>
                           </Label>
-                          <Button fx:id="createAccountButton" mnemonicParsing="false" styleClass="button-secondary" text="Create Account">
+                          <Button fx:id="createAccountButton" mnemonicParsing="false" styleClass="button-secondary" text="%auth.login.button.create-account">
                               <padding>
                                   <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
                               </padding>
@@ -61,7 +61,7 @@
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>
                       <children>
-                          <Label text="Sign In" textFill="#333333">
+                          <Label text="%auth.login.label.sign-in" textFill="#333333">
                               <font>
                                   <Font name="System Bold" size="22.0" />
                               </font>
@@ -73,7 +73,7 @@
                         <String fx:value="title" />
                      </styleClass>
                           </Label>
-                          <Label text="EMAIL" textFill="#666666">
+                          <Label text="%auth.common.label.email" textFill="#666666">
                               <font>
                                   <Font name="System Bold" size="11.0" />
                               </font>
@@ -81,7 +81,7 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <TextField fx:id="emailField" promptText="example@email.com">
+                          <TextField fx:id="emailField" promptText="%auth.common.field.email.placeholder">
                               <VBox.margin>
                                   <Insets bottom="15.0" />
                               </VBox.margin>
@@ -89,7 +89,7 @@
                                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </padding>
                           </TextField>
-                          <Label text="PASSWORD" textFill="#666666">
+                          <Label text="%auth.common.label.password" textFill="#666666">
                               <font>
                                   <Font name="System Bold" size="11.0" />
                               </font>
@@ -97,7 +97,7 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="password-field">
+                          <PasswordField fx:id="passwordField" promptText="%auth.common.field.password.placeholder" styleClass="password-field">
                               <VBox.margin>
                                   <Insets bottom="15.0" />
                               </VBox.margin>
@@ -107,9 +107,9 @@
                           </PasswordField>
                           <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
                               <children>
-                                  <CheckBox fx:id="rememberMeCheckbox" text="Remember me" textFill="#666666" />
+                                  <CheckBox fx:id="rememberMeCheckbox" text="%auth.login.checkbox.remember-me" textFill="#666666" />
                                   <Pane HBox.hgrow="ALWAYS" />
-                                  <Label fx:id="forgotPasswordLabel" styleClass="link" text="Forgot password?" textFill="#ff5163">
+                                  <Label fx:id="forgotPasswordLabel" styleClass="link" text="%auth.login.button.forgot-password" textFill="#ff5163">
                                       <font>
                                           <Font name="System Bold" size="12.0" />
                                       </font>
@@ -119,7 +119,7 @@
                                   <Insets bottom="25.0" />
                               </VBox.margin>
                           </HBox>
-                          <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="Sign In" textAlignment="CENTER">
+                          <Button fx:id="loginButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="%auth.login.button.sign-in" textAlignment="CENTER">
                               <padding>
                                   <Insets bottom="10.0" top="10.0" />
                               </padding>
