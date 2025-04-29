@@ -273,4 +273,9 @@ public class BusinessLogic implements BlInterface {
         thumbnailText.unbind();
         thumbnailTitle.unbind();
     }
+
+    @Override
+    public NoteThumbnailController getThumbnailController(Note note) {
+        return noteThumbnailControllerMap.get(note);
+    }
 }

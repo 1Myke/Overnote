@@ -5,6 +5,7 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
+import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.components.ProfileBannerController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -29,6 +31,9 @@ public class MainApplicationController {
 
     @FXML
     private VBox sidebarVBox;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private Button newNoteAiButton;
@@ -69,6 +74,18 @@ public class MainApplicationController {
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
         notes.forEach(bl::addNewThumbnail);
+
+        // Bind the searchbar with the visible thumbnails
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            notes.forEach(note -> {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                if (note.matchesContent(newValue)) {
+                    thumbnail.show();
+                } else {
+                    thumbnail.hide();
+                }
+            });
+        });
     }
 
     /**

@@ -67,4 +67,9 @@ public class Note {
         this.deleted = true;
         setDeleteDate(new Date());
     }
+
+    public boolean matchesContent(String content) {
+        return title.toLowerCase().contains(content.toLowerCase()) ||
+                this.content.toLowerCase().contains(content.toLowerCase());
+    }
 }
