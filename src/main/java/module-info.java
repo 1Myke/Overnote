@@ -13,6 +13,7 @@ module eus.overnote.presentation {
     requires jbcrypt;
     requires org.fxmisc.richtext;
     requires javafx.web;
+    requires org.jsoup;
 
     exports eus.overnote;
     exports eus.overnote.presentation;

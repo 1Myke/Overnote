@@ -4,14 +4,12 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
-import javafx.beans.property.ObjectProperty;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
 import lombok.Getter;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +19,8 @@ public class NoteEditorController {
 
     private static final Logger logger = LoggerFactory.getLogger(NoteEditorController.class);
     private Note selectedNote;
+    private NoteThumbnailController bindedThumbnailController;
+
     /// The timer to detect user inactivity.
     private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
     BlInterface bl = BusinessLogic.getInstance();
@@ -43,11 +43,16 @@ public class NoteEditorController {
         root.setVisible(true);
     }
 
+    public void bindThumbnailController(NoteThumbnailController thumbnailController) {
+        bindedThumbnailController = thumbnailController;
+    }
+
     public void initialize() {
         root.setVisible(false);
         // Set a timer to save the note after the user idles
         savePause.setOnFinished(event -> saveNote());
-        htmlEditor.onInputMethodTextChangedProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
+        htmlEditor.setOnKeyReleased(event -> onNoteUpdate());
+        htmlEditor.setOnMouseClicked(event -> onNoteUpdate());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
     }
 
@@ -82,7 +87,9 @@ public class NoteEditorController {
         savePause.stop();
     }
 
-    public ObjectProperty<EventHandler<? super InputMethodEvent>> getTextProperty() {
-        return htmlEditor.onInputMethodTextChangedProperty();
+    private void onNoteUpdate() {
+        // Update thumbnail webview
+        bindedThumbnailController.setPreviewText(Jsoup.parse(htmlEditor.getHtmlText()).text());
+        savePause.playFromStart();
     }
 }

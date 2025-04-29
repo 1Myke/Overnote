@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import lombok.Getter;
+import org.jsoup.Jsoup;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +29,6 @@ public class NoteThumbnailController {
     private Text dateText;
 
     @FXML
-    @Getter
     private Label previewTextLabel;
 
     @FXML
@@ -51,7 +51,7 @@ public class NoteThumbnailController {
         this.note = note;
         // Values updated via bindings
         titleText.setText(note.getTitle());
-        previewTextLabel.setText(note.getContent());
+        previewTextLabel.setText(Jsoup.parse(note.getContent()).text());
         // Manual update
         updateContent();
     }
@@ -111,5 +111,9 @@ public class NoteThumbnailController {
     public void show() {
         root.setManaged(true);
         root.setVisible(true);
+    }
+
+    public void setPreviewText(String text) {
+        previewTextLabel.setText(text);
     }
 }
