@@ -6,11 +6,14 @@ import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.input.InputMethodEvent;
 import lombok.Getter;
 import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
@@ -184,10 +187,10 @@ public class BusinessLogic implements BlInterface {
         // Bind the thumbnail to the editor
         StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-        StringProperty editorText = noteEditorController.getNoteText().textProperty();
+        ObjectProperty<EventHandler<? super InputMethodEvent>> editorText = noteEditorController.getTextProperty();
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
 
-        thumbnailText.bind(editorText);
+        thumbnailText.bind(editorText.asString());
         thumbnailTitle.bind(editorTitle);
     }
 

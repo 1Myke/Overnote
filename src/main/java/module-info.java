@@ -11,6 +11,8 @@ module eus.overnote.presentation {
     requires static lombok;
     requires com.h2database;
     requires jbcrypt;
+    requires org.fxmisc.richtext;
+    requires javafx.web;
 
     exports eus.overnote;
     exports eus.overnote.presentation;
