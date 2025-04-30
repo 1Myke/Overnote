@@ -5,11 +5,11 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.web.HTMLEditor;
 import lombok.Getter;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +19,8 @@ public class NoteEditorController {
 
     private static final Logger logger = LoggerFactory.getLogger(NoteEditorController.class);
     private Note selectedNote;
+    private NoteThumbnailController bindedThumbnailController;
+
     /// The timer to detect user inactivity.
     private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
     BlInterface bl = BusinessLogic.getInstance();
@@ -28,25 +30,29 @@ public class NoteEditorController {
 
     @FXML
     @Getter
-    private TextArea noteText;
+    private TextField noteTitle;
 
     @FXML
-    @Getter
-    private TextField noteTitle;
+    private HTMLEditor htmlEditor;
 
     public void setSelectedNote(Note note) {
         selectedNote = note;
         noteTitle.setText(note.getTitle());
-        noteText.setText(note.getContent());
+        htmlEditor.setHtmlText(note.getContent());
         savePause.stop();
         root.setVisible(true);
+    }
+
+    public void bindThumbnailController(NoteThumbnailController thumbnailController) {
+        bindedThumbnailController = thumbnailController;
     }
 
     public void initialize() {
         root.setVisible(false);
         // Set a timer to save the note after the user idles
         savePause.setOnFinished(event -> saveNote());
-        noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
+        htmlEditor.setOnKeyReleased(event -> onNoteUpdate());
+        htmlEditor.setOnMouseClicked(event -> onNoteUpdate());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
     }
 
@@ -58,7 +64,7 @@ public class NoteEditorController {
     public void saveNote() {
         if (selectedNote != null){
             selectedNote.setTitle(noteTitle.getText());
-            selectedNote.setContent(noteText.getText());
+            selectedNote.setContent(htmlEditor.getHtmlText());
             selectedNote.setLastModificationDate(new Date());
             bl.updateNote(selectedNote);
             logger.debug("Note {} saved for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
@@ -76,8 +82,14 @@ public class NoteEditorController {
 
     public void clearEditor() {
         root.setVisible(false);
-        noteText.clear();
+        htmlEditor.setHtmlText("");
         noteTitle.clear();
         savePause.stop();
+    }
+
+    private void onNoteUpdate() {
+        // Update thumbnail webview
+        bindedThumbnailController.setPreviewText(Jsoup.parse(htmlEditor.getHtmlText()).text());
+        savePause.playFromStart();
     }
 }
