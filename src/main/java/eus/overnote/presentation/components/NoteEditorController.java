@@ -20,7 +20,7 @@ public class NoteEditorController {
     private static final Logger logger = LoggerFactory.getLogger(NoteEditorController.class);
     private Note selectedNote;
     /// The timer to detect user inactivity.
-    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
+    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.0001));
     BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
@@ -48,6 +48,18 @@ public class NoteEditorController {
         savePause.setOnFinished(event -> saveNote());
         noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
+
+        //Add a key event handler for saving notes with the combination "Ctrl + S"
+        root.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.isControlDown() && event.getCode() == javafx.scene.input.KeyCode.S) {
+                        saveNote();
+                        event.consume(); // Prevent further handling of the event
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -74,10 +86,17 @@ public class NoteEditorController {
         }
     }
 
+    @FXML
+    void saveNoteClickingButton() {
+        saveNote();
+    }
+
     public void clearEditor() {
         root.setVisible(false);
         noteText.clear();
         noteTitle.clear();
         savePause.stop();
     }
+
+
 }
