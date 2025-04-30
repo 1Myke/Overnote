@@ -20,11 +20,12 @@
                         <Insets />
                      </opaqueInsets>
                   </TextField>
-                  <Button mnemonicParsing="false" onAction="#moveToTrash" styleClass="button-primary" text="%component.editor.button.delete">
+                  <Button mnemonicParsing="false" onAction="#saveNoteClickingButton" styleClass="button-primary" text="Save">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
+                  <Button layoutX="464.0" layoutY="10.0" mnemonicParsing="false" onAction="#moveToTrash" styleClass="button-primary" text="Delete" />
                </children>
             </HBox>
             <Separator />
