@@ -15,11 +15,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Locale;
 
 public class MainApplicationController {
 
@@ -41,6 +44,15 @@ public class MainApplicationController {
 
     @FXML
     private MenuButton profileMenuButton;
+
+    @FXML
+    private MenuItem en;
+
+    @FXML
+    private MenuItem es;
+
+    @FXML
+    private MenuItem eu;
 
     private ObservableList<Note> notes;
     private ObservableList<Node> thumbnails;
@@ -69,6 +81,12 @@ public class MainApplicationController {
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
         notes.forEach(bl::addNewThumbnail);
+
+        // Changing language
+        en.setOnAction(event -> bl.changeLanguage(Locale.ENGLISH));
+        es.setOnAction(event -> bl.changeLanguage(new Locale("es", "ES")));
+        eu.setOnAction(event -> bl.changeLanguage(new Locale("eu", "ES")));
+
     }
 
     /**
@@ -126,5 +144,14 @@ public class MainApplicationController {
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();
+    }
+
+
+    public void reloadElements() {
+        logger.debug("Reloading elements");
+        sidebarVBox.getChildren().clear();
+        thumbnails = bl.getThumbnails();
+        Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
+        notes.forEach(bl::addNewThumbnail);
     }
 }

@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BusinessLogic implements BlInterface {
@@ -216,6 +217,16 @@ public class BusinessLogic implements BlInterface {
     @Override
     public void deleteNote(Note note) {
         db.deleteNote(note);
+    }
+
+    @Override
+    public void changeLanguage(Locale locale) {
+        if (locale != null) {
+            Locale.setDefault(locale);
+            logger.debug("Language changed to: {}", locale);
+        } else {
+            logger.error("Locale is null");
+        }
     }
 
     private void setLoggedInUser(OvernoteUser user) {

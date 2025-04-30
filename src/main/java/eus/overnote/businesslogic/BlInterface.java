@@ -6,6 +6,8 @@ import eus.overnote.presentation.components.NoteEditorController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
+import java.util.Locale;
+
 public interface BlInterface {
     // User
     OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword);
@@ -32,4 +34,6 @@ public interface BlInterface {
     Note getSelectedNote();
     void moveNoteToTrash(Note note);
     void deleteNote(Note note);
+
+    void changeLanguage(Locale locale);
 }

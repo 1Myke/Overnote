@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
@@ -48,8 +49,15 @@
                      </VBox.margin>
                   </Button>
                   <Region VBox.vgrow="ALWAYS" />
-                  <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" popupSide="TOP">
+                  <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" popupSide="RIGHT">
                      <items>
+                        <Menu mnemonicParsing="false" text="%main.profile.language">
+                          <items>
+                            <MenuItem fx:id="en" mnemonicParsing="false" text="%main.profile.language.en" />
+                              <MenuItem fx:id="es" mnemonicParsing="false" text="%main.profile.language.es" />
+                              <MenuItem fx:id="eu" mnemonicParsing="false" text="%main.profile.language.eu" />
+                          </items>
+                        </Menu>
                       <MenuItem mnemonicParsing="false" onAction="#onLogout" text="%main.profile.button.logout" />
                     </items>
                   </MenuButton>
