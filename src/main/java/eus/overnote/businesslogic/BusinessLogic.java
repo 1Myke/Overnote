@@ -266,4 +266,9 @@ public class BusinessLogic implements BlInterface {
         StringProperty thumbnailTitle = noteThumbnailControllerMap.get(note).getTitleText().textProperty();
         thumbnailTitle.unbind();
     }
+
+    @Override
+    public NoteThumbnailController getThumbnailController(Note note) {
+        return noteThumbnailControllerMap.get(note);
+    }
 }

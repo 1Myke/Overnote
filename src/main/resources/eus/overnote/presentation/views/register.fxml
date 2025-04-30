@@ -125,14 +125,14 @@
                      </VBox.margin></Label>
       
                           <!-- Terms Checkbox -->
-                          <CheckBox fx:id="termsCheckbox" text="%auth.register.checkbox.terms" textFill="#666666">
+                          <CheckBox fx:id="termsCheckbox" focusTraversable="false" text="%auth.register.checkbox.terms" textFill="#666666">
                               <VBox.margin>
                                   <Insets bottom="20.0" />
                               </VBox.margin>
                           </CheckBox>
       
                           <!-- Register Button -->
-                          <Button fx:id="registerButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="%auth.register.button.create-account">
+                          <Button fx:id="registerButton" defaultButton="true" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="%auth.register.button.create-account">
                               <padding>
                                   <Insets bottom="10.0" top="10.0" />
                               </padding>
@@ -175,7 +175,7 @@
                      </styleClass>
                           </Label>
       
-                          <Button fx:id="signInButton" mnemonicParsing="false" styleClass="button-secondary" text="%auth.register.label.sign-in">
+                          <Button fx:id="signInButton" focusTraversable="false" mnemonicParsing="false" styleClass="button-secondary" text="%auth.register.label.sign-in">
                               <padding>
                                   <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
                               </padding>
