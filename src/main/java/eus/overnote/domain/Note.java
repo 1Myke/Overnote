@@ -20,6 +20,7 @@ public class Note {
     @Setter
     private String title;
 
+    @Lob
     @Column(nullable = false)
     @Setter
     private String content;
