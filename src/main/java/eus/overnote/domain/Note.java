@@ -3,6 +3,7 @@ package eus.overnote.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.jsoup.Jsoup;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -70,7 +71,9 @@ public class Note {
     }
 
     public boolean matchesContent(String content) {
-        return title.toLowerCase().contains(content.toLowerCase()) ||
-                this.content.toLowerCase().contains(content.toLowerCase());
+
+        // Compare raw title, compare parsed content
+        return this.title.toLowerCase().contains(content.toLowerCase()) ||
+                Jsoup.parse(this.content).text().toLowerCase().contains(content.toLowerCase());
     }
 }
