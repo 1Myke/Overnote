@@ -3,12 +3,15 @@ package eus.overnote.presentation.components;
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
+import eus.overnote.presentation.views.MainApplicationController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +20,7 @@ public class NoteThumbnailController {
 
     private Note note;
     private final BlInterface bl = BusinessLogic.getInstance();
+    private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
 
     @FXML
     @Getter
@@ -47,6 +51,8 @@ public class NoteThumbnailController {
      */
     public void setNote(Note note) {
         this.note = note;
+        //here the id is right
+        logger.info("this note's id is \"{}\"",note.getId());
         // Values updated via bindings
         titleText.setText(note.getTitle());
         previewTextLabel.setText(note.getContent());
@@ -62,6 +68,7 @@ public class NoteThumbnailController {
     @FXML
     private void selectNote() {
         bl.selectNote(this.note);
+        logger.info("Selecting note with id\"{}\"", this.note.getId());
     }
 
     /**
@@ -79,10 +86,15 @@ public class NoteThumbnailController {
     public void updateContent() {
         dateText.setText(formatNoteDate());
         tagFlowPane.getChildren().clear();
+
+        /*
         note.getTags().forEach(tag -> {
             Text tagText = new Text(tag.toString());
             tagFlowPane.getChildren().add(tagText);
+
+
         });
+        */
     }
 
     private String formatNoteDate() {

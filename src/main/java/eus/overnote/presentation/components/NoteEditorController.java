@@ -34,6 +34,8 @@ public class NoteEditorController {
     private TextField noteTitle;
 
     public void setSelectedNote(Note note) {
+        // here the id is right
+        logger.info(" Setting selected note to {}", note.getId());
         selectedNote = note;
         noteTitle.setText(note.getTitle());
         noteText.setText(note.getContent());
@@ -56,6 +58,7 @@ public class NoteEditorController {
      */
     public void updateNote() {
         if (selectedNote != null){
+            logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             selectedNote.setTitle(noteTitle.getText());
             selectedNote.setContent(noteText.getText());
             selectedNote.setLastModificationDate(new Date());
@@ -78,5 +81,9 @@ public class NoteEditorController {
         noteText.clear();
         noteTitle.clear();
         savePause.stop();
+    }
+
+    public Note getSelectedNoteNote() {
+        return  this.selectedNote;
     }
 }

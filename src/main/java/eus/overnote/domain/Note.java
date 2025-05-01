@@ -13,7 +13,6 @@ import java.util.UUID;
 @Entity
 public class Note {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
@@ -28,7 +27,7 @@ public class Note {
     private final Date creationDate = new Date();
 
     @Column(nullable = false)
-    private final Date lastModificationDate = new Date();
+    private Date lastModificationDate = new Date();
 
     private Date deleteDate;
 
@@ -36,10 +35,15 @@ public class Note {
     @JoinColumn(nullable = false)
     private OvernoteUser user;
 
+/*
     @ManyToMany
-    @JoinColumn(nullable = false)
+    @JoinTable(
+            name = "note_tags",
+            joinColumns = @JoinColumn(name = "note_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
     private final Set<Tag> tags = new HashSet<>();
-
+*/
     @Column(nullable = false)
     private boolean deleted = false;
 
@@ -49,22 +53,18 @@ public class Note {
 
     // Complete constructor
     public Note(String title, String content, OvernoteUser user) {
-        this.id = UUID.randomUUID();
         this.title = title;
         this.content = content;
         this.user = user;
+        this.id = UUID.randomUUID();
     }
 
     public void setLastModificationDate(Date date) {
         getLastModificationDate().setTime(date.getTime());
     }
 
-    private void setDeleteDate(Date date) {
-        this.deleteDate = date;
-    }
-
     public void moveToTrash() {
         this.deleted = true;
-        setDeleteDate(new Date());
+        this.deleteDate = new Date();
     }
 }

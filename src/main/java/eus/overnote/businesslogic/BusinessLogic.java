@@ -18,7 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class BusinessLogic implements BlInterface {
 
@@ -44,6 +46,9 @@ public class BusinessLogic implements BlInterface {
         noteThumbnailControllerMap = new HashMap<>();
     }
 
+
+
+
     public static BusinessLogic getInstance() {
         if (instance == null) {
             instance = new BusinessLogic();
@@ -63,7 +68,10 @@ public class BusinessLogic implements BlInterface {
     public boolean validatePasswordMatch(String password, String confirmPassword) {
         return password.equals(confirmPassword);
     }
-
+    @Override
+    public List<Note> getNotesFromUserId() {
+        return db.getNotesbyUserID();
+    }
 
     @Override
     public OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword) throws RegisterException {
@@ -155,7 +163,9 @@ public class BusinessLogic implements BlInterface {
         }
 
         // Update the previous note in the database
-        noteEditorController.updateNote();
+        if(noteEditorController.getSelectedNoteNote() != null) {
+            noteEditorController.updateNote();
+        }
 
         // Unbind the thumbnail of the previous selected note
         Note previousNote = loggedInUser.getSelectedNote();
@@ -249,10 +259,15 @@ public class BusinessLogic implements BlInterface {
             noteThumbnailControllerMap.get(note).show();
         } else {
             try {
+                //here the id is right
+
+                logger.info("this note's id is \"{}\"",note.getId());
                 FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
                 Node thumbnail = fxmlLoader.load();
                 NoteThumbnailController controller = fxmlLoader.getController();
                 controller.setNote(note);
+                //here the id is right
+
                 noteThumbnailControllerMap.put(note, controller);
                 thumbnails.add(0,thumbnail);
 

@@ -12,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 
 public class DbAccessManager {
 
@@ -38,6 +40,20 @@ public class DbAccessManager {
     public void close() {
         db.close();
         logger.info("Database connection closed");
+    }
+
+    public List<Note> getNotesbyUserID() {
+        try {
+            TypedQuery<Note> query = db.createQuery("SELECT n FROM Note n WHERE n.user.id = :userId", Note.class);
+            query.setParameter("userId", getSession().getCurrentUser().getId());
+            List<Note> notes = query.getResultList();
+            logger.info("Notes retrieved successfully");
+            return notes;
+        } catch (Exception e) {
+            logger.error("Error retrieving notes: {}", e.getMessage());
+            return null;
+        }
+
     }
 
     public Session getSession() {
@@ -117,8 +133,12 @@ public class DbAccessManager {
     }
 
     public void saveNote(Note note) {
+        if (!(note.getId() == null)) {
+
+
         try {
             db.getTransaction().begin();
+            logger.debug("Transaction to save a note started");
             note = db.merge(note);
             note.getUser().getNotes().add(note);
             db.getTransaction().commit();
@@ -127,10 +147,16 @@ public class DbAccessManager {
             db.getTransaction().rollback();
             logger.error("Error saving note: {}", e.getMessage());
         }
+        }
+        else {
+            logger.error("Note id is null");
+        }
     }
 
     public void updateNote(Note note) {
         try {
+
+            logger.error(" last Updating note with id {}", note.getId());
             db.getTransaction().begin();
             db.merge(note);
             db.getTransaction().commit();
