@@ -36,4 +36,6 @@ public interface BlInterface {
     void deleteNote(Note note);
 
     void changeLanguage(Locale locale);
+    void saveLanguage(Locale locale);
+    Locale loadLanguage();
 }

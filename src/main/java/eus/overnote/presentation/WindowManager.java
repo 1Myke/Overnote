@@ -58,8 +58,11 @@ public class WindowManager {
     private void initialize() {
         bl = BusinessLogic.getInstance();
 
+        //get the current language from LanguageConfig.java class
+        Locale currentLanguage = bl.loadLanguage();
+
         try {
-            rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", Locale.getDefault());
+            rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", currentLanguage);
         } catch (Exception e) {
             // Default to english
             rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", Locale.ENGLISH);

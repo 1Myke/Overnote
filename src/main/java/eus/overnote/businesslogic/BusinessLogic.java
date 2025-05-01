@@ -6,6 +6,7 @@ import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
+import eus.overnote.presentation.views.MainApplicationController;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,9 +18,11 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Properties;
 
 public class BusinessLogic implements BlInterface {
 
@@ -37,6 +40,9 @@ public class BusinessLogic implements BlInterface {
     @Getter
     /// The list of note thumbnail components that are displayed in the note list.
     private ObservableList<Node> thumbnails;
+    @Getter
+    /// The controller of the main application window.
+    private MainApplicationController mainApplicationController;
 
     private BusinessLogic() {
         db = new DbAccessManager();
@@ -277,4 +283,33 @@ public class BusinessLogic implements BlInterface {
         StringProperty thumbnailTitle = noteThumbnailControllerMap.get(note).getTitleText().textProperty();
         thumbnailTitle.unbind();
     }
+
+    //AL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
+
+    private static final String CONFIG_FILE = "configuration.properties";
+    private static final String LANGUAGE_KEY = "lastUsedLanguage";
+
+    public void saveLanguage(Locale locale) {
+        Properties properties = new Properties();
+        try (OutputStream output = new FileOutputStream(CONFIG_FILE)) {
+            properties.setProperty(LANGUAGE_KEY, locale.toString());
+            properties.store(output, "User Language Configuration");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Locale loadLanguage() {
+        Properties properties = new Properties();
+        try (InputStream input = new FileInputStream(CONFIG_FILE)) {
+            properties.load(input);
+            String language = properties.getProperty(LANGUAGE_KEY, "en");
+            return Locale.forLanguageTag(language);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // If an error occurs, return the default language of the computer
+        return Locale.getDefault();
+    }
+
 }

@@ -23,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MainApplicationController {
 
@@ -83,11 +84,13 @@ public class MainApplicationController {
         notes.forEach(bl::addNewThumbnail);
 
         // Changing language
-        en.setOnAction(event -> bl.changeLanguage(Locale.ENGLISH));
-        es.setOnAction(event -> bl.changeLanguage(new Locale("es", "ES")));
-        eu.setOnAction(event -> bl.changeLanguage(new Locale("eu", "ES")));
+        en.setOnAction(event -> {bl.changeLanguage(Locale.ENGLISH); bl.saveLanguage(Locale.ENGLISH);});
+        es.setOnAction(event -> {bl.changeLanguage(new Locale("es")); bl.saveLanguage(new Locale("es"));});
+        eu.setOnAction(event -> {bl.changeLanguage(new Locale("eu")); bl.saveLanguage(new Locale("eu"));});
 
+            //I didnt' put the contry code in the locale because that was giving problems at the time of loading the last language that the user had used
     }
+
 
     /**
      * Calls the controller of the note editor to save the noted that
@@ -146,12 +149,4 @@ public class MainApplicationController {
         WindowManager.getInstance().navigateToLogin();
     }
 
-
-    public void reloadElements() {
-        logger.debug("Reloading elements");
-        sidebarVBox.getChildren().clear();
-        thumbnails = bl.getThumbnails();
-        Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
-        notes.forEach(bl::addNewThumbnail);
-    }
 }
