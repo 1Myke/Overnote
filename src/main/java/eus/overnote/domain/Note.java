@@ -51,7 +51,7 @@ public class Note {
     protected Note() {
     }
 
-    // Complete constructor
+    // Complete constructor the Id is generated here to resolve bugs
     public Note(String title, String content, OvernoteUser user) {
         this.title = title;
         this.content = content;
