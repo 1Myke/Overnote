@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -130,6 +131,33 @@ public class MainApplicationController {
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);
         selectNote(createdNote);
+    }
+
+    @FXML
+    void createAINote(ActionEvent event) {
+        if (bl.getLoggedInUser() == null) {
+            logger.error("No user logged in");
+            return;
+        }
+
+        logger.debug("Creating new AI generated note");
+
+        // Show a dialog asking prompt for the AI note
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Create AI Note");
+        dialog.setHeaderText("Create a new note using AI");
+        dialog.setContentText("What is your note about?");
+        dialog.showAndWait().ifPresent(prompt -> {
+            logger.debug("Creating new AI note with prompt: \"{}\"", prompt);
+            Note generatedNote = bl.generateAINote(prompt);
+
+            bl.saveNote(generatedNote);
+            notes.add(generatedNote);
+            bl.addNewThumbnail(generatedNote);
+            selectNote(generatedNote);
+
+        });
+
     }
 
     /**

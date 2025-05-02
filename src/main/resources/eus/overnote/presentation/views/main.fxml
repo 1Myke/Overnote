@@ -43,7 +43,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="newNoteAiButton" focusTraversable="false" mnemonicParsing="false" styleClass="button-secondary" text="%main.button.new-note-AI" textAlignment="CENTER">
+                  <Button fx:id="newNoteAiButton" focusTraversable="false" mnemonicParsing="false" onAction="#createAINote" styleClass="button-secondary" text="%main.button.new-note-AI" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

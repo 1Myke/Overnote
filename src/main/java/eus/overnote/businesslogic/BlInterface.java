@@ -33,6 +33,7 @@ public interface BlInterface {
     Note getSelectedNote();
     void moveNoteToTrash(Note note);
     void deleteNote(Note note);
+    Note generateAINote(String prompt);
 
     NoteThumbnailController getThumbnailController(Note note);
 }
