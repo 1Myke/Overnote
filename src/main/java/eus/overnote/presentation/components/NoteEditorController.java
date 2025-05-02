@@ -5,10 +5,11 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import javafx.scene.web.HTMLEditor;
 import lombok.Getter;
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,9 +18,12 @@ import java.util.Date;
 public class NoteEditorController {
 
     private static final Logger logger = LoggerFactory.getLogger(NoteEditorController.class);
+    @Getter
     private Note selectedNote;
+    private NoteThumbnailController bindedThumbnailController;
+
     /// The timer to detect user inactivity.
-    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(3));
+    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.0001));
     BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
@@ -27,28 +31,45 @@ public class NoteEditorController {
 
     @FXML
     @Getter
-    private TextArea noteText;
+    private TextField noteTitle;
 
     @FXML
-    @Getter
-    private TextField noteTitle;
+    private HTMLEditor htmlEditor;
 
     public void setSelectedNote(Note note) {
         // here the id is right
         logger.info(" Setting selected note to {}", note.getId());
         selectedNote = note;
         noteTitle.setText(note.getTitle());
-        noteText.setText(note.getContent());
+        htmlEditor.setHtmlText(note.getContent());
         savePause.stop();
         root.setVisible(true);
+    }
+
+    public void bindThumbnailController(NoteThumbnailController thumbnailController) {
+        bindedThumbnailController = thumbnailController;
     }
 
     public void initialize() {
         root.setVisible(false);
         // Set a timer to save the note after the user idles
         savePause.setOnFinished(event -> updateNote());
-        noteText.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
+        // Update the thumbnail and reset timer
+        htmlEditor.setOnKeyReleased(event -> onNoteUpdate());
+        htmlEditor.setOnMouseClicked(event -> onNoteUpdate());
+
+        //Add a key event handler for saving notes with the combination "Ctrl + S"
+        root.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.setOnKeyPressed(event -> {
+                    if (event.isControlDown() && event.getCode() == javafx.scene.input.KeyCode.S) {
+                        saveNote();
+                        event.consume(); // Prevent further handling of the event
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -60,7 +81,7 @@ public class NoteEditorController {
         if (selectedNote != null){
             logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             selectedNote.setTitle(noteTitle.getText());
-            selectedNote.setContent(noteText.getText());
+            selectedNote.setContent(htmlEditor.getHtmlText());
             selectedNote.setLastModificationDate(new Date());
             bl.updateNote(selectedNote);
             logger.debug("Note {} saved for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
@@ -76,14 +97,23 @@ public class NoteEditorController {
         }
     }
 
+    @FXML
+    void saveNoteClickingButton() {
+        saveNote();
+    }
+
     public void clearEditor() {
         root.setVisible(false);
-        noteText.clear();
+        htmlEditor.setHtmlText("");
         noteTitle.clear();
         savePause.stop();
     }
 
-    public Note getSelectedNoteNote() {
-        return  this.selectedNote;
+    private void onNoteUpdate() {
+        // Update thumbnail webview
+        bindedThumbnailController.setPreviewText(Jsoup.parse(htmlEditor.getHtmlText()).text());
+        savePause.playFromStart();
     }
+
+
 }

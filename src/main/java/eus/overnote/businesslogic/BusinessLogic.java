@@ -171,10 +171,7 @@ public class BusinessLogic implements BlInterface {
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
             NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
-            StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
             StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-
-            thumbnailText.unbind();
             thumbnailTitle.unbind();
         }
 
@@ -192,12 +189,10 @@ public class BusinessLogic implements BlInterface {
         // Set the selected style for the selected thumbnail
         thumbnailController.setSelectedStyle(true);
         // Bind the thumbnail to the editor
-        StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-        StringProperty editorText = noteEditorController.getNoteText().textProperty();
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
+        noteEditorController.bindThumbnailController(thumbnailController);
 
-        thumbnailText.bind(editorText);
         thumbnailTitle.bind(editorTitle);
     }
 
@@ -283,9 +278,12 @@ public class BusinessLogic implements BlInterface {
         noteThumbnailControllerMap.get(note).hide();
 
         // Unbind the thumbnail from the editor
-        StringProperty thumbnailText = noteThumbnailControllerMap.get(note).getPreviewTextLabel().textProperty();
         StringProperty thumbnailTitle = noteThumbnailControllerMap.get(note).getTitleText().textProperty();
-        thumbnailText.unbind();
         thumbnailTitle.unbind();
+    }
+
+    @Override
+    public NoteThumbnailController getThumbnailController(Note note) {
+        return noteThumbnailControllerMap.get(note);
     }
 }
