@@ -124,7 +124,7 @@ public class MainApplicationController {
         }
 
         logger.debug("Creating new note");
-        Note createdNote = new Note("Untitled note", "", bl.getLoggedInUser());
+        Note createdNote = new Note(bl.getTranslation("note.default.title"), "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);

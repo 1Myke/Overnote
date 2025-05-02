@@ -20,10 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class BusinessLogic implements BlInterface {
 
@@ -321,4 +318,14 @@ public class BusinessLogic implements BlInterface {
         return Locale.getDefault();
     }
 
+    @Override
+    public String getTranslation(String s) {
+        ResourceBundle rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", Locale.getDefault());
+        try {
+            return rb.getString(s);
+        } catch (MissingResourceException e) {
+            logger.error("Error loading translation for key: {}", s, e);
+            return s;
+        }
+    }
 }
