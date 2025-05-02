@@ -64,7 +64,7 @@ public class NoteEditorController {
             if (newScene != null) {
                 newScene.setOnKeyPressed(event -> {
                     if (event.isControlDown() && event.getCode() == javafx.scene.input.KeyCode.S) {
-                        saveNote();
+                        updateNote();
                         event.consume(); // Prevent further handling of the event
                     }
                 });
@@ -99,7 +99,7 @@ public class NoteEditorController {
 
     @FXML
     void saveNoteClickingButton() {
-        saveNote();
+        updateNote();
     }
 
     public void clearEditor() {

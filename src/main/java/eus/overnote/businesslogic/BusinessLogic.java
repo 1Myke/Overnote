@@ -163,7 +163,7 @@ public class BusinessLogic implements BlInterface {
         }
 
         // Update the previous note in the database
-        if(noteEditorController.getSelectedNoteNote() != null) {
+        if(noteEditorController.getSelectedNote() != null) {
             noteEditorController.updateNote();
         }
 
