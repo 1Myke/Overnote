@@ -287,7 +287,7 @@ public class BusinessLogic implements BlInterface {
     //AL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
 
     private static final String CONFIG_FILE = "configuration.properties";
-    private static final String LANGUAGE_KEY = "lastUsedLanguage";
+    private static final String LANGUAGE_KEY = "language";
 
     public void saveLanguage(Locale locale) {
         Properties properties = new Properties();
