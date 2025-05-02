@@ -18,7 +18,6 @@ import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.*;
 import java.util.*;
 
@@ -272,8 +271,15 @@ public class BusinessLogic implements BlInterface {
         thumbnailTitle.unbind();
     }
 
+    @Override
+    public NoteThumbnailController getThumbnailController(Note note) {
+        return noteThumbnailControllerMap.get(note);
+    }
 
-    //AL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
+    //
+    // ALL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
+    //
+
     private static final String CONFIG_FILE = "configuration.properties";
     private static final String LANGUAGE_KEY = "language";
 
