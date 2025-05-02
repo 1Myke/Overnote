@@ -82,14 +82,11 @@ public class MainApplicationController {
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
         notes.forEach(bl::addNewThumbnail);
 
-        // Changing language
-        en.setOnAction(event -> {bl.changeLanguage(Locale.ENGLISH); bl.saveLanguage(Locale.ENGLISH);});
-        es.setOnAction(event -> {bl.changeLanguage(new Locale("es")); bl.saveLanguage(new Locale("es"));});
-        eu.setOnAction(event -> {bl.changeLanguage(new Locale("eu")); bl.saveLanguage(new Locale("eu"));});
-
-            //I didnt' put the contry code in the locale because that was giving problems at the time of loading the last language that the user had used
+        // Language menu listeners
+        en.setOnAction(event -> bl.changeLanguage(Locale.ENGLISH));
+        es.setOnAction(event -> bl.changeLanguage(new Locale("es")));
+        eu.setOnAction(event -> bl.changeLanguage(new Locale("eu")));
     }
-
 
     /**
      * Calls the controller of the note editor to save the noted that

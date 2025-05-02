@@ -75,32 +75,9 @@ public class WindowManager {
         mainStage.setTitle("Overnote");
 
         // Loading the scenes
-        FXMLLoader loginLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"), rb);
-        FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"), rb);
-        try {
-            loginScene = new Scene(loginLoader.load());
-            loginController = loginLoader.getController();
-        } catch (IOException e) {
-            logger.error("Failed to load login scene", e);
-            throw new RuntimeException(e);
-        }
-        try {
-            registerScene = new Scene(registerLoader.load());
-            registerController = registerLoader.getController();
-        } catch (IOException e) {
-            logger.error("Failed to load register scene", e);
-            throw new RuntimeException(e);
-        }
-
-        // Load the note editor scene
-        FXMLLoader fxmlLoader = new FXMLLoader(NoteEditorController.class.getResource("note_editor.fxml"), rb);
-        try {
-            noteEditorParent = fxmlLoader.load();
-            noteEditorController = fxmlLoader.getController();
-        } catch (Exception e) {
-            logger.error("Error loading note_editor.fxml", e);
-        }
-        bl.setNoteEditorController(noteEditorController);
+        loadRegisterScene();
+        loadLoginScene();
+        loadEditorScene();
     }
 
     public void openApplication() {
@@ -132,6 +109,57 @@ public class WindowManager {
 
         if (!bl.isUserLoggedIn()) return;
 
+        loadMainScene();
+        authStage.hide();
+        mainStage.show();
+    }
+
+    public void reloadAllScenes() {
+        rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", bl.loadLanguage());
+
+        loadMainScene();
+        loadEditorScene();
+        loadLoginScene();
+        loadRegisterScene();
+
+        navigateToMain();
+
+    }
+
+    private void loadRegisterScene() {
+        FXMLLoader registerLoader = new FXMLLoader(RegisterController.class.getResource("register.fxml"), rb);
+        try {
+            registerScene = new Scene(registerLoader.load());
+            registerController = registerLoader.getController();
+        } catch (IOException e) {
+            logger.error("Failed to load register scene", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadLoginScene() {
+        FXMLLoader loginLoader = new FXMLLoader(LoginController.class.getResource("login.fxml"), rb);
+        try {
+            loginScene = new Scene(loginLoader.load());
+            loginController = loginLoader.getController();
+        } catch (IOException e) {
+            logger.error("Failed to load login scene", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadEditorScene() {
+        FXMLLoader fxmlLoader = new FXMLLoader(NoteEditorController.class.getResource("note_editor.fxml"), rb);
+        try {
+            noteEditorParent = fxmlLoader.load();
+            noteEditorController = fxmlLoader.getController();
+        } catch (Exception e) {
+            logger.error("Error loading note_editor.fxml", e);
+        }
+        bl.setNoteEditorController(noteEditorController);
+    }
+
+    private void loadMainScene() {
         FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"), rb);
         try {
             mainScene = new Scene(mainLoader.load());
@@ -140,9 +168,6 @@ public class WindowManager {
             logger.error("Failed to load main scene", e);
             throw new RuntimeException(e);
         }
-
         mainStage.setScene(mainScene);
-        authStage.hide();
-        mainStage.show();
     }
 }

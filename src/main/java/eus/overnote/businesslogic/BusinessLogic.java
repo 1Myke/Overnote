@@ -4,6 +4,7 @@ import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
+import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.views.MainApplicationController;
@@ -225,16 +226,6 @@ public class BusinessLogic implements BlInterface {
         db.deleteNote(note);
     }
 
-    @Override
-    public void changeLanguage(Locale locale) {
-        if (locale != null) {
-            Locale.setDefault(locale);
-            logger.debug("Language changed to: {}", locale);
-        } else {
-            logger.error("Locale is null");
-        }
-    }
-
     private void setLoggedInUser(OvernoteUser user) {
         this.loggedInUser = user;
         Session session = db.getSession();
@@ -284,29 +275,47 @@ public class BusinessLogic implements BlInterface {
         thumbnailTitle.unbind();
     }
 
-    //AL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
 
+    //AL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
     private static final String CONFIG_FILE = "configuration.properties";
     private static final String LANGUAGE_KEY = "language";
 
-    public void saveLanguage(Locale locale) {
-        Properties properties = new Properties();
-        try (OutputStream output = new FileOutputStream(CONFIG_FILE)) {
-            properties.setProperty(LANGUAGE_KEY, locale.toString());
-            properties.store(output, "User Language Configuration");
-        } catch (IOException e) {
-            e.printStackTrace();
+    @Override
+    public void changeLanguage(Locale locale) {
+        if (locale != null) {
+            Locale.setDefault(locale);
+            logger.info("Language changed to: {}", locale);
+
+            Properties properties = new Properties();
+            try (OutputStream output = new FileOutputStream(CONFIG_FILE)) {
+                properties.setProperty(LANGUAGE_KEY, locale.toString());
+                properties.store(output, "User Language Configuration");
+            } catch (IOException e) {
+                logger.error("Error saving language configuration", e);
+            }
+        } else {
+            logger.error("Locale is null");
         }
+
+        thumbnails.clear();
+        noteThumbnailControllerMap.clear();
+        WindowManager.getInstance().reloadAllScenes();
+
     }
 
+    @Override
     public Locale loadLanguage() {
         Properties properties = new Properties();
         try (InputStream input = new FileInputStream(CONFIG_FILE)) {
             properties.load(input);
             String language = properties.getProperty(LANGUAGE_KEY, "en");
-            return Locale.forLanguageTag(language);
+            Locale locale = Locale.forLanguageTag(language);
+            // Set the default locale for the application
+            Locale.setDefault(locale);
+            logger.info("Language loaded: {}", locale);
+            return locale;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error loading user Language Configuration", e);
         }
         // If an error occurs, return the default language of the computer
         return Locale.getDefault();
