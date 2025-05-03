@@ -6,6 +6,7 @@ import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import java.util.Locale;
 
 public interface BlInterface {
     // User
@@ -34,5 +35,11 @@ public interface BlInterface {
     void moveNoteToTrash(Note note);
     void deleteNote(Note note);
 
+    // Thumbnail
     NoteThumbnailController getThumbnailController(Note note);
+
+    // Language
+    void changeLanguage(Locale locale);
+    Locale loadLanguage();
+    String getTranslation(String s);
 }
