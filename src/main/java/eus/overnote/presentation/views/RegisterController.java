@@ -88,7 +88,10 @@ public class RegisterController {
 
         // Call the business logic to register the user
         try{
+
             bl.registerUser(fullName, email, password, confirmPassword);
+
+            logger.debug("User registered successfully. Email=\"{}\"", email);
         }
         catch (RegisterException e) {
             logger.error("Error registering user", e);
@@ -101,7 +104,7 @@ public class RegisterController {
         }
 
 
-
+/// //////////////////////////////////////////////////////antes de esto settear el user de la sesion
         WindowManager.getInstance().navigateToMain();
     }
 

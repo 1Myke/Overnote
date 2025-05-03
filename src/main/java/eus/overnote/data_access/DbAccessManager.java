@@ -44,6 +44,14 @@ public class DbAccessManager {
 
     public List<Note> getNotesbyUserID() {
         try {
+            logger.info("Retrieving notes for user with id {}", getSession().getCurrentUser().getId());
+
+        }
+        catch (Exception e){
+            logger.error("Error getting user ID: {}", e.getMessage());
+            return null;
+        }
+        try {
             TypedQuery<Note> query = db.createQuery("SELECT n FROM Note n WHERE n.user.id = :userId", Note.class);
             query.setParameter("userId", getSession().getCurrentUser().getId());
             List<Note> notes = query.getResultList();
