@@ -93,6 +93,7 @@ public class BusinessLogic implements BlInterface {
         String hashedPassword = hashPassword(password);
         OvernoteUser user = db.registerUser(fullName, email, hashedPassword);
         setLoggedInUser(user);
+        logger.info("Session created for user {}", user.getEmail());
         return user;
     }
 
@@ -129,6 +130,12 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void logoutUser() {
+        for (Note note : loggedInUser.getNotes()) {
+            noteThumbnailControllerMap.remove(note);
+            logger.debug("Removing thumbnail for note {}", note.getId());
+        }
+
+
         setLoggedInUser(null);
         Session session = db.getSession();
         session.setRememberMe(false);
@@ -234,6 +241,7 @@ public class BusinessLogic implements BlInterface {
     }
 
     private void setLoggedInUser(OvernoteUser user) {
+        logger.error("Setting logged in user to {}", user.getEmail());
         this.loggedInUser = user;
         Session session = db.getSession();
         session.setCurrentUser(user);

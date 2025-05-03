@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment="[FIX] fixed error in creating and updating notes creating duplicates and null notes, created by the way of assigning ID's to notes and commented the Tag part of notes till added because it created problems when adding a note into the database. Also added a few logger info and debugs for the ID values of the notes when creating and updating them">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment="fixed notes dissapearing when logging out and back again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BlInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BlInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/domain/Note.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteThumbnailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/components/NoteThumbnailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/MainApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,25 +43,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DebugMain.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fix/dbbugfixing&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aimar/Desktop/Unibertsitatea/SceneBuilder.lnk&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DebugMain.executor": "Run",
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "#79 on fix/dbbugfixing",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aimar/Desktop/Unibertsitatea/SceneBuilder.lnk",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eus.overnote.Main" />
@@ -144,7 +139,8 @@
       <workItem from="1745830418569" duration="6204000" />
       <workItem from="1745852944644" duration="2736000" />
       <workItem from="1745856156615" duration="2782000" />
-      <workItem from="1746137314325" duration="1603000" />
+      <workItem from="1746137314325" duration="3327000" />
+      <workItem from="1746302039838" duration="3932000" />
     </task>
     <task id="LOCAL-00001" summary="[FIX] fixed error in creating note, caused by Note no being correctly mapped to user">
       <option name="closed" value="true" />
@@ -162,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746138926145</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added a comment">
+      <option name="closed" value="true" />
+      <created>1746138983599</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746138983599</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +198,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[FIX] fixed error in creating note, caused by Note no being correctly mapped to user" />
     <MESSAGE value="[FIX] fixed error in creating and updating notes creating duplicates and null notes, created by the way of assigning ID's to notes and commented the Tag part of notes till added because it created problems when adding a note into the database. Also added a few logger info and debugs for the ID values of the notes when creating and updating them" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FIX] fixed error in creating and updating notes creating duplicates and null notes, created by the way of assigning ID's to notes and commented the Tag part of notes till added because it created problems when adding a note into the database. Also added a few logger info and debugs for the ID values of the notes when creating and updating them" />
+    <MESSAGE value="added a comment" />
+    <MESSAGE value="fixed notes dissapearing when logging out and back again" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed notes dissapearing when logging out and back again" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
