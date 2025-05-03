@@ -49,4 +49,14 @@ public class OvernoteUser {
         this.email = email;
         this.password = password;
     }
+
+    public List<Note> getDeletedNotes() {
+        List<Note> deletedNotes = new ArrayList<>();
+        for (Note note : notes) {
+            if (note.isDeleted()) {
+                deletedNotes.add(note);
+            }
+        }
+        return deletedNotes;
+    }
 }

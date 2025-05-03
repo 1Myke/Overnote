@@ -50,6 +50,8 @@
                      </VBox.margin>
                   </Button>
                   <Region VBox.vgrow="ALWAYS" />
+                  <Button fx:id="noteButton" focusTraversable="false" mnemonicParsing="false" onAction="#viewNotes" textAlignment="CENTER" />
+                  <Button fx:id="deletedNotesButton" focusTraversable="false" mnemonicParsing="false" onAction="#viewDeletedNotes" textAlignment="CENTER" />
                   <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="RIGHT">
                      <items>
                         <Menu mnemonicParsing="false" text="%main.profile.language">

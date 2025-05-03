@@ -4,9 +4,7 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
-import eus.overnote.presentation.components.NoteEditorController;
-import eus.overnote.presentation.components.NoteThumbnailController;
-import eus.overnote.presentation.components.ProfileBannerController;
+import eus.overnote.presentation.components.*;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,6 +46,12 @@ public class MainApplicationController {
     private Button newNoteButton;
 
     @FXML
+    private Button noteButton;
+
+    @FXML
+    private Button deletedNotesButton;
+
+    @FXML
     private MenuButton profileMenuButton;
 
     @FXML
@@ -77,6 +81,22 @@ public class MainApplicationController {
         } catch (Exception e) {
             profileMenuButton.setGraphic(new Text("Error loading profile banner"));
             logger.error("Error loading profile banner", e);
+        }
+
+        try{
+            deletedNotesButton.setGraphic(FXMLLoader.load(DeleteNoteBannerController.class.getResource("delete_note_banner.fxml")));
+            logger.debug("Deleted notes button loaded");
+        }catch (Exception e) {
+            deletedNotesButton.setGraphic(new Text("Error loading deleted notes button"));
+            logger.error("Error loading deleted notes button", e);
+        }
+
+        try{
+            noteButton.setGraphic(FXMLLoader.load(NotebookBannerController.class.getResource("notebook_banner.fxml")));
+            logger.debug("Deleted notes button loaded");
+        }catch (Exception e) {
+            noteButton.setGraphic(new Text("Error loading deleted notes button"));
+            logger.error("Error loading deleted notes button", e);
         }
 
         // Load Note FXML
@@ -146,6 +166,46 @@ public class MainApplicationController {
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);
         selectNote(createdNote);
+    }
+
+    @FXML
+    void viewNotes(ActionEvent event) {
+        if (bl.getLoggedInUser() == null) {
+            logger.error("No user logged in");
+            return;
+        }
+
+        logger.debug("Hiding deleted notes");
+        bl.getLoggedInUser().getDeletedNotes().forEach(note -> {
+            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+            thumbnail.hide();
+        });
+
+        logger.debug("Viewing notes");
+        bl.getLoggedInUser().getNotes().forEach(note -> {
+            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+            thumbnail.show();
+        });
+    }
+
+    @FXML
+    void viewDeletedNotes(ActionEvent event) {
+        if (bl.getLoggedInUser() == null) {
+            logger.error("No user logged in");
+            return;
+        }
+
+        logger.debug("Hiding notes");
+        bl.getLoggedInUser().getNotes().forEach(note -> {
+            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+            thumbnail.hide();
+        });
+
+        logger.debug("Viewing deleted notes");
+        bl.getLoggedInUser().getDeletedNotes().forEach(note -> {
+            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+            thumbnail.show();
+        });
     }
 
     /**
