@@ -3,6 +3,7 @@ package eus.overnote.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.jsoup.Jsoup;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class Note {
     @Setter
     private String title;
 
+    @Lob
     @Column(nullable = false)
     @Setter
     private String content;
@@ -66,5 +68,12 @@ public class Note {
     public void moveToTrash() {
         this.deleted = true;
         this.deleteDate = new Date();
+    }
+
+    public boolean matchesContent(String content) {
+
+        // Compare raw title, compare parsed content
+        return this.title.toLowerCase().contains(content.toLowerCase()) ||
+                Jsoup.parse(this.content).text().toLowerCase().contains(content.toLowerCase());
     }
 }

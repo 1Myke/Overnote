@@ -24,7 +24,7 @@
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>
                       <children>
-                          <Label text="Create Account" textFill="#333333">
+                          <Label text="%auth.register.label.create-account" textFill="#333333">
                               <font>
                                   <Font name="System Bold" size="22.0" />
                               </font>
@@ -38,7 +38,7 @@
                           </Label>
       
                           <!-- Full Name Field -->
-                          <Label text="FULL NAME" textFill="#666666">
+                          <Label text="%auth.register.label.full-name" textFill="#666666">
                               <font>
                                   <Font name="System Bold" size="11.0" />
                               </font>
@@ -46,7 +46,7 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <TextField fx:id="fullNameField" promptText="John Doe">
+                          <TextField fx:id="fullNameField" promptText="%auth.register.field.full-name.placeholder">
                               <VBox.margin>
                                   <Insets bottom="15.0" />
                               </VBox.margin>
@@ -56,7 +56,7 @@
                           </TextField>
       
                           <!-- Email Field -->
-                          <Label text="EMAIL" textFill="#666666">
+                          <Label text="%auth.common.label.email" textFill="#666666">
                               <font>
                                   <Font name="System Bold" size="11.0" />
                               </font>
@@ -64,7 +64,7 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <TextField fx:id="emailField" promptText="example@email.com">
+                          <TextField fx:id="emailField" promptText="%auth.common.field.email.placeholder">
                               <VBox.margin>
                                   <Insets />
                               </VBox.margin>
@@ -78,7 +78,7 @@
                      </VBox.margin></Label>
       
                           <!-- Password Field -->
-                          <Label text="PASSWORD" textFill="#666666">
+                          <Label text="%auth.common.label.password" textFill="#666666">
                               <font>
                                   <Font name="System Bold" size="11.0" />
                               </font>
@@ -86,7 +86,7 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <PasswordField fx:id="passwordField" prefHeight="35.0" prefWidth="388.0" promptText="your password">
+                          <PasswordField fx:id="passwordField" prefHeight="35.0" prefWidth="388.0" promptText="%auth.common.field.password.placeholder">
                               <VBox.margin>
                                   <Insets />
                               </VBox.margin>
@@ -103,7 +103,7 @@
                      </VBox.margin></Label>
       
                           <!-- Confirm Password Field -->
-                          <Label text="CONFIRM PASSWORD" textFill="#666666">
+                          <Label text="%auth.register.label.confirm-password" textFill="#666666">
                               <font>
                                   <Font name="System Bold" size="11.0" />
                               </font>
@@ -111,7 +111,7 @@
                                   <Insets bottom="5.0" />
                               </VBox.margin>
                           </Label>
-                          <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password">
+                          <PasswordField fx:id="confirmPasswordField" promptText="%auth.register.field.confirm-password">
                               <VBox.margin>
                                   <Insets />
                               </VBox.margin>
@@ -125,14 +125,14 @@
                      </VBox.margin></Label>
       
                           <!-- Terms Checkbox -->
-                          <CheckBox fx:id="termsCheckbox" text="I agree to the Terms of Service and Privacy Policy" textFill="#666666">
+                          <CheckBox fx:id="termsCheckbox" focusTraversable="false" text="%auth.register.checkbox.terms" textFill="#666666">
                               <VBox.margin>
                                   <Insets bottom="20.0" />
                               </VBox.margin>
                           </CheckBox>
       
                           <!-- Register Button -->
-                          <Button fx:id="registerButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="Create Account">
+                          <Button fx:id="registerButton" defaultButton="true" focusTraversable="false" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-primary" text="%auth.register.button.create-account">
                               <padding>
                                   <Insets bottom="10.0" top="10.0" />
                               </padding>
@@ -149,7 +149,7 @@
                           <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                       </padding>
                       <children>
-                          <Label text="Welcome to Overnote" textFill="WHITE">
+                          <Label text="%auth.register.label.welcome" textFill="WHITE">
                               <font>
                                   <Font name="System Bold" size="24.0" />
                               </font>
@@ -162,7 +162,7 @@
                      </styleClass>
                           </Label>
       
-                          <Label text="Already have an account?" textFill="WHITE">
+                          <Label text="%auth.register.label.already-have-account" textFill="WHITE">
                               <font>
                                   <Font size="14.0" />
                               </font>
@@ -175,7 +175,7 @@
                      </styleClass>
                           </Label>
       
-                          <Button fx:id="signInButton" mnemonicParsing="false" styleClass="button-secondary" text="Sign In">
+                          <Button fx:id="signInButton" focusTraversable="false" mnemonicParsing="false" styleClass="button-secondary" text="%auth.register.label.sign-in">
                               <padding>
                                   <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
                               </padding>
