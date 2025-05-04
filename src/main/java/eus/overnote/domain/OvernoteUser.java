@@ -59,14 +59,4 @@ public class OvernoteUser {
         }
         return n;
     }
-
-    public List<Note> getDeletedNotes() {
-        List<Note> deletedNotes = new ArrayList<>();
-        for (Note note : notes) {
-            if (note.isDeleted()) {
-                deletedNotes.add(note);
-            }
-        }
-        return deletedNotes;
-    }
 }

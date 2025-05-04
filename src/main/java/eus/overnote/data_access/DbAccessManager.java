@@ -42,9 +42,10 @@ public class DbAccessManager {
         logger.info("Database connection closed");
     }
 
-    public List<Note> getNotesbyUserID() {
-        TypedQuery<Note> query = db.createQuery("SELECT n FROM Note n WHERE n.user.id = :userId", Note.class);
+    public List<Note> getNotesbyUserID(boolean b) {
+        TypedQuery<Note> query = db.createQuery("SELECT n FROM Note n WHERE n.user.id = :userId AND n.deleted = :bool", Note.class);
         query.setParameter("userId", getSession().getCurrentUserWithoutRememberMe().getId());
+        query.setParameter("bool", b);
         List<Note> notes = query.getResultList();
         logger.info("Notes retrieved successfully");
         return notes;

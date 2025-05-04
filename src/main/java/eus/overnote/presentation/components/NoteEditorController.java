@@ -90,8 +90,11 @@ public class NoteEditorController {
         });
 
         saveButton.setVisible(true);
+        saveButton.setManaged(true);
         deleteButton.setVisible(true);
+        deleteButton.setManaged(true);
         recoverButton.setVisible(false);
+        recoverButton.setManaged(false);
     }
 
     /**

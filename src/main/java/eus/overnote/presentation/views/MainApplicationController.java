@@ -75,7 +75,10 @@ public class MainApplicationController {
         deleteSelected = false;
 
         // Initialize note list
-        notes = FXCollections.observableArrayList(bl.getNotesFromUserId());
+        notes = FXCollections.observableArrayList(bl.getNotesFromUserId(false));
+        for (Note note : bl.getNotesFromUserId(true)) {
+            notes.add(note);
+        }
 
         // Load the profile banner FXML
         try {
@@ -118,6 +121,15 @@ public class MainApplicationController {
         }
 
         notes.forEach(bl::addNewThumbnail);
+        notes.forEach(note -> {
+            if (note.isDeleted()) {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                thumbnail.hide();
+            } else {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                thumbnail.show();
+            }
+        });
 
         // Bind the searchbar with the visible thumbnails
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -207,7 +219,7 @@ public class MainApplicationController {
         noteEditorController.clearEditor();
 
         logger.debug("Hiding deleted notes");
-        bl.getLoggedInUser().getDeletedNotes().forEach(note -> {
+        bl.getNotesFromUserId(true).forEach(note -> {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
             thumbnail.hide();
         });
@@ -216,11 +228,14 @@ public class MainApplicationController {
         newNoteAiButton.setDisable(false);
 
         noteEditorController.getSaveButton().setVisible(true);
+        noteEditorController.getSaveButton().setManaged(true);
         noteEditorController.getDeleteButton().setVisible(true);
+        noteEditorController.getDeleteButton().setManaged(true);
         noteEditorController.getRecoverButton().setVisible(false);
+        noteEditorController.getRecoverButton().setManaged(false);
 
         logger.debug("Viewing notes");
-        bl.getLoggedInUser().getNotes().forEach(note -> {
+        bl.getNotesFromUserId(false).forEach(note -> {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
             thumbnail.show();
         });
@@ -239,7 +254,7 @@ public class MainApplicationController {
         searchTextField.clear();
 
         logger.debug("Hiding notes");
-        bl.getLoggedInUser().getNotes().forEach(note -> {
+        bl.getNotesFromUserId(false).forEach(note -> {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
             thumbnail.hide();
         });
@@ -250,11 +265,14 @@ public class MainApplicationController {
         newNoteAiButton.setDisable(true);
 
         noteEditorController.getSaveButton().setVisible(false);
+        noteEditorController.getSaveButton().setManaged(false);
         noteEditorController.getDeleteButton().setVisible(false);
+        noteEditorController.getDeleteButton().setManaged(false);
         noteEditorController.getRecoverButton().setVisible(true);
+        noteEditorController.getRecoverButton().setManaged(true);
 
         logger.debug("Viewing deleted notes");
-        bl.getLoggedInUser().getDeletedNotes().forEach(note -> {
+        bl.getNotesFromUserId(true).forEach(note -> {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
             thumbnail.show();
         });

@@ -26,7 +26,7 @@ public interface BlInterface {
     boolean validatePasswordMatch(String password, String confirmPassword);
 
     // Note
-    List<Note> getNotesFromUserId();
+    List<Note> getNotesFromUserId(boolean b);
     void selectNote(Note note);
     void saveNote(Note note);
     void updateNote(Note note);

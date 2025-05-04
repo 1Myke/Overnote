@@ -76,8 +76,8 @@ public class BusinessLogic implements BlInterface {
         return password.equals(confirmPassword);
     }
     @Override
-    public List<Note> getNotesFromUserId() {
-        return db.getNotesbyUserID();
+    public List<Note> getNotesFromUserId(boolean b) {
+        return db.getNotesbyUserID(b);
     }
 
     @Override
