@@ -18,6 +18,11 @@ import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.io.*;
 import java.util.*;
 
@@ -48,6 +53,9 @@ public class BusinessLogic implements BlInterface {
         noteThumbnailControllerMap = new HashMap<>();
     }
 
+
+
+
     public static BusinessLogic getInstance() {
         if (instance == null) {
             instance = new BusinessLogic();
@@ -67,7 +75,10 @@ public class BusinessLogic implements BlInterface {
     public boolean validatePasswordMatch(String password, String confirmPassword) {
         return password.equals(confirmPassword);
     }
-
+    @Override
+    public List<Note> getNotesFromUserId() {
+        return db.getNotesbyUserID();
+    }
 
     @Override
     public OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword) throws RegisterException {
@@ -89,6 +100,7 @@ public class BusinessLogic implements BlInterface {
         String hashedPassword = hashPassword(password);
         OvernoteUser user = db.registerUser(fullName, email, hashedPassword);
         setLoggedInUser(user);
+        logger.info("Session created for user {}", user.getEmail());
         return user;
     }
 
@@ -125,6 +137,12 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void logoutUser() {
+        for (Note note : loggedInUser.getNotes()) {
+            noteThumbnailControllerMap.remove(note);
+            logger.debug("Removing thumbnail for note {}", note.getId());
+        }
+
+
         setLoggedInUser(null);
         Session session = db.getSession();
         session.setRememberMe(false);
@@ -159,7 +177,9 @@ public class BusinessLogic implements BlInterface {
         }
 
         // Update the previous note in the database
-        noteEditorController.saveNote();
+        if(noteEditorController.getSelectedNoteNote() != null) {
+            noteEditorController.updateNote();
+        }
 
         // Unbind the thumbnail of the previous selected note
         Note previousNote = loggedInUser.getSelectedNote();
@@ -211,7 +231,7 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void moveNoteToTrash(Note note) {
-        noteEditorController.saveNote();
+        noteEditorController.updateNote();
         removeThumbnail(note);
         db.moveNoteToTrash(note);
         noteEditorController.clearEditor();
@@ -223,10 +243,15 @@ public class BusinessLogic implements BlInterface {
     }
 
     private void setLoggedInUser(OvernoteUser user) {
+        if (!(user == null)) {
+
+            logger.error("Setting logged in user to {}", user.getEmail());
+        }
         this.loggedInUser = user;
         Session session = db.getSession();
         session.setCurrentUser(user);
         db.saveSession(session);
+
     }
 
     private void setLoggedInUser(OvernoteUser user, boolean rememberMe) {
@@ -248,10 +273,15 @@ public class BusinessLogic implements BlInterface {
             noteThumbnailControllerMap.get(note).show();
         } else {
             try {
+                //here the id is right
+
+                logger.info("this note's id is \"{}\"",note.getId());
                 FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
                 Node thumbnail = fxmlLoader.load();
                 NoteThumbnailController controller = fxmlLoader.getController();
                 controller.setNote(note);
+                //here the id is right
+
                 noteThumbnailControllerMap.put(note, controller);
                 thumbnails.add(0,thumbnail);
 

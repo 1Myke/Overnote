@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import java.util.Locale;
 
+import java.util.List;
+
 public interface BlInterface {
     // User
     OvernoteUser registerUser(String fullName, String email, String password, String confirmPassword);
@@ -24,6 +26,7 @@ public interface BlInterface {
     boolean validatePasswordMatch(String password, String confirmPassword);
 
     // Note
+    List<Note> getNotesFromUserId();
     void selectNote(Note note);
     void saveNote(Note note);
     void updateNote(Note note);

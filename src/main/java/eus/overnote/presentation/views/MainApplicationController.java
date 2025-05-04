@@ -72,7 +72,7 @@ public class MainApplicationController {
         noteEditorController = bl.getNoteEditorController();
 
         // Initialize note list
-        notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
+        notes = FXCollections.observableArrayList(bl.getNotesFromUserId());
 
         // Load the profile banner FXML
         try {
@@ -105,6 +105,15 @@ public class MainApplicationController {
         // Initialize the sidebar
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
+
+
+        for(Note t: notes){
+            logger.info("the note has the id  \"{}\"", t.getId() );
+            //bl.addNewThumbnail(t);
+        //here the notes still have the correct id
+
+        }
+
         notes.forEach(bl::addNewThumbnail);
 
         // Bind the searchbar with the visible thumbnails
@@ -140,9 +149,10 @@ public class MainApplicationController {
 
         // Save the previous note
         logger.info("Saving the current note before selecting the next.");
-        noteEditorController.saveNote();
+        noteEditorController.updateNote();
 
-        logger.debug("Selecting note");
+        logger.info("Selecting note with id\"{}\"", note.getId());
+
         bl.selectNote(note);
     }
 
@@ -223,6 +233,8 @@ public class MainApplicationController {
      */
     @FXML
     void onLogout(ActionEvent event) {
+        // Erase notes "dropdown" menu
+
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();

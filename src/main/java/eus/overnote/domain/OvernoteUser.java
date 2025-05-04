@@ -35,7 +35,7 @@ public class OvernoteUser {
     @Setter
     private Note selectedNote;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy ="user", cascade  = CascadeType.ALL, orphanRemoval = true)
     private final List<Note> notes = new ArrayList<>();
 
     // Empty constructor for JPA
