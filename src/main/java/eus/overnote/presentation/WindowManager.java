@@ -106,6 +106,7 @@ public class WindowManager {
         // Clear the fields of the credentials of the auth stage
         loginController.clearFields();
         registerController.clearFields();
+        noteEditorController.clearEditor();
 
         if (!bl.isUserLoggedIn()) return;
 

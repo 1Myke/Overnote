@@ -242,6 +242,13 @@ public class BusinessLogic implements BlInterface {
         db.deleteNote(note);
     }
 
+    @Override
+    public void recoverNote(Note note) {
+        db.recoverNote(note);
+        removeThumbnail(note);
+        noteEditorController.clearEditor();
+    }
+
     private void setLoggedInUser(OvernoteUser user) {
         if (!(user == null)) {
 
@@ -293,7 +300,7 @@ public class BusinessLogic implements BlInterface {
         }
     }
 
-    private void removeThumbnail(Note note) {
+    public void removeThumbnail(Note note) {
         noteThumbnailControllerMap.get(note).hide();
 
         // Unbind the thumbnail from the editor

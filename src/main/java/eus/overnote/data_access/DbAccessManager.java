@@ -186,4 +186,18 @@ public class DbAccessManager {
             logger.error("Error deleting note: {}", e.getMessage());
         }
     }
+
+    public void recoverNote(Note note) {
+        try {
+            db.getTransaction().begin();
+            note.setDeleted(false);
+            note.setDeleteDate(null);
+            db.merge(note);
+            db.getTransaction().commit();
+            logger.info("Note with id {} recovered successfully", note.getId());
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error recovering note: {}", e.getMessage());
+        }
+    }
 }

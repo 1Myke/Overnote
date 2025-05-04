@@ -31,6 +31,7 @@ public class Note {
     @Column(nullable = false)
     private Date lastModificationDate = new Date();
 
+    @Setter
     private Date deleteDate;
 
     @ManyToOne()
@@ -47,6 +48,7 @@ public class Note {
     private final Set<Tag> tags = new HashSet<>();
 */
     @Column(nullable = false)
+    @Setter
     private boolean deleted = false;
 
     // Empty constructor for JPA

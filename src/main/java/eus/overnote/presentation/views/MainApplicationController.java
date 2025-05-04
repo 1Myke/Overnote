@@ -50,6 +50,7 @@ public class MainApplicationController {
 
     @FXML
     private Button deletedNotesButton;
+    private boolean deleteSelected;
 
     @FXML
     private MenuButton profileMenuButton;
@@ -70,6 +71,8 @@ public class MainApplicationController {
         logger.debug("Initializing main application view");
 
         noteEditorController = bl.getNoteEditorController();
+
+        deleteSelected = false;
 
         // Initialize note list
         notes = FXCollections.observableArrayList(bl.getNotesFromUserId());
@@ -121,7 +124,19 @@ public class MainApplicationController {
             notes.forEach(note -> {
                 NoteThumbnailController thumbnail = bl.getThumbnailController(note);
                 if (note.matchesContent(newValue)) {
-                    thumbnail.show();
+                    if (deleteSelected) {
+                        if (note.isDeleted()) {
+                            thumbnail.show();
+                        }else {
+                            thumbnail.hide();
+                        }
+                    }else {
+                        if (!note.isDeleted()) {
+                            thumbnail.show();
+                        }else {
+                            thumbnail.hide();
+                        }
+                    }
                 } else {
                     thumbnail.hide();
                 }
@@ -185,6 +200,12 @@ public class MainApplicationController {
             return;
         }
 
+        deleteSelected = false;
+        searchTextField.clear();
+
+        noteEditorController.setSelectedNote(null);
+        noteEditorController.clearEditor();
+
         logger.debug("Hiding deleted notes");
         bl.getLoggedInUser().getDeletedNotes().forEach(note -> {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
@@ -193,6 +214,10 @@ public class MainApplicationController {
 
         newNoteButton.setDisable(false);
         newNoteAiButton.setDisable(false);
+
+        noteEditorController.getSaveButton().setVisible(true);
+        noteEditorController.getDeleteButton().setVisible(true);
+        noteEditorController.getRecoverButton().setVisible(false);
 
         logger.debug("Viewing notes");
         bl.getLoggedInUser().getNotes().forEach(note -> {
@@ -207,6 +232,11 @@ public class MainApplicationController {
             logger.error("No user logged in");
             return;
         }
+        if (noteEditorController.getSelectedNoteNote() != null) {
+            noteEditorController.setSelectedNote(null);
+        }
+        noteEditorController.clearEditor();
+        searchTextField.clear();
 
         logger.debug("Hiding notes");
         bl.getLoggedInUser().getNotes().forEach(note -> {
@@ -214,8 +244,14 @@ public class MainApplicationController {
             thumbnail.hide();
         });
 
+        deleteSelected = true;
+
         newNoteButton.setDisable(true);
         newNoteAiButton.setDisable(true);
+
+        noteEditorController.getSaveButton().setVisible(false);
+        noteEditorController.getDeleteButton().setVisible(false);
+        noteEditorController.getRecoverButton().setVisible(true);
 
         logger.debug("Viewing deleted notes");
         bl.getLoggedInUser().getDeletedNotes().forEach(note -> {

@@ -50,6 +50,16 @@ public class OvernoteUser {
         this.password = password;
     }
 
+    public List<Note> getNotes() {
+        List<Note> n = new ArrayList<>();
+        for (Note note : notes) {
+            if (!note.isDeleted()) {
+                n.add(note);
+            }
+        }
+        return n;
+    }
+
     public List<Note> getDeletedNotes() {
         List<Note> deletedNotes = new ArrayList<>();
         for (Note note : notes) {

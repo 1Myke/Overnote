@@ -37,6 +37,7 @@ public interface BlInterface {
     Note getSelectedNote();
     void moveNoteToTrash(Note note);
     void deleteNote(Note note);
+    void recoverNote(Note note);
 
     // Thumbnail
     NoteThumbnailController getThumbnailController(Note note);

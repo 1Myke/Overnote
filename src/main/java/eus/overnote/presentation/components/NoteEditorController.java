@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
 import lombok.Getter;
+import lombok.Setter;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,19 +37,25 @@ public class NoteEditorController {
 
     @FXML
     private HTMLEditor htmlEditor;
-/*
+
     @FXML
+    @Getter
     private Button saveButton;
 
     @FXML
+    @Getter
     private Button deleteButton;
 
     @FXML
+    @Getter
     private Button recoverButton;
- */
 
     public void setSelectedNote(Note note) {
         // here the id is right
+        if (note == null) {
+            selectedNote = note;
+            return;
+        }
         logger.info(" Setting selected note to {}", note.getId());
         selectedNote = note;
         noteTitle.setText(note.getTitle());
@@ -81,6 +88,10 @@ public class NoteEditorController {
                 });
             }
         });
+
+        saveButton.setVisible(true);
+        deleteButton.setVisible(true);
+        recoverButton.setVisible(false);
     }
 
     /**
@@ -114,15 +125,12 @@ public class NoteEditorController {
     void saveNoteClickingButton() {
         updateNote();
     }
-/*
+
     @FXML
     void recover() {
-        selectedNote.setDeleted(false);
-        selectedNote.setDeleteDate(null);
-        bl.updateNote(selectedNote);
+        bl.recoverNote(selectedNote);
         logger.debug("Note {} recovered for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
     }
- */
 
     public void clearEditor() {
         root.setVisible(false);
@@ -140,6 +148,4 @@ public class NoteEditorController {
         bindedThumbnailController.setPreviewText(Jsoup.parse(htmlEditor.getHtmlText()).text());
         savePause.playFromStart();
     }
-
-
 }
