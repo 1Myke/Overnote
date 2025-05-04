@@ -52,8 +52,7 @@ public class NoteEditorController {
     public void initialize() {
         root.setVisible(false);
         // Set a timer to save the note after the user idles
-        savePause.setOnFinished(event -> updateNote());
-        savePause.setOnFinished(event -> updateNote());
+        savePause.setOnFinished(event -> {updateNote();selectedNote.setLastModificationDate(new Date());});
         htmlEditor.setOnKeyReleased(event -> onNoteUpdate());
         htmlEditor.setOnMouseClicked(event -> onNoteUpdate());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
@@ -64,6 +63,7 @@ public class NoteEditorController {
                 newScene.setOnKeyPressed(event -> {
                     if (event.isControlDown() && event.getCode() == javafx.scene.input.KeyCode.S) {
                         updateNote();
+                        selectedNote.setLastModificationDate(new Date());
                         event.consume(); // Prevent further handling of the event
                     }
                 });
@@ -83,7 +83,7 @@ public class NoteEditorController {
             logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             selectedNote.setTitle(noteTitle.getText());
             selectedNote.setContent(htmlEditor.getHtmlText());
-            selectedNote.setLastModificationDate(new Date());
+            //selectedNote.setLastModificationDate(new Date());
             bl.updateNote(selectedNote);
             logger.debug("Note {} saved for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             logger.debug("{}'s notes: {}", selectedNote.getUser().getEmail(), selectedNote.getUser().getNotes());
