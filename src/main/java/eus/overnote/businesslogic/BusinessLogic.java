@@ -241,11 +241,15 @@ public class BusinessLogic implements BlInterface {
     }
 
     private void setLoggedInUser(OvernoteUser user) {
-        logger.error("Setting logged in user to {}", user.getEmail());
+        if (!(user == null)) {
+
+            logger.error("Setting logged in user to {}", user.getEmail());
+        }
         this.loggedInUser = user;
         Session session = db.getSession();
         session.setCurrentUser(user);
         db.saveSession(session);
+
     }
 
     private void setLoggedInUser(OvernoteUser user, boolean rememberMe) {
