@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment="fixed notes dissapearing when logging out and back again">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/data_access/DbAccessManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/presentation/views/RegisterController.java" afterDir="false" />
-    </list>
+    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment=" fixed the bug when registering that didn't log in" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +13,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="fix/dbbugfixing" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,7 +44,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#79 on fix/dbbugfixing",
+    "git-widget-placeholder": "f608dbc6",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/aimar/Desktop/Unibertsitatea/SceneBuilder.lnk",
@@ -107,6 +102,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.BusinessLogicTest" />
+      <item itemvalue="JUnit.BusinessLogicTest.testRegisterUser" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -166,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746138983599</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=" fixed the bug when registering that didn't log in">
+      <option name="closed" value="true" />
+      <created>1746365821787</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746365821787</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,9 +208,18 @@
     <MESSAGE value="[FIX] fixed error in creating and updating notes creating duplicates and null notes, created by the way of assigning ID's to notes and commented the Tag part of notes till added because it created problems when adding a note into the database. Also added a few logger info and debugs for the ID values of the notes when creating and updating them" />
     <MESSAGE value="added a comment" />
     <MESSAGE value="fixed notes dissapearing when logging out and back again" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed notes dissapearing when logging out and back again" />
+    <MESSAGE value=" fixed the bug when registering that didn't log in" />
+    <option name="LAST_COMMIT_MESSAGE" value=" fixed the bug when registering that didn't log in" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="e" />
