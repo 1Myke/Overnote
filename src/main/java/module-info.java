@@ -1,5 +1,4 @@
 module eus.overnote.presentation {
-    requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
@@ -12,6 +11,7 @@ module eus.overnote.presentation {
     requires com.h2database;
     requires jbcrypt;
     requires org.jsoup;
+    requires javafx.web;
 
     exports eus.overnote;
     exports eus.overnote.presentation;
