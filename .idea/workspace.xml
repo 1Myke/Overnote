@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment=" fixed the bug when registering that didn't log in">
+    <list default="true" id="640702bd-5c91-48df-b9e1-5de37ff1a37e" name="Changes" comment="fixed conflicts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eus/overnote/businesslogic/BusinessLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +47,7 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "188d6cd0",
+    "git-widget-placeholder": "#80 on detached2",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/aimar/Desktop/Unibertsitatea/SceneBuilder.lnk",
@@ -185,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746371245096</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed conflicts">
+      <option name="closed" value="true" />
+      <created>1746373093133</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746373093133</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +228,8 @@
     <MESSAGE value="added a comment" />
     <MESSAGE value="fixed notes dissapearing when logging out and back again" />
     <MESSAGE value=" fixed the bug when registering that didn't log in" />
-    <option name="LAST_COMMIT_MESSAGE" value=" fixed the bug when registering that didn't log in" />
+    <MESSAGE value="fixed conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed conflicts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
