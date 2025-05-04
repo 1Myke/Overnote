@@ -52,8 +52,8 @@ public class NoteEditorController {
     public void initialize() {
         root.setVisible(false);
         // Set a timer to save the note after the user idles
-        savePause.setOnFinished(event -> saveNote());
-        savePause.setOnFinished(event -> saveNote());
+        savePause.setOnFinished(event -> updateNote());
+        savePause.setOnFinished(event -> updateNote());
         htmlEditor.setOnKeyReleased(event -> onNoteUpdate());
         htmlEditor.setOnMouseClicked(event -> onNoteUpdate());
         noteTitle.textProperty().addListener((observable, oldValue, newValue) -> savePause.playFromStart());
@@ -63,7 +63,7 @@ public class NoteEditorController {
             if (newScene != null) {
                 newScene.setOnKeyPressed(event -> {
                     if (event.isControlDown() && event.getCode() == javafx.scene.input.KeyCode.S) {
-                        saveNote();
+                        updateNote();
                         event.consume(); // Prevent further handling of the event
                     }
                 });
@@ -76,7 +76,9 @@ public class NoteEditorController {
      * It updates the attributes of the selected note with the values of the text fields
      * and calls the business logic to update the note in the database.
      */
-    public void saveNote() {
+
+
+    public void updateNote() {
         if (selectedNote != null){
             logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             selectedNote.setTitle(noteTitle.getText());
@@ -98,7 +100,7 @@ public class NoteEditorController {
 
     @FXML
     void saveNoteClickingButton() {
-        saveNote();
+        updateNote();
     }
 
     public void clearEditor() {
