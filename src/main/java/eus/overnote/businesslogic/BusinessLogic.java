@@ -4,8 +4,10 @@ import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.domain.Session;
+import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
+import eus.overnote.presentation.views.MainApplicationController;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.io.*;
+import java.util.*;
 
 public class BusinessLogic implements BlInterface {
 
@@ -38,6 +42,9 @@ public class BusinessLogic implements BlInterface {
     @Getter
     /// The list of note thumbnail components that are displayed in the note list.
     private ObservableList<Node> thumbnails;
+    @Getter
+    /// The controller of the main application window.
+    private MainApplicationController mainApplicationController;
 
     private BusinessLogic() {
         db = new DbAccessManager();
@@ -178,10 +185,7 @@ public class BusinessLogic implements BlInterface {
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
             NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
-            StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
             StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-
-            thumbnailText.unbind();
             thumbnailTitle.unbind();
         }
 
@@ -199,12 +203,10 @@ public class BusinessLogic implements BlInterface {
         // Set the selected style for the selected thumbnail
         thumbnailController.setSelectedStyle(true);
         // Bind the thumbnail to the editor
-        StringProperty thumbnailText = thumbnailController.getPreviewTextLabel().textProperty();
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-        StringProperty editorText = noteEditorController.getNoteText().textProperty();
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
+        noteEditorController.bindThumbnailController(thumbnailController);
 
-        thumbnailText.bind(editorText);
         thumbnailTitle.bind(editorTitle);
     }
 
@@ -295,9 +297,71 @@ public class BusinessLogic implements BlInterface {
         noteThumbnailControllerMap.get(note).hide();
 
         // Unbind the thumbnail from the editor
-        StringProperty thumbnailText = noteThumbnailControllerMap.get(note).getPreviewTextLabel().textProperty();
         StringProperty thumbnailTitle = noteThumbnailControllerMap.get(note).getTitleText().textProperty();
-        thumbnailText.unbind();
         thumbnailTitle.unbind();
+    }
+
+    @Override
+    public NoteThumbnailController getThumbnailController(Note note) {
+        return noteThumbnailControllerMap.get(note);
+    }
+
+    //
+    // ALL THE RELATED THING WITH THE LANGUAGES AND CONFIGURATION.PROPERTIES
+    //
+
+    private static final String CONFIG_FILE = "configuration.properties";
+    private static final String LANGUAGE_KEY = "language";
+
+    @Override
+    public void changeLanguage(Locale locale) {
+        if (locale != null) {
+            Locale.setDefault(locale);
+            logger.info("Language changed to: {}", locale);
+
+            Properties properties = new Properties();
+            try (OutputStream output = new FileOutputStream(CONFIG_FILE)) {
+                properties.setProperty(LANGUAGE_KEY, locale.toString());
+                properties.store(output, "User Language Configuration");
+            } catch (IOException e) {
+                logger.error("Error saving language configuration", e);
+            }
+        } else {
+            logger.error("Locale is null");
+        }
+
+        thumbnails.clear();
+        noteThumbnailControllerMap.clear();
+        WindowManager.getInstance().reloadAllScenes();
+
+    }
+
+    @Override
+    public Locale loadLanguage() {
+        Properties properties = new Properties();
+        try (InputStream input = new FileInputStream(CONFIG_FILE)) {
+            properties.load(input);
+            String language = properties.getProperty(LANGUAGE_KEY, "en");
+            Locale locale = Locale.forLanguageTag(language);
+            // Set the default locale for the application
+            Locale.setDefault(locale);
+            logger.info("Language loaded: {}", locale);
+            return locale;
+        } catch (IOException e) {
+            logger.error("Error loading user Language Configuration", e);
+        }
+        // If an error occurs, return the default language of the computer
+        return Locale.getDefault();
+    }
+
+    @Override
+    public String getTranslation(String s) {
+        ResourceBundle rb = ResourceBundle.getBundle("eus.overnote.presentation.messages", Locale.getDefault());
+        try {
+            return rb.getString(s);
+        } catch (MissingResourceException e) {
+            logger.error("Error loading translation for key: {}", s, e);
+            return s;
+        }
     }
 }

@@ -3,12 +3,13 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -38,20 +39,27 @@
                         <Insets top="-10.0" />
                      </VBox.margin>
                   </Separator>
-                  <Button fx:id="newNoteButton" mnemonicParsing="false" onAction="#createNote" styleClass="button-secondary" text="+ New Note" textAlignment="CENTER">
+                  <Button fx:id="newNoteButton" focusTraversable="false" mnemonicParsing="false" onAction="#createNote" styleClass="button-secondary" text="%main.button.new-note" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="newNoteAiButton" mnemonicParsing="false" styleClass="button-secondary" text="+ AI Generated Note" textAlignment="CENTER">
+                  <Button fx:id="newNoteAiButton" focusTraversable="false" mnemonicParsing="false" styleClass="button-secondary" text="%main.button.new-note-AI" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </Button>
                   <Region VBox.vgrow="ALWAYS" />
-                  <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" popupSide="TOP">
+                  <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="RIGHT">
                      <items>
-                      <MenuItem mnemonicParsing="false" onAction="#onLogout" text="Logout" />
+                        <Menu mnemonicParsing="false" text="%main.profile.language">
+                          <items>
+                            <MenuItem fx:id="en" mnemonicParsing="false" text="%main.profile.language.en" />
+                              <MenuItem fx:id="es" mnemonicParsing="false" text="%main.profile.language.es" />
+                              <MenuItem fx:id="eu" mnemonicParsing="false" text="%main.profile.language.eu" />
+                          </items>
+                        </Menu>
+                      <MenuItem mnemonicParsing="false" onAction="#onLogout" text="%main.profile.button.logout" />
                     </items>
                   </MenuButton>
                </children>
@@ -59,17 +67,41 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
             </VBox>
-            <ScrollPane fitToWidth="true" minWidth="415.0" HBox.hgrow="ALWAYS">
-               <content>
-                  <VBox fx:id="sidebarVBox" spacing="10.0" styleClass="background-light" />
-               </content>
+            <VBox styleClass="background-light" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </ScrollPane>
+               <children>
+                  <HBox onMouseClicked="#focusSearchBar" spacing="10.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="title" text="🔍" VBox.vgrow="SOMETIMES">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <TextField fx:id="searchTextField" focusTraversable="false" promptText="%main.sidebar.search.placeholder" styleClass="text-field" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <ScrollPane fitToWidth="true" focusTraversable="false" minWidth="415.0" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox fx:id="sidebarVBox" spacing="10.0" styleClass="background-light" />
+                     </content>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </ScrollPane>
+               </children>
+            </VBox>
          </children>
       </HBox>
    </left>

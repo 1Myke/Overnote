@@ -5,6 +5,7 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
+import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.components.ProfileBannerController;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -15,11 +16,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.Locale;
 
 public class MainApplicationController {
 
@@ -29,6 +34,9 @@ public class MainApplicationController {
 
     @FXML
     private VBox sidebarVBox;
+
+    @FXML
+    private TextField searchTextField;
 
     @FXML
     private Button newNoteAiButton;
@@ -41,6 +49,15 @@ public class MainApplicationController {
 
     @FXML
     private MenuButton profileMenuButton;
+
+    @FXML
+    private MenuItem en;
+
+    @FXML
+    private MenuItem es;
+
+    @FXML
+    private MenuItem eu;
 
     private ObservableList<Note> notes;
     private ObservableList<Node> thumbnails;
@@ -78,6 +95,23 @@ public class MainApplicationController {
         }
 
         notes.forEach(bl::addNewThumbnail);
+
+        // Bind the searchbar with the visible thumbnails
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            notes.forEach(note -> {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                if (note.matchesContent(newValue)) {
+                    thumbnail.show();
+                } else {
+                    thumbnail.hide();
+                }
+            });
+        });
+
+        // Language menu listeners
+        en.setOnAction(event -> bl.changeLanguage(Locale.ENGLISH));
+        es.setOnAction(event -> bl.changeLanguage(new Locale("es")));
+        eu.setOnAction(event -> bl.changeLanguage(new Locale("eu")));
     }
 
     /**
@@ -117,7 +151,7 @@ public class MainApplicationController {
         }
 
         logger.debug("Creating new note");
-        Note createdNote = new Note("Untitled note", "", bl.getLoggedInUser());
+        Note createdNote = new Note(bl.getTranslation("note.default.title"), "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);
@@ -138,5 +172,10 @@ public class MainApplicationController {
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();
+    }
+
+    @FXML
+    void focusSearchBar(MouseEvent event) {
+        searchTextField.requestFocus();
     }
 }

@@ -3,8 +3,10 @@ package eus.overnote.businesslogic;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.components.NoteEditorController;
+import eus.overnote.presentation.components.NoteThumbnailController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import java.util.Locale;
 
 import java.util.List;
 
@@ -35,4 +37,12 @@ public interface BlInterface {
     Note getSelectedNote();
     void moveNoteToTrash(Note note);
     void deleteNote(Note note);
+
+    // Thumbnail
+    NoteThumbnailController getThumbnailController(Note note);
+
+    // Language
+    void changeLanguage(Locale locale);
+    Locale loadLanguage();
+    String getTranslation(String s);
 }

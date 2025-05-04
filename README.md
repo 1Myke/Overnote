@@ -1,7 +1,6 @@
 # Overnote
 
-> [!WARNING]
-> **Overnote is in early development**. Features may change unexpectedly
+> [!WARNING] > **Overnote is in early development**. Features may change unexpectedly
 > and frequent updates are anticipated.
 
 ## Overview
@@ -13,6 +12,7 @@ text editing, AI-assisted note generation[^1], and powerful search and filtering
 [^1]: AI-assisted note generation is powered by Google's Gemini technology.
 
 ## Features
+
 1. 📝 **Creating Notes:** Start fresh or use predefined templates to create new notes.
 2. 🏷️ **Filtering Notes:** Use tags to filter notes and access them effortlessly.
 3. 🔍 **Searching Notes:** Find what you need with real-time suggestions.
@@ -22,16 +22,56 @@ text editing, AI-assisted note generation[^1], and powerful search and filtering
 7. 💾 **Backup and Recovery:** Regular backups, export/import options, and version history to keep your notes safe.
 
 ## About us
-We are a young group of students from the Basque Country University, knwon as EHU/UPV. We are on our second course of computer science engineering in Donosti/San Sebastian and we are working on this project for the Software Engineering 1 subject. 
-The name of our group is *Stack Underflow* and the members are, Jorge Arévalo, Mikel López, Aimar Villegas and Mikel Martinez.
+
+We are a young group of students from the Basque Country University, knwon as EHU/UPV. We are on our second course of computer science engineering in Donosti/San Sebastian and we are working on this project for the Software Engineering 1 subject.
+The name of our group is _Stack Underflow_ and the members are, Jorge Arévalo, Mikel López, Aimar Villegas and Mikel Martinez.
 
 ## Sprint 1
+
 We've been working on some different points for this sprint. The main stuff of this project was the preparation and presentation of the project, that involves different parts as, the UI mockup, the wording, the use-case diagram, the domain model or the event flow. After that we were asked to start coding and to implement the Register/Login use-case and another use-case that we want to implement. We choose the "create a note" use-case, mainly because is the first action that the user would do after logging in in our application and also because without the creation of the note we can't continue working on some of the other use-cases.
 
 ## Sprint 2
+
 For this second sprint of the project, we've implemented a security feature for storing passwords as hashes. This was done using the Bcrypt library. To enhance password security, we now require users to create robust passwords by applying regular expressions.
 In addition, two new use cases were implemented in Overnote. One allows the user to edit notes, making note usage more comfortable. The other allows the user to delete a note. In this last case, the user can also access the bin. For the next sprint, we would like to implement the "recover a note" use case, which will allow users to restore a note from the bin within 30 days of deletion.
 Finally, we have improved and fixed the errors from the first sprint and created the sequence diagram for the "Edit a note" use case.
 
 # Sprint 2 PD:
+
 There is an error in the creation of the notes that we need to fix for the 3rd sprint. Notes are duplicated when we create one, in other words, when you create one note in the databes two notes are created and we are still working on the fix of this
+
+## Development
+
+To run the application in development mode, you can use the following command:
+
+```bash
+mvn javafx:run
+```
+
+### Debug Mode
+
+To run the application in debug mode, you need to modify the `pom.xml` file to use the `DebugMain` class instead of the regular `Main` class. Here's how to do it:
+
+1. Open `pom.xml`
+2. Find the `javafx-maven-plugin` configuration
+3. Change the `mainClass` from `eus.overnote.Main` to `eus.overnote.DebugMain`
+
+The debug mode will automatically create and log in a debug user with the following credentials:
+
+- Email: `debug@overnote.eus`
+- Password: `debug`
+
+### Test Credentials
+
+For testing purposes, there are two sets of credentials available:
+
+1. Debug User (automatically created when running in debug mode):
+
+   - Email: `debug@overnote.eus`
+   - Password: `debug`
+
+2. Test User (used in unit tests):
+   - Email: `john.doe@example.com`
+   - Password: `Password123`
+
+Note: The test user credentials are only used in unit tests and do not persist in the system.

@@ -12,9 +12,12 @@ import javafx.scene.text.Text;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.jsoup.Jsoup;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 public class NoteThumbnailController {
 
@@ -30,7 +33,6 @@ public class NoteThumbnailController {
     private Text dateText;
 
     @FXML
-    @Getter
     private Label previewTextLabel;
 
     @FXML
@@ -55,7 +57,7 @@ public class NoteThumbnailController {
         logger.info("this note's id is \"{}\"",note.getId());
         // Values updated via bindings
         titleText.setText(note.getTitle());
-        previewTextLabel.setText(note.getContent());
+        previewTextLabel.setText(Jsoup.parse(note.getContent()).text());
         // Manual update
         updateContent();
     }
@@ -97,14 +99,20 @@ public class NoteThumbnailController {
         */
     }
 
+    /**
+     * Formats the last modification date of the note to a string, using the default locale.
+     * @return The formatted date string.
+     */
     private String formatNoteDate() {
-        // Format to "HH:mm - dd/MM/yyyy" using java.time API
         LocalDateTime lastModDate = note.getLastModificationDate().toInstant()
                 .atZone(java.time.ZoneId.systemDefault())
                 .toLocalDateTime();
-        return lastModDate.format(DateTimeFormatter.ofPattern(
-                "HH:mm - dd/MM/yyyy"
-        ));
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.SHORT)
+                .withLocale(Locale.getDefault());
+        String formattedDate = lastModDate.format(formatter);
+        String formattedTime = lastModDate.format(DateTimeFormatter.ofPattern("HH:mm"));
+        return String.format("%s - %s", formattedTime, formattedDate);
     }
 
     public void hide() {
@@ -115,5 +123,9 @@ public class NoteThumbnailController {
     public void show() {
         root.setManaged(true);
         root.setVisible(true);
+    }
+
+    public void setPreviewText(String text) {
+        previewTextLabel.setText(text);
     }
 }
