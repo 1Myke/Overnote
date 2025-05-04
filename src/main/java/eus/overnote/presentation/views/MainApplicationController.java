@@ -181,6 +181,9 @@ public class MainApplicationController {
             thumbnail.hide();
         });
 
+        newNoteButton.setDisable(false);
+        newNoteAiButton.setDisable(false);
+
         logger.debug("Viewing notes");
         bl.getLoggedInUser().getNotes().forEach(note -> {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
@@ -200,6 +203,9 @@ public class MainApplicationController {
             NoteThumbnailController thumbnail = bl.getThumbnailController(note);
             thumbnail.hide();
         });
+
+        newNoteButton.setDisable(true);
+        newNoteAiButton.setDisable(true);
 
         logger.debug("Viewing deleted notes");
         bl.getLoggedInUser().getDeletedNotes().forEach(note -> {

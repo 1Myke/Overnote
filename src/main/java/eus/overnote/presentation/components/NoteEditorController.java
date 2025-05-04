@@ -4,7 +4,9 @@ import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
@@ -34,6 +36,16 @@ public class NoteEditorController {
 
     @FXML
     private HTMLEditor htmlEditor;
+/*
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button recoverButton;
+ */
 
     public void setSelectedNote(Note note) {
         selectedNote = note;
@@ -96,6 +108,15 @@ public class NoteEditorController {
     void saveNoteClickingButton() {
         saveNote();
     }
+/*
+    @FXML
+    void recover() {
+        selectedNote.setDeleted(false);
+        selectedNote.setDeleteDate(null);
+        bl.updateNote(selectedNote);
+        logger.debug("Note {} recovered for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+    }
+ */
 
     public void clearEditor() {
         root.setVisible(false);
