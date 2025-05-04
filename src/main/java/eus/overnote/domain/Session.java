@@ -35,4 +35,7 @@ public class Session {
             return null;
         }
     }
+    public OvernoteUser getCurrentUserWithoutRememberMe() {
+        return currentUser;
+    }
 }
