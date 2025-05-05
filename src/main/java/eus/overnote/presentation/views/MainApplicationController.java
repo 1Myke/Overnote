@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.Locale;
 
 public class MainApplicationController {
 
@@ -49,6 +51,15 @@ public class MainApplicationController {
     @FXML
     private MenuButton profileMenuButton;
 
+    @FXML
+    private MenuItem en;
+
+    @FXML
+    private MenuItem es;
+
+    @FXML
+    private MenuItem eu;
+
     private ObservableList<Note> notes;
     private ObservableList<Node> thumbnails;
 
@@ -58,7 +69,7 @@ public class MainApplicationController {
         noteEditorController = bl.getNoteEditorController();
 
         // Initialize note list
-        notes = FXCollections.observableArrayList(bl.getLoggedInUser().getNotes());
+        notes = FXCollections.observableArrayList(bl.getNotesFromUserId());
 
         // Load the profile banner FXML
         try {
@@ -75,6 +86,15 @@ public class MainApplicationController {
         // Initialize the sidebar
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
+
+
+        for(Note t: notes){
+            logger.info("the note has the id  \"{}\"", t.getId() );
+            //bl.addNewThumbnail(t);
+        //here the notes still have the correct id
+
+        }
+
         notes.forEach(bl::addNewThumbnail);
 
         // Bind the searchbar with the visible thumbnails
@@ -88,6 +108,11 @@ public class MainApplicationController {
                 }
             });
         });
+
+        // Language menu listeners
+        en.setOnAction(event -> bl.changeLanguage(Locale.ENGLISH));
+        es.setOnAction(event -> bl.changeLanguage(new Locale("es")));
+        eu.setOnAction(event -> bl.changeLanguage(new Locale("eu")));
     }
 
     /**
@@ -105,9 +130,10 @@ public class MainApplicationController {
 
         // Save the previous note
         logger.info("Saving the current note before selecting the next.");
-        noteEditorController.saveNote();
+        noteEditorController.updateNote();
 
-        logger.debug("Selecting note");
+        logger.info("Selecting note with id\"{}\"", note.getId());
+
         bl.selectNote(note);
     }
 
@@ -126,7 +152,7 @@ public class MainApplicationController {
         }
 
         logger.debug("Creating new note");
-        Note createdNote = new Note("Untitled note", "", bl.getLoggedInUser());
+        Note createdNote = new Note(bl.getTranslation("note.default.title"), "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);
@@ -169,6 +195,8 @@ public class MainApplicationController {
      */
     @FXML
     void onLogout(ActionEvent event) {
+        // Erase notes "dropdown" menu
+
         logger.debug("Logging out user \"{}\"", bl.getLoggedInUser().getFullName());
         bl.logoutUser();
         WindowManager.getInstance().navigateToLogin();

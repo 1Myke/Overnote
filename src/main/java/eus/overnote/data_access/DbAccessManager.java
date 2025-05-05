@@ -12,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 
 public class DbAccessManager {
 
@@ -40,28 +42,37 @@ public class DbAccessManager {
         logger.info("Database connection closed");
     }
 
+    public List<Note> getNotesbyUserID() {
+        TypedQuery<Note> query = db.createQuery("SELECT n FROM Note n WHERE n.user.id = :userId", Note.class);
+        query.setParameter("userId", getSession().getCurrentUserWithoutRememberMe().getId());
+        List<Note> notes = query.getResultList();
+        logger.info("Notes retrieved successfully");
+        return notes;
+
+    }
+
     public Session getSession() {
-        try {
-            TypedQuery<Session> query = db.createQuery("select s from Session as s", Session.class);
-            Session session;
-            db.getTransaction().begin();
-            if (query.getResultList().isEmpty()) {
+        TypedQuery<Session> query = db.createQuery("select s from Session as s", Session.class);
+        Session session;
+        if (query.getResultList().isEmpty()) {
+            try {
+                db.getTransaction().begin();
                 session = new Session();
                 session = db.merge(session);
                 logger.info("Session not found, creating a new one");
                 db.getTransaction().commit();
                 return session;
-            } else {
-                session = query.getSingleResult();
-                logger.info("Session found");
-                db.getTransaction().commit();
-                return session;
+            } catch (Exception e) {
+                db.getTransaction().rollback();
+                logger.error("Error getting session: {}", e.getMessage());
+                return null;
             }
-        } catch (Exception e) {
-            db.getTransaction().rollback();
-            logger.error("Error getting session: {}", e.getMessage());
-            return null;
+        } else {
+            session = query.getSingleResult();
+            logger.info("Session found");
+            return session;
         }
+
     }
 
     public void saveSession(Session session) {
@@ -117,20 +128,29 @@ public class DbAccessManager {
     }
 
     public void saveNote(Note note) {
-        try {
-            db.getTransaction().begin();
-            note = db.merge(note);
-            note.getUser().getNotes().add(note);
-            db.getTransaction().commit();
-            logger.info("Note with id {} saved successfully", note.getId());
-        } catch (Exception e) {
-            db.getTransaction().rollback();
-            logger.error("Error saving note: {}", e.getMessage());
+        if (!(note.getId() == null)) {
+
+
+            try {
+                db.getTransaction().begin();
+                logger.debug("Transaction to save a note started");
+                note = db.merge(note);
+                note.getUser().getNotes().add(note);
+                db.getTransaction().commit();
+                logger.info("Note with id {} saved successfully", note.getId());
+            } catch (Exception e) {
+                db.getTransaction().rollback();
+                logger.error("Error saving note: {}", e.getMessage());
+            }
+        } else {
+            logger.error("Note id is null");
         }
     }
 
     public void updateNote(Note note) {
         try {
+
+            logger.error(" last Updating note with id {}", note.getId());
             db.getTransaction().begin();
             db.merge(note);
             db.getTransaction().commit();

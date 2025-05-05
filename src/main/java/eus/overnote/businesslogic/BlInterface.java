@@ -6,6 +6,9 @@ import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import java.util.Locale;
+
+import java.util.List;
 
 public interface BlInterface {
     // User
@@ -23,6 +26,7 @@ public interface BlInterface {
     boolean validatePasswordMatch(String password, String confirmPassword);
 
     // Note
+    List<Note> getNotesFromUserId();
     void selectNote(Note note);
     void saveNote(Note note);
     void updateNote(Note note);
@@ -35,5 +39,11 @@ public interface BlInterface {
     void deleteNote(Note note);
     Note generateAINote(String prompt);
 
+    // Thumbnail
     NoteThumbnailController getThumbnailController(Note note);
+
+    // Language
+    void changeLanguage(Locale locale);
+    Locale loadLanguage();
+    String getTranslation(String s);
 }
