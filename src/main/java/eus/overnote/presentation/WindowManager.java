@@ -9,6 +9,7 @@ import eus.overnote.presentation.views.RegisterController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import lombok.Getter;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class WindowManager {
@@ -73,7 +75,8 @@ public class WindowManager {
         authStage.setTitle("Overnote");
         mainStage = new Stage();
         mainStage.setTitle("Overnote");
-
+        mainStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
+        authStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png"))));
         // Loading the scenes
         loadRegisterScene();
         loadLoginScene();
@@ -163,6 +166,7 @@ public class WindowManager {
         FXMLLoader mainLoader = new FXMLLoader(MainApplicationController.class.getResource("main.fxml"), rb);
         try {
             mainScene = new Scene(mainLoader.load());
+
             mainController = mainLoader.getController();
         } catch (IOException e) {
             logger.error("Failed to load main scene", e);
