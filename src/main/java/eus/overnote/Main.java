@@ -3,6 +3,9 @@ package eus.overnote;
 import eus.overnote.presentation.WindowManager;
 import javafx.application.Application;
 import eus.overnote.data_access.DbAccessManager;
+import javafx.scene.image.Image;
+
+import java.util.Objects;
 
 public class Main extends Application {
 
