@@ -49,4 +49,6 @@ public interface BlInterface {
 
     // AI
     void setGeminiAPIKey(String key);
+
+    String sendGeminiRequest(String prompt);
 }
