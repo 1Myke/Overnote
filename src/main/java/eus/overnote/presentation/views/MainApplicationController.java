@@ -7,6 +7,7 @@ import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.components.ProfileBannerController;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -152,7 +153,7 @@ public class MainApplicationController {
         bl.saveNote(createdNote);
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);
-        selectNote(createdNote);
+        Platform.runLater(() -> selectNote(createdNote));
     }
 
     @FXML
@@ -196,7 +197,7 @@ public class MainApplicationController {
                 bl.saveNote(generatedNote);
                 notes.add(generatedNote);
                 bl.addNewThumbnail(generatedNote);
-                selectNote(generatedNote);
+                Platform.runLater(() -> selectNote(generatedNote));
             });
 
             // Handle task failure
