@@ -59,4 +59,13 @@ public class OvernoteUser {
         }
         return n;
     }
+
+    public List<Note> getAllNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes.clear();
+        this.notes.addAll(notes);
+    }
 }

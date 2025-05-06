@@ -9,6 +9,7 @@ import jakarta.persistence.TypedQuery;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.sql.ast.tree.expression.Over;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -178,13 +179,30 @@ public class DbAccessManager {
     public void deleteNote(Note note) {
         try {
             db.getTransaction().begin();
-            note.getUser().getNotes().remove(note);
-            db.remove(note);
+
+            // Find the managed entity
+            Note managedNote = db.find(Note.class, note.getId());
+            if (managedNote != null) {
+                // Remove the note from the user's collection
+                OvernoteUser user = managedNote.getUser();
+                if (user != null) {
+                    user.getAllNotes().remove(managedNote);
+                    user.setSelectedNote(null);
+                    db.merge(user); // Update the user entity
+                }
+
+                // Detach the note from the user
+                managedNote.setUser(null);
+
+                // Remove the note
+                db.remove(managedNote);
+            }
+
             db.getTransaction().commit();
             logger.info("Note with id {} deleted successfully", note.getId());
         } catch (Exception e) {
             db.getTransaction().rollback();
-            logger.error("Error deleting note: {}", e.getMessage());
+            logger.error("Error deleting note: {}", e.getMessage(), e);
         }
     }
 

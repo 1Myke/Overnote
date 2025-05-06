@@ -123,8 +123,10 @@ public class BusinessLogic implements BlInterface {
      * Delete the notes that are marked as trashed
      * if they were deleted more than 30 days ago.
      */
-    private void checkNotesForDeletion() {
-        for (Note note : loggedInUser.getNotes()) {
+    @Override
+    public void checkNotesForDeletion() {
+        List<Note> notes = new ArrayList<>(loggedInUser.getAllNotes());
+        for (Note note : notes) {
             if (note.isDeleted()) {
                 long diff = System.currentTimeMillis() - note.getDeleteDate().getTime();
                 long days = diff / (1000 * 60 * 60 * 24);
@@ -185,8 +187,10 @@ public class BusinessLogic implements BlInterface {
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
             NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
-            StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-            thumbnailTitle.unbind();
+            if (thumbnailController != null) {
+                StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+                thumbnailTitle.unbind();
+            }
         }
 
         // Set the unselected style for all the thumbnails
@@ -240,6 +244,9 @@ public class BusinessLogic implements BlInterface {
     @Override
     public void deleteNote(Note note) {
         db.deleteNote(note);
+        removeThumbnail(note);
+        noteThumbnailControllerMap.remove(note);
+        WindowManager.getInstance().reloadAllScenes();
     }
 
     @Override
@@ -290,7 +297,9 @@ public class BusinessLogic implements BlInterface {
                 //here the id is right
 
                 noteThumbnailControllerMap.put(note, controller);
+                logger.debug("I shouldn't be null: {}", noteThumbnailControllerMap.get(note));
                 thumbnails.add(0,thumbnail);
+                logger.debug("I shouldn't be null: {}", thumbnails.get(0));
 
                 // Don't show the thumbnail if the note is deleted
                 if (note.isDeleted()) controller.hide();
@@ -300,7 +309,7 @@ public class BusinessLogic implements BlInterface {
         }
     }
 
-    public void removeThumbnail(Note note) {
+    private void removeThumbnail(Note note) {
         noteThumbnailControllerMap.get(note).hide();
 
         // Unbind the thumbnail from the editor

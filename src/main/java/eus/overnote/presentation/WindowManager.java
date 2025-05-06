@@ -108,6 +108,8 @@ public class WindowManager {
         registerController.clearFields();
         noteEditorController.clearEditor();
 
+        bl.checkNotesForDeletion();
+
         if (!bl.isUserLoggedIn()) return;
 
         loadMainScene();

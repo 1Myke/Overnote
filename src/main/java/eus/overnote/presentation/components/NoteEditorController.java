@@ -119,8 +119,13 @@ public class NoteEditorController {
     @FXML
     public void moveToTrash() {
         if (selectedNote != null) {
-            logger.debug("Note {} moved to trash for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
-            bl.moveNoteToTrash(selectedNote);
+            if (!selectedNote.isDeleted()) {
+                logger.debug("Note {} moved to trash for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+                bl.moveNoteToTrash(selectedNote);
+            }else {
+                logger.debug("Note {} deleted for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+                bl.deleteNote(selectedNote);
+            }
         }
     }
 

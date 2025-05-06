@@ -18,8 +18,10 @@ public class Tag {
     @Setter
     private String name;
 
+/*
     @ManyToMany
     private Set<Note> notes;
+*/
 
     // Empty constructor for JPA
     protected Tag() {

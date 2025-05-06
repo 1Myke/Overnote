@@ -212,6 +212,11 @@ public class MainApplicationController {
             return;
         }
 
+        notes = FXCollections.observableArrayList(bl.getNotesFromUserId(false));
+        for (Note note : bl.getNotesFromUserId(true)) {
+            notes.add(note);
+        }
+
         deleteSelected = false;
         searchTextField.clear();
 
@@ -219,26 +224,28 @@ public class MainApplicationController {
         noteEditorController.clearEditor();
 
         logger.debug("Hiding deleted notes");
-        bl.getNotesFromUserId(true).forEach(note -> {
-            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-            thumbnail.hide();
-        });
+        for (Note n : notes) {
+            if (n.isDeleted()) {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(n);
+                thumbnail.hide();
+            }
+        }
 
         newNoteButton.setDisable(false);
         newNoteAiButton.setDisable(false);
 
         noteEditorController.getSaveButton().setVisible(true);
         noteEditorController.getSaveButton().setManaged(true);
-        noteEditorController.getDeleteButton().setVisible(true);
-        noteEditorController.getDeleteButton().setManaged(true);
         noteEditorController.getRecoverButton().setVisible(false);
         noteEditorController.getRecoverButton().setManaged(false);
 
         logger.debug("Viewing notes");
-        bl.getNotesFromUserId(false).forEach(note -> {
-            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-            thumbnail.show();
-        });
+        for (Note n : notes) {
+            if (!n.isDeleted()) {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(n);
+                thumbnail.show();
+            }
+        }
     }
 
     @FXML
@@ -250,14 +257,22 @@ public class MainApplicationController {
         if (noteEditorController.getSelectedNoteNote() != null) {
             noteEditorController.setSelectedNote(null);
         }
+
+        notes = FXCollections.observableArrayList(bl.getNotesFromUserId(false));
+        for (Note note : bl.getNotesFromUserId(true)) {
+            notes.add(note);
+        }
+
         noteEditorController.clearEditor();
         searchTextField.clear();
 
         logger.debug("Hiding notes");
-        bl.getNotesFromUserId(false).forEach(note -> {
-            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-            thumbnail.hide();
-        });
+        for (Note n : notes) {
+            if (!n.isDeleted()) {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(n);
+                thumbnail.hide();
+            }
+        }
 
         deleteSelected = true;
 
@@ -266,16 +281,16 @@ public class MainApplicationController {
 
         noteEditorController.getSaveButton().setVisible(false);
         noteEditorController.getSaveButton().setManaged(false);
-        noteEditorController.getDeleteButton().setVisible(false);
-        noteEditorController.getDeleteButton().setManaged(false);
         noteEditorController.getRecoverButton().setVisible(true);
         noteEditorController.getRecoverButton().setManaged(true);
 
         logger.debug("Viewing deleted notes");
-        bl.getNotesFromUserId(true).forEach(note -> {
-            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-            thumbnail.show();
-        });
+        for (Note n : notes) {
+            if (n.isDeleted()) {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(n);
+                thumbnail.show();
+            }
+        }
     }
 
     /**

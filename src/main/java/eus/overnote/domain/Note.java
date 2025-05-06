@@ -14,6 +14,7 @@ import java.util.UUID;
 @Entity
 public class Note {
     @Id
+    @Setter
     private UUID id;
 
     @Column(nullable = false)
@@ -36,6 +37,7 @@ public class Note {
 
     @ManyToOne()
     @JoinColumn(nullable = false)
+    @Setter
     private OvernoteUser user;
 
 /*
