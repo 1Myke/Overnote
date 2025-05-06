@@ -171,7 +171,7 @@ public class MainApplicationController {
         // Show a dialog asking prompt for the AI note
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Create AI Note");
-        dialog.setHeaderText("Create a new note using AI");
+        dialog.setHeaderText(null);
         dialog.setContentText("What is your note about?");
         dialog.showAndWait().ifPresent(prompt -> {
             logger.debug("Creating new AI note with prompt: \"{}\"", prompt);
@@ -205,5 +205,17 @@ public class MainApplicationController {
     @FXML
     void focusSearchBar(MouseEvent event) {
         searchTextField.requestFocus();
+    }
+
+    @FXML
+    void configureGemini(ActionEvent event) {
+        logger.debug("Configuring Gemini");
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Gemini Configuration");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Enter the Gemini API key:");
+        dialog.showAndWait().ifPresent(key -> {
+            logger.debug("Gemini API key set to: \"{}\"", key);
+        });
     }
 }
