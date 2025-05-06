@@ -383,8 +383,7 @@ public class BusinessLogic implements BlInterface {
      */
     @Override
     public String sendGeminiRequest(String prompt) {
-        prompt = "Write an HTML document as if you were taking notes about the following topic (in the same language): " + prompt;
-
+        prompt = "Write a basic HTML document (without markdown code blocks or ```html tags) as if you were taking notes about the following topic (in the same language): " + prompt;
         String apiKey = loggedInUser.getGeminiAPIKey();
         if (apiKey == null || apiKey.isEmpty()) {
             logger.error("Gemini API key is not set");
