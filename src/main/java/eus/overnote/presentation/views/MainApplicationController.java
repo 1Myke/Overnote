@@ -2,6 +2,7 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
+import eus.overnote.businesslogic.GeminiException;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
@@ -14,11 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -175,13 +172,21 @@ public class MainApplicationController {
         dialog.setContentText(bl.getTranslation("main.ai.note.dialog.content"));
         dialog.showAndWait().ifPresent(prompt -> {
             logger.debug("Creating new AI note with prompt: \"{}\"", prompt);
-            Note generatedNote = bl.generateAINote(prompt);
-
-            bl.saveNote(generatedNote);
-            notes.add(generatedNote);
-            bl.addNewThumbnail(generatedNote);
-            selectNote(generatedNote);
-
+            try {
+                Note generatedNote = bl.generateAINote(prompt);
+                bl.saveNote(generatedNote);
+                notes.add(generatedNote);
+                bl.addNewThumbnail(generatedNote);
+                selectNote(generatedNote);
+            } catch (GeminiException e) {
+                logger.error("Error generating AI note: {}", e.getMessage());
+                // Display the error in a dialog
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(bl.getTranslation("main.ai.note.error.title"));
+                alert.setHeaderText(null);
+                alert.setContentText(bl.getTranslation("main.ai.note.error.content"));
+                alert.showAndWait();
+            }
         });
 
     }

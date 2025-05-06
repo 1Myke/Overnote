@@ -302,7 +302,7 @@ public class BusinessLogic implements BlInterface {
     }
 
     @Override
-    public Note generateAINote(String prompt) {
+    public Note generateAINote(String prompt) throws GeminiException {
         String generatedContent = sendGeminiRequest(prompt);
         return new Note(getTranslation("note.ai.note.title"), generatedContent, this.getLoggedInUser());
     }
@@ -375,9 +375,13 @@ public class BusinessLogic implements BlInterface {
     /**
      * Uses OKHTTP to send a request to the Gemini API and get the response.
      * Parses the response using GSON and returns the generated text.
+     *
+     * @param prompt The prompt to send to the Gemini API.
+     * @return The generated text from the Gemini API.
+     * @throws GeminiException If there is an error sending the request or parsing the response.
      */
     @Override
-    public String sendGeminiRequest(String prompt) {
+    public String sendGeminiRequest(String prompt) throws GeminiException {
         prompt = "Write a basic HTML document (without markdown code blocks or ```html tags) as if you were taking notes about the following topic (in the same language): " + prompt;
         String apiKey = loggedInUser.getGeminiAPIKey();
         if (apiKey == null || apiKey.isEmpty()) {
@@ -441,19 +445,21 @@ public class BusinessLogic implements BlInterface {
                 }
 
                 logger.error("Could not extract generated text from response");
-                return null;
+                throw new GeminiException("Could not extract generated text from response");
             } else {
                 logger.error("Gemini API request failed: {} - {}", statusCode, response.message());
                 try {
                     String errorBody = response.body() != null ? response.body().string() : "No response body";
                     logger.error("Error details: {}", errorBody);
+                    throw new GeminiException(errorBody);
                 } catch (IOException e) {
                     logger.error("Could not read error response body", e);
+                    throw new GeminiException("Error reading Gemini API response");
                 }
             }
         } catch (IOException e) {
             logger.error("Network error sending Gemini API request", e);
+            throw new GeminiException("Network error sending Gemini API request");
         }
-        return null;
     }
 }
