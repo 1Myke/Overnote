@@ -2,7 +2,6 @@ package eus.overnote.presentation.views;
 
 import eus.overnote.businesslogic.BlInterface;
 import eus.overnote.businesslogic.BusinessLogic;
-import eus.overnote.businesslogic.GeminiException;
 import eus.overnote.domain.Note;
 import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
@@ -167,26 +166,57 @@ public class MainApplicationController {
 
         // Show a dialog asking prompt for the AI note
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle(bl.getTranslation("main.ai.note.dialog.title"));
+        dialog.setTitle(bl.getTranslation("main.ai.note.create.dialog.title"));
         dialog.setHeaderText(null);
-        dialog.setContentText(bl.getTranslation("main.ai.note.dialog.content"));
+        dialog.setContentText(bl.getTranslation("main.ai.note.create.dialog.content"));
         dialog.showAndWait().ifPresent(prompt -> {
             logger.debug("Creating new AI note with prompt: \"{}\"", prompt);
-            try {
-                Note generatedNote = bl.generateAINote(prompt);
+
+            // Show progress indicator
+            ProgressIndicator progressIndicator = new ProgressIndicator();
+            progressIndicator.setMaxSize(50, 50);
+            Alert progressAlert = new Alert(Alert.AlertType.NONE);
+            progressAlert.setTitle(bl.getTranslation("main.ai.note.generating.dialog.title"));
+            progressAlert.setGraphic(progressIndicator);
+            progressAlert.setHeaderText(bl.getTranslation("main.ai.note.generating.dialog.content"));
+            progressAlert.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+            // Create background task
+            javafx.concurrent.Task<Note> task = new javafx.concurrent.Task<>() {
+                @Override
+                protected Note call() throws Exception {
+                    return bl.generateAINote(prompt);
+                }
+            };
+
+            // Handle task completion
+            task.setOnSucceeded(e -> {
+                progressAlert.close();
+                Note generatedNote = task.getValue();
                 bl.saveNote(generatedNote);
                 notes.add(generatedNote);
                 bl.addNewThumbnail(generatedNote);
                 selectNote(generatedNote);
-            } catch (GeminiException e) {
-                logger.error("Error generating AI note: {}", e.getMessage());
-                // Display the error in a dialog
+            });
+
+            // Handle task failure
+            task.setOnFailed(e -> {
+                progressAlert.close();
+                logger.error("Error generating AI note: {}", task.getException().getMessage());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle(bl.getTranslation("main.ai.note.error.title"));
                 alert.setHeaderText(null);
                 alert.setContentText(bl.getTranslation("main.ai.note.error.content"));
                 alert.showAndWait();
-            }
+            });
+
+            // Start the task in a new thread
+            new Thread(task).start();
+            progressAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.CANCEL && task.isRunning()) {
+                    task.cancel();
+                }
+            });
         });
 
     }
