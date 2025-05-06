@@ -170,9 +170,9 @@ public class MainApplicationController {
 
         // Show a dialog asking prompt for the AI note
         TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Create AI Note");
+        dialog.setTitle(bl.getTranslation("main.ai.note.dialog.title"));
         dialog.setHeaderText(null);
-        dialog.setContentText("What is your note about?");
+        dialog.setContentText(bl.getTranslation("main.ai.note.dialog.content"));
         dialog.showAndWait().ifPresent(prompt -> {
             logger.debug("Creating new AI note with prompt: \"{}\"", prompt);
             Note generatedNote = bl.generateAINote(prompt);

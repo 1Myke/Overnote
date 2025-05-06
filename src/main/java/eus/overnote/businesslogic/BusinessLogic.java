@@ -304,12 +304,7 @@ public class BusinessLogic implements BlInterface {
     @Override
     public Note generateAINote(String prompt) {
         String generatedContent = sendGeminiRequest(prompt);
-
-        Note note = new Note("Untitled note", "", this.getLoggedInUser());
-        note.setTitle("AI Note");
-        note.setContent(generatedContent);
-
-        return note;
+        return new Note(getTranslation("note.ai.note.title"), generatedContent, this.getLoggedInUser());
     }
 
     //

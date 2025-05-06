@@ -52,7 +52,7 @@
                   <Region VBox.vgrow="ALWAYS" />
                   <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="RIGHT">
                      <items>
-                      <MenuItem mnemonicParsing="false" onAction="#configureGemini" text="Configure Gemini API key" />
+                      <MenuItem mnemonicParsing="false" onAction="#configureGemini" text="%main.profile.button.geminiConfig" />
                         <Menu mnemonicParsing="false" text="%main.profile.language">
                           <items>
                             <MenuItem fx:id="en" mnemonicParsing="false" text="%main.profile.language.en" />
