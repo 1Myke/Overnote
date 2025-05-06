@@ -368,4 +368,10 @@ public class BusinessLogic implements BlInterface {
             return s;
         }
     }
+
+    @Override
+    public void setGeminiAPIKey(String key) {
+        logger.debug("Gemini API key set to: \"{}\"", key);
+        db.setGeminiAPIKey(key, loggedInUser);
+    }
 }

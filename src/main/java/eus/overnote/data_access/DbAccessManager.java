@@ -186,4 +186,17 @@ public class DbAccessManager {
             logger.error("Error deleting note: {}", e.getMessage());
         }
     }
+
+    public void setGeminiAPIKey(String key, OvernoteUser loggedInUser) {
+        try {
+            db.getTransaction().begin();
+            loggedInUser.setGeminiAPIKey(key);
+            db.merge(loggedInUser);
+            db.getTransaction().commit();
+            logger.info("Gemini API key set successfully");
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error setting Gemini API key: {}", e.getMessage());
+        }
+    }
 }

@@ -46,4 +46,7 @@ public interface BlInterface {
     void changeLanguage(Locale locale);
     Locale loadLanguage();
     String getTranslation(String s);
+
+    // AI
+    void setGeminiAPIKey(String key);
 }

@@ -214,8 +214,6 @@ public class MainApplicationController {
         dialog.setTitle("Gemini Configuration");
         dialog.setHeaderText(null);
         dialog.setContentText("Enter the Gemini API key:");
-        dialog.showAndWait().ifPresent(key -> {
-            logger.debug("Gemini API key set to: \"{}\"", key);
-        });
+        dialog.showAndWait().ifPresent(bl::setGeminiAPIKey);
     }
 }
