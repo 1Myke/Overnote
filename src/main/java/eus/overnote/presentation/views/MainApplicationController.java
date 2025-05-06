@@ -157,10 +157,8 @@ public class MainApplicationController {
      */
     @FXML
     void createNote(ActionEvent event) {
-        if (bl.getLoggedInUser() == null) {
-            logger.error("No user logged in");
-            return;
-        }
+        logger.info("Saving the current note before creating the new.");
+        noteEditorController.updateNote();
 
         logger.debug("Creating new note");
         Note createdNote = new Note(bl.getTranslation("note.default.title"), "", bl.getLoggedInUser());
@@ -172,10 +170,8 @@ public class MainApplicationController {
 
     @FXML
     void createAINote(ActionEvent event) {
-        if (bl.getLoggedInUser() == null) {
-            logger.error("No user logged in");
-            return;
-        }
+        logger.info("Saving the current note before creating the new.");
+        noteEditorController.updateNote();
 
         logger.debug("Creating new AI generated note");
 
