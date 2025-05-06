@@ -20,7 +20,7 @@
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" spacing="20.0" styleClass="primary-color">
+            <VBox alignment="TOP_CENTER" minWidth="210.0" spacing="20.0" styleClass="primary-color">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Overnote" textAlignment="CENTER">
                      <VBox.margin>
