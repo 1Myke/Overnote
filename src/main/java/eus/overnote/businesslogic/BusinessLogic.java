@@ -382,7 +382,7 @@ public class BusinessLogic implements BlInterface {
      */
     @Override
     public String sendGeminiRequest(String prompt) throws GeminiException {
-        prompt = "Write a basic HTML document (without markdown code blocks or ```html tags) as if you were taking notes about the following topic (in the same language): " + prompt;
+        prompt = "Write a basic HTML document (without markdown code blocks or ```html tags) as if you were taking notes about the following topic (in the same language, if unable to detect, their default locale is " + Locale.getDefault().toString() + "). Topic: [" + prompt + "] End of topic. If the topic is not clear, try to guess what the user wants and write about it. As last resource, say that the topic was not clear. Do not add any other information, just the HTML document.";
         String apiKey = loggedInUser.getGeminiAPIKey();
         if (apiKey == null || apiKey.isEmpty()) {
             logger.error("Gemini API key is not set");
