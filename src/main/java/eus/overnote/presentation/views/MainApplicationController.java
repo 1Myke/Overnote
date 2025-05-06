@@ -22,6 +22,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Comparator;
 import java.util.Locale;
 
 public class MainApplicationController {
@@ -92,6 +94,18 @@ public class MainApplicationController {
 
         }
 
+        // Sort from oldest to newest
+        notes.sort(new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                if (n1.getCreationDate() == null || n2.getCreationDate() == null) {
+                    return 0;
+                }
+                return n1.getCreationDate().compareTo(n2.getCreationDate());
+            }
+        });
+
+        // Add thumbnails to the sidebar
         notes.forEach(bl::addNewThumbnail);
 
         // Bind the searchbar with the visible thumbnails

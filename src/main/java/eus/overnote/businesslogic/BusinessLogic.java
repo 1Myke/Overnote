@@ -207,11 +207,6 @@ public class BusinessLogic implements BlInterface {
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
         noteEditorController.bindThumbnailController(thumbnailController);
         thumbnailTitle.bind(editorTitle);
-
-        // Readd the thumbnail to the list of thumbnails
-        // This is done to make sure that the thumbnail is at the top of the list
-        thumbnails.remove(thumbnailController.getRoot());
-        thumbnails.add(0, thumbnailController.getRoot());
     }
 
     @Override
@@ -231,6 +226,12 @@ public class BusinessLogic implements BlInterface {
     public void updateNote(Note note) {
         noteThumbnailControllerMap.get(note).updateContent();
         db.updateNote(note);
+
+        // Readd the thumbnail to the list of thumbnails
+        // This is done to make sure that the thumbnail is at the top of the list
+        NoteThumbnailController tc = noteThumbnailControllerMap.get(note);
+        thumbnails.remove(tc.getRoot());
+        thumbnails.add(0, tc.getRoot());
     }
 
     @Override
