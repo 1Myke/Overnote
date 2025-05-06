@@ -22,7 +22,7 @@ public class NoteEditorController {
     private NoteThumbnailController bindedThumbnailController;
 
     /// The timer to detect user inactivity.
-    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.0001));
+    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.25));
     BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
