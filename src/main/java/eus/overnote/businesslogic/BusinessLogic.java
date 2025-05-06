@@ -206,8 +206,12 @@ public class BusinessLogic implements BlInterface {
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
         noteEditorController.bindThumbnailController(thumbnailController);
-
         thumbnailTitle.bind(editorTitle);
+
+        // Readd the thumbnail to the list of thumbnails
+        // This is done to make sure that the thumbnail is at the top of the list
+        thumbnails.remove(thumbnailController.getRoot());
+        thumbnails.add(0, thumbnailController.getRoot());
     }
 
     @Override
