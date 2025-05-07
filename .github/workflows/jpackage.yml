@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'adoptopenjdk'  # You can use 'temurin' or other distributions if preferred
+          distribution: 'temurin'  # You can use 'temurin' or other distributions if preferred
 
       # Install dependencies and build with Maven
       - name: Build with Maven
