@@ -75,3 +75,6 @@ For testing purposes, there are two sets of credentials available:
    - Password: `Password123`
 
 Note: The test user credentials are only used in unit tests and do not persist in the system.
+
+## Sprint 3
+Finally, for this last sprint, we added the i18n support to change between 3 languages, English, Spanish, and Basque. We also added note formatting support in HTML; the editor is much better now. The option to save the note and to recover the note after deleting has also been added in this sprint, followed by a searching bar for the notes, an application icon, and the much-desired AI-generated note. In this sprint, we also corrected the error of the duplicated notes. To finish the project, we will create the executable to make the application available for the people who want to use it.
