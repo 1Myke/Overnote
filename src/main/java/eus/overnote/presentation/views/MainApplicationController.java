@@ -70,6 +70,7 @@ public class MainApplicationController {
         bl.checkNotesForDeletion();
         bl.setMainApplicationController(this);
         noteEditorController = bl.getNoteEditorController();
+        noteEditorController.clearEditor();
 
         // Initialize note list
         notes = FXCollections.observableArrayList(bl.getNotesFromUserId());
