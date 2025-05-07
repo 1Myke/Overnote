@@ -1,7 +1,5 @@
 # Overnote
-
-> [!WARNING] > **Overnote is in early development**. Features may change unexpectedly
-> and frequent updates are anticipated.
+![Static Badge](https://img.shields.io/badge/View%20presentation-Google%20Slides-yellow?style=for-the-badge&link=https%3A%2F%2Fdocs.google.com%2Fpresentation%2Fd%2F1G7LYpwR0kCgq6G4kE5DWdMPRvlt3iWKQlWVVLRXFJzQ%2Fedit%3Fusp%3Dsharing)
 
 ## Overview
 
@@ -9,7 +7,7 @@ Welcome to Overnote! 🎉 Your ultimate multiplatform note-taking companion desi
 your productivity and keep you organized. With Overnote, you can enjoy features like rich
 text editing, AI-assisted note generation[^1], and powerful search and filtering capabilities.
 
-[^1]: AI-assisted note generation is powered by Google's Gemini technology.
+[^1]: AI-assisted note generation is powered by Google's Gemini technology. Bring your own key.
 
 ## Features
 
@@ -36,9 +34,12 @@ For this second sprint of the project, we've implemented a security feature for 
 In addition, two new use cases were implemented in Overnote. One allows the user to edit notes, making note usage more comfortable. The other allows the user to delete a note. In this last case, the user can also access the bin. For the next sprint, we would like to implement the "recover a note" use case, which will allow users to restore a note from the bin within 30 days of deletion.
 Finally, we have improved and fixed the errors from the first sprint and created the sequence diagram for the "Edit a note" use case.
 
-# Sprint 2 PD:
+### Sprint 2 PD:
 
 There is an error in the creation of the notes that we need to fix for the 3rd sprint. Notes are duplicated when we create one, in other words, when you create one note in the databes two notes are created and we are still working on the fix of this
+
+## Sprint 3
+Finally, for this last sprint, we added the i18n support to change between 3 languages, English, Spanish, and Basque. We also added note formatting support in HTML; the editor is much better now. The option to save the note and to recover the note after deleting has also been added in this sprint, followed by a searching bar for the notes, an application icon, and the much-desired AI-generated note. In this sprint, we also corrected the error of the duplicated notes. To finish the project, we will create the executable to make the application available for the people who want to use it.
 
 ## Development
 
@@ -75,6 +76,3 @@ For testing purposes, there are two sets of credentials available:
    - Password: `Password123`
 
 Note: The test user credentials are only used in unit tests and do not persist in the system.
-
-## Sprint 3
-Finally, for this last sprint, we added the i18n support to change between 3 languages, English, Spanish, and Basque. We also added note formatting support in HTML; the editor is much better now. The option to save the note and to recover the note after deleting has also been added in this sprint, followed by a searching bar for the notes, an application icon, and the much-desired AI-generated note. In this sprint, we also corrected the error of the duplicated notes. To finish the project, we will create the executable to make the application available for the people who want to use it.
