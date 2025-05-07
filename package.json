@@ -17,7 +17,8 @@
         "jar": "target/Overnote-1.0-SNAPSHOT-jar-with-dependencies.jar",
         "javafx": false,
         "title": "Overnote",
-        "bundles": ["win", "linux"]
+        "bundles": ["mac-x64", "mac-arm64", "win", "linux"],
+        "installers": ["win", "linux"]
     },
     "dependencies": {
         "command-exists-promise": "^2.0.2",
