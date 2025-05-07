@@ -20,7 +20,7 @@
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" spacing="20.0" styleClass="primary-color">
+            <VBox alignment="TOP_CENTER" minWidth="210.0" spacing="20.0" styleClass="primary-color">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" text="Overnote" textAlignment="CENTER">
                      <VBox.margin>
@@ -44,7 +44,7 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="newNoteAiButton" focusTraversable="false" mnemonicParsing="false" styleClass="button-secondary" text="%main.button.new-note-AI" textAlignment="CENTER">
+                  <Button fx:id="newNoteAiButton" focusTraversable="false" mnemonicParsing="false" onAction="#createAINote" styleClass="button-secondary" text="%main.button.new-note-AI" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -52,6 +52,7 @@
                   <Region VBox.vgrow="ALWAYS" />
                   <MenuButton fx:id="profileMenuButton" alignment="CENTER" contentDisplay="RIGHT" focusTraversable="false" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" popupSide="RIGHT">
                      <items>
+                      <MenuItem mnemonicParsing="false" onAction="#configureGemini" text="%main.profile.button.geminiConfig" />
                         <Menu mnemonicParsing="false" text="%main.profile.language">
                           <items>
                             <MenuItem fx:id="en" mnemonicParsing="false" text="%main.profile.language.en" />

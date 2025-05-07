@@ -1,5 +1,6 @@
 package eus.overnote.businesslogic;
 
+import com.google.gson.Gson;
 import eus.overnote.data_access.DbAccessManager;
 import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
@@ -15,14 +16,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import lombok.Getter;
 import lombok.Setter;
+import okhttp3.OkHttpClient;
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.io.*;
 import java.util.*;
 
@@ -113,7 +113,6 @@ public class BusinessLogic implements BlInterface {
         if (checkPassword(password, user.getPassword())) {
             setLoggedInUser(user, rememberMe);
             thumbnails = FXCollections.observableArrayList();
-            checkNotesForDeletion();
             return user;
         } else
             return null;
@@ -123,7 +122,8 @@ public class BusinessLogic implements BlInterface {
      * Delete the notes that are marked as trashed
      * if they were deleted more than 30 days ago.
      */
-    private void checkNotesForDeletion() {
+    @Override
+    public void checkNotesForDeletion() {
         for (Note note : loggedInUser.getNotes()) {
             if (note.isDeleted()) {
                 long diff = System.currentTimeMillis() - note.getDeleteDate().getTime();
@@ -185,9 +185,15 @@ public class BusinessLogic implements BlInterface {
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
             NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
-            StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-            thumbnailTitle.unbind();
+            if (thumbnailController != null) {
+                thumbnailController.setSelectedStyle(false);
+
+                StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+
+                thumbnailTitle.unbind();
+            }
         }
+
 
         // Set the unselected style for all the thumbnails
         loggedInUser.setSelectedNote(note);
@@ -206,7 +212,6 @@ public class BusinessLogic implements BlInterface {
         StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
         StringProperty editorTitle = noteEditorController.getNoteTitle().textProperty();
         noteEditorController.bindThumbnailController(thumbnailController);
-
         thumbnailTitle.bind(editorTitle);
     }
 
@@ -227,6 +232,12 @@ public class BusinessLogic implements BlInterface {
     public void updateNote(Note note) {
         noteThumbnailControllerMap.get(note).updateContent();
         db.updateNote(note);
+
+        // Readd the thumbnail to the list of thumbnails
+        // This is done to make sure that the thumbnail is at the top of the list
+        NoteThumbnailController tc = noteThumbnailControllerMap.get(note);
+        thumbnails.remove(tc.getRoot());
+        thumbnails.add(0, tc.getRoot());
     }
 
     @Override
@@ -251,7 +262,6 @@ public class BusinessLogic implements BlInterface {
         Session session = db.getSession();
         session.setCurrentUser(user);
         db.saveSession(session);
-
     }
 
     private void setLoggedInUser(OvernoteUser user, boolean rememberMe) {
@@ -273,15 +283,11 @@ public class BusinessLogic implements BlInterface {
             noteThumbnailControllerMap.get(note).show();
         } else {
             try {
-                //here the id is right
-
                 logger.info("this note's id is \"{}\"",note.getId());
                 FXMLLoader fxmlLoader = new FXMLLoader(NoteThumbnailController.class.getResource("note_thumbnail.fxml"));
                 Node thumbnail = fxmlLoader.load();
                 NoteThumbnailController controller = fxmlLoader.getController();
                 controller.setNote(note);
-                //here the id is right
-
                 noteThumbnailControllerMap.put(note, controller);
                 thumbnails.add(0,thumbnail);
 
@@ -304,6 +310,12 @@ public class BusinessLogic implements BlInterface {
     @Override
     public NoteThumbnailController getThumbnailController(Note note) {
         return noteThumbnailControllerMap.get(note);
+    }
+
+    @Override
+    public Note generateAINote(String prompt) throws GeminiException {
+        String generatedContent = sendGeminiRequest(prompt);
+        return new Note(getTranslation("note.ai.note.title"), generatedContent, this.getLoggedInUser());
     }
 
     //
@@ -362,6 +374,103 @@ public class BusinessLogic implements BlInterface {
         } catch (MissingResourceException e) {
             logger.error("Error loading translation for key: {}", s, e);
             return s;
+        }
+    }
+
+    @Override
+    public void setGeminiAPIKey(String key) {
+        logger.debug("Gemini API key set to: \"{}\"", key);
+        db.setGeminiAPIKey(key, loggedInUser);
+    }
+
+    /**
+     * Uses OKHTTP to send a request to the Gemini API and get the response.
+     * Parses the response using GSON and returns the generated text.
+     *
+     * @param prompt The prompt to send to the Gemini API.
+     * @return The generated text from the Gemini API.
+     * @throws GeminiException If there is an error sending the request or parsing the response.
+     */
+    @Override
+    public String sendGeminiRequest(String prompt) throws GeminiException {
+        prompt = "Write a basic HTML document (without markdown code blocks or ```html tags) as if you were taking notes about the following topic (in the same language, if unable to detect, their default locale is " + Locale.getDefault().toString() + "). Topic: [" + prompt + "] End of topic. If the topic is not clear, try to guess what the user wants and write about it. As last resource, say that the topic was not clear. Do not add any other information, just the HTML document.";
+        String apiKey = loggedInUser.getGeminiAPIKey();
+        if (apiKey == null || apiKey.isEmpty()) {
+            logger.error("Gemini API key is not set");
+            return null;
+        }
+
+        logger.debug("Preparing Gemini API request for prompt: \"{}\"", prompt);
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + apiKey;
+
+        Gson gson = new Gson();
+        OkHttpClient client = new OkHttpClient();
+
+        // Create JSON structure expected by Google Gemini API
+        Map<String, Object> requestBody = new HashMap<>();
+        List<Map<String, Object>> contents = new ArrayList<>();
+        Map<String, Object> content = new HashMap<>();
+        List<Map<String, Object>> parts = new ArrayList<>();
+        Map<String, Object> part = new HashMap<>();
+
+        part.put("text", prompt);
+        parts.add(part);
+        content.put("parts", parts);
+        contents.add(content);
+        requestBody.put("contents", contents);
+
+        String json = gson.toJson(requestBody);
+        logger.trace("Request JSON: {}", json);
+
+        okhttp3.RequestBody body = okhttp3.RequestBody.create(json, okhttp3.MediaType.parse("application/json"));
+        okhttp3.Request request = new okhttp3.Request.Builder()
+                .url(url)
+                .post(body)
+                .addHeader("Content-Type", "application/json")
+                .build();
+
+        logger.debug("Sending request to Gemini API...");
+        try (okhttp3.Response response = client.newCall(request).execute()) {
+            int statusCode = response.code();
+            logger.debug("Received response with status code: {}", statusCode);
+
+            if (response.isSuccessful() && response.body() != null) {
+                String responseBody = response.body().string();
+                logger.trace("Response body: {}", responseBody);
+
+                // Extract generated text from Gemini response structure
+                Map<String, Object> responseMap = gson.fromJson(responseBody, Map.class);
+                List<Map<String, Object>> candidates = (List<Map<String, Object>>) responseMap.get("candidates");
+
+                if (candidates != null && !candidates.isEmpty()) {
+                    Map<String, Object> candidate = candidates.get(0);
+                    Map<String, Object> content1 = (Map<String, Object>) candidate.get("content");
+                    List<Map<String, Object>> responseParts = (List<Map<String, Object>>) content1.get("parts");
+
+                    if (responseParts != null && !responseParts.isEmpty()) {
+                        String generatedText = (String) responseParts.get(0).get("text");
+                        logger.info("Gemini API request successful with response length: {} characters",
+                                generatedText != null ? generatedText.length() : 0);
+                        return generatedText;
+                    }
+                }
+
+                logger.error("Could not extract generated text from response");
+                throw new GeminiException("Could not extract generated text from response");
+            } else {
+                logger.error("Gemini API request failed: {} - {}", statusCode, response.message());
+                try {
+                    String errorBody = response.body() != null ? response.body().string() : "No response body";
+                    logger.error("Error details: {}", errorBody);
+                    throw new GeminiException(errorBody);
+                } catch (IOException e) {
+                    logger.error("Could not read error response body", e);
+                    throw new GeminiException("Error reading Gemini API response");
+                }
+            }
+        } catch (IOException e) {
+            logger.error("Network error sending Gemini API request", e);
+            throw new GeminiException("Network error sending Gemini API request");
         }
     }
 }

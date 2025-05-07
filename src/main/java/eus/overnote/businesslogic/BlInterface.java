@@ -37,6 +37,7 @@ public interface BlInterface {
     Note getSelectedNote();
     void moveNoteToTrash(Note note);
     void deleteNote(Note note);
+    Note generateAINote(String prompt) throws GeminiException;
 
     // Thumbnail
     NoteThumbnailController getThumbnailController(Note note);
@@ -45,4 +46,11 @@ public interface BlInterface {
     void changeLanguage(Locale locale);
     Locale loadLanguage();
     String getTranslation(String s);
+
+    // AI
+    void setGeminiAPIKey(String key);
+
+    String sendGeminiRequest(String prompt) throws GeminiException;
+
+    void checkNotesForDeletion();
 }

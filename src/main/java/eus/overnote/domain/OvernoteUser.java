@@ -35,6 +35,9 @@ public class OvernoteUser {
     @Setter
     private Note selectedNote;
 
+    @Setter
+    private String GeminiAPIKey;
+
     @OneToMany(mappedBy ="user", cascade  = CascadeType.ALL, orphanRemoval = true)
     private final List<Note> notes = new ArrayList<>();
 

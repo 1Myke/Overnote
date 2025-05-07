@@ -22,7 +22,7 @@ public class NoteEditorController {
     private NoteThumbnailController bindedThumbnailController;
 
     /// The timer to detect user inactivity.
-    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.0001));
+    private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.25));
     BlInterface bl = BusinessLogic.getInstance();
 
     @FXML
@@ -81,9 +81,18 @@ public class NoteEditorController {
     public void updateNote() {
         if (selectedNote != null){
             logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
-            selectedNote.setTitle(noteTitle.getText());
-            selectedNote.setContent(htmlEditor.getHtmlText());
-            //selectedNote.setLastModificationDate(new Date());
+
+            String titleText = noteTitle.getText();
+            String htmlText = htmlEditor.getHtmlText();
+
+            // Check there have been changes
+            if (htmlText.equals(selectedNote.getContent()) && titleText.equals(selectedNote.getTitle())) {
+                logger.debug("No changes detected for note {}", selectedNote.getId());
+                return;
+            }
+
+            selectedNote.setTitle(titleText);
+            selectedNote.setContent(htmlText);
             bl.updateNote(selectedNote);
             logger.debug("Note {} saved for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
             logger.debug("{}'s notes: {}", selectedNote.getUser().getEmail(), selectedNote.getUser().getNotes());

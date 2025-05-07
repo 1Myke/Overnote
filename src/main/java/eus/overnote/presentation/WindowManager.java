@@ -126,7 +126,6 @@ public class WindowManager {
         loadRegisterScene();
 
         navigateToMain();
-
     }
 
     private void loadRegisterScene() {

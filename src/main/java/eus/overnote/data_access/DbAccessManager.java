@@ -178,12 +178,27 @@ public class DbAccessManager {
         try {
             db.getTransaction().begin();
             note.getUser().getNotes().remove(note);
+            note.getUser().setSelectedNote(null);
+            note.setUser(null);
             db.remove(note);
             db.getTransaction().commit();
             logger.info("Note with id {} deleted successfully", note.getId());
         } catch (Exception e) {
             db.getTransaction().rollback();
             logger.error("Error deleting note: {}", e.getMessage());
+        }
+    }
+
+    public void setGeminiAPIKey(String key, OvernoteUser loggedInUser) {
+        try {
+            db.getTransaction().begin();
+            loggedInUser.setGeminiAPIKey(key);
+            db.merge(loggedInUser);
+            db.getTransaction().commit();
+            logger.info("Gemini API key set successfully");
+        } catch (Exception e) {
+            db.getTransaction().rollback();
+            logger.error("Error setting Gemini API key: {}", e.getMessage());
         }
     }
 }

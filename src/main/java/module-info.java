@@ -12,6 +12,8 @@ module eus.overnote.presentation {
     requires jbcrypt;
     requires org.jsoup;
     requires javafx.web;
+    requires com.google.gson;
+    requires okhttp3;
 
     exports eus.overnote;
     exports eus.overnote.presentation;

@@ -7,6 +7,7 @@ import eus.overnote.presentation.WindowManager;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
 import eus.overnote.presentation.components.ProfileBannerController;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,16 +15,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Comparator;
 import java.util.Locale;
 
 public class MainApplicationController {
@@ -64,7 +64,7 @@ public class MainApplicationController {
 
     public void initialize() {
         logger.debug("Initializing main application view");
-
+        bl.checkNotesForDeletion();
         noteEditorController = bl.getNoteEditorController();
 
         // Initialize note list
@@ -86,21 +86,31 @@ public class MainApplicationController {
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
 
+        // Sort from oldest to newest
+        notes.sort(new Comparator<Note>() {
+            @Override
+            public int compare(Note n1, Note n2) {
+                if (n1.getCreationDate() == null || n2.getCreationDate() == null) {
+                    return 0;
+                }
+                return n1.getCreationDate().compareTo(n2.getCreationDate());
+            }
+        });
 
-        for(Note t: notes){
-            logger.info("the note has the id  \"{}\"", t.getId() );
-            //bl.addNewThumbnail(t);
-        //here the notes still have the correct id
-
-        }
-
-        notes.forEach(bl::addNewThumbnail);
+        // Add thumbnails to the sidebar
+        notes.forEach(note -> {
+            bl.addNewThumbnail(note);
+            if (note.isDeleted()){
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                thumbnail.hide();
+            }
+        });
 
         // Bind the searchbar with the visible thumbnails
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             notes.forEach(note -> {
                 NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-                if (note.matchesContent(newValue)) {
+                if (note.matchesContent(newValue) && !note.isDeleted()) {
                     thumbnail.show();
                 } else {
                     thumbnail.hide();
@@ -145,17 +155,79 @@ public class MainApplicationController {
      */
     @FXML
     void createNote(ActionEvent event) {
-        if (bl.getLoggedInUser() == null) {
-            logger.error("No user logged in");
-            return;
-        }
+        logger.info("Saving the current note before creating the new.");
+        noteEditorController.updateNote();
 
         logger.debug("Creating new note");
         Note createdNote = new Note(bl.getTranslation("note.default.title"), "", bl.getLoggedInUser());
         bl.saveNote(createdNote);
         notes.add(createdNote);
         bl.addNewThumbnail(createdNote);
-        selectNote(createdNote);
+        Platform.runLater(() -> selectNote(createdNote));
+    }
+
+    @FXML
+    void createAINote(ActionEvent event) {
+        logger.info("Saving the current note before creating the new.");
+        noteEditorController.updateNote();
+
+        logger.debug("Creating new AI generated note");
+
+        // Show a dialog asking prompt for the AI note
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle(bl.getTranslation("main.ai.note.create.dialog.title"));
+        dialog.setHeaderText(null);
+        dialog.setContentText(bl.getTranslation("main.ai.note.create.dialog.content"));
+        dialog.showAndWait().ifPresent(prompt -> {
+            logger.debug("Creating new AI note with prompt: \"{}\"", prompt);
+
+            // Show progress indicator
+            ProgressIndicator progressIndicator = new ProgressIndicator();
+            progressIndicator.setMaxSize(50, 50);
+            Alert progressAlert = new Alert(Alert.AlertType.NONE);
+            progressAlert.setTitle(bl.getTranslation("main.ai.note.generating.dialog.title"));
+            progressAlert.setGraphic(progressIndicator);
+            progressAlert.setHeaderText(bl.getTranslation("main.ai.note.generating.dialog.content"));
+            progressAlert.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+            // Create background task
+            javafx.concurrent.Task<Note> task = new javafx.concurrent.Task<>() {
+                @Override
+                protected Note call() throws Exception {
+                    return bl.generateAINote(prompt);
+                }
+            };
+
+            // Handle task completion
+            task.setOnSucceeded(e -> {
+                progressAlert.close();
+                Note generatedNote = task.getValue();
+                bl.saveNote(generatedNote);
+                notes.add(generatedNote);
+                bl.addNewThumbnail(generatedNote);
+                Platform.runLater(() -> selectNote(generatedNote));
+            });
+
+            // Handle task failure
+            task.setOnFailed(e -> {
+                progressAlert.close();
+                logger.error("Error generating AI note: {}", task.getException().getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle(bl.getTranslation("main.ai.note.error.title"));
+                alert.setHeaderText(null);
+                alert.setContentText(bl.getTranslation("main.ai.note.error.content"));
+                alert.showAndWait();
+            });
+
+            // Start the task in a new thread
+            new Thread(task).start();
+            progressAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.CANCEL && task.isRunning()) {
+                    task.cancel();
+                }
+            });
+        });
+
     }
 
     /**
@@ -177,5 +249,15 @@ public class MainApplicationController {
     @FXML
     void focusSearchBar(MouseEvent event) {
         searchTextField.requestFocus();
+    }
+
+    @FXML
+    void configureGemini(ActionEvent event) {
+        logger.debug("Configuring Gemini");
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Gemini Configuration");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Enter the Gemini API key:");
+        dialog.showAndWait().ifPresent(bl::setGeminiAPIKey);
     }
 }

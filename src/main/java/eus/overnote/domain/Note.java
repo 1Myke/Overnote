@@ -1,5 +1,6 @@
 package eus.overnote.domain;
 
+import eus.overnote.presentation.components.NoteEditorController;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +35,7 @@ public class Note {
     private Date deleteDate;
 
     @ManyToOne()
+    @Setter
     @JoinColumn(nullable = false)
     private OvernoteUser user;
 
