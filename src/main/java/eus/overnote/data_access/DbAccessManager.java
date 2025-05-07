@@ -176,12 +176,18 @@ public class DbAccessManager {
     public void deleteNote(Note note) {
         try {
             db.getTransaction().begin();
-            note.getUser().getNotes().remove(note);
-            note.getUser().setSelectedNote(null);
-            note.setUser(null);
-            db.remove(note);
-            db.getTransaction().commit();
-            logger.info("Note with id {} deleted successfully", note.getId());
+            Note managedNote = db.find(Note.class, note.getId());
+            if (managedNote != null) {
+                managedNote.getUser().getNotes().remove(managedNote);
+                managedNote.getUser().setSelectedNote(null);
+                managedNote.setUser(null);
+                db.remove(managedNote);
+                db.getTransaction().commit();
+                logger.info("Note with id {} deleted successfully", note.getId());
+            } else {
+                db.getTransaction().rollback();
+                logger.error("Note with id {} not found", note.getId());
+            }
         } catch (Exception e) {
             db.getTransaction().rollback();
             logger.error("Error deleting note: {}", e.getMessage());
