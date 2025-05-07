@@ -98,18 +98,14 @@ public class MainApplicationController {
         });
 
         // Add thumbnails to the sidebar
-        notes.forEach(bl::addNewThumbnail);
-        for(Note n : notes){
-
-            if (n.isDeleted()){
-                NoteThumbnailController thumbnail = bl.getThumbnailController(n);
+        notes.forEach(note -> {
+            bl.addNewThumbnail(note);
+            if (note.isDeleted()){
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
                 thumbnail.hide();
             }
-        }
+        });
 
-
-
-        ;
         // Bind the searchbar with the visible thumbnails
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             notes.forEach(note -> {

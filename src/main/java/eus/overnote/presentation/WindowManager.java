@@ -107,7 +107,6 @@ public class WindowManager {
         loginController.clearFields();
         registerController.clearFields();
 
-
         if (!bl.isUserLoggedIn()) return;
 
         loadMainScene();
@@ -124,7 +123,6 @@ public class WindowManager {
         loadRegisterScene();
 
         navigateToMain();
-
     }
 
     private void loadRegisterScene() {
