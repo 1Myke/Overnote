@@ -5,6 +5,8 @@ name: jDeploy CI with Maven
 
 on:
   push:
+    branches: ['*']
+    tags: ['*']
 
 jobs:
   build:
@@ -23,6 +25,6 @@ jobs:
         run: mvn -B package --file pom.xml
 
       - name: Build App Installer Bundles
-        uses: shannah/jdeploy@v4.1.1
+        uses: shannah/jdeploy@master
         with:
           github_token: ${{ github.token }}
