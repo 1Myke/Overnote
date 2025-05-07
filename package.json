@@ -7,7 +7,7 @@
     "repository": "",
     "version": "1.0.0",
     "jdeploy": {
-        "jdk": false,
+        "jdk": true,
         "publishTargets": [
             {
                 "name": "npm: Overnote",
@@ -21,6 +21,7 @@
             }
         ],
         "javaVersion": "21",
+        "jar": "target/Overnote-1.0-SNAPSHOT-jar-with-dependencies.jar",
         "javafx": true,
         "title": "Overnote"
     },
