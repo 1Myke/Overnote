@@ -2,8 +2,8 @@ name: Build and Package Overnote
 
 on:
   push:
-#    tags:
-#      - 'v*'  # Trigger on version tags like v1.0.0
+  #    tags:
+  #      - 'v*'  # Trigger on version tags like v1.0.0
   workflow_dispatch:
 
 jobs:
@@ -11,7 +11,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        #        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest] # For testing purposes, only run on Ubuntu for now
 
     steps:
       - name: Checkout repository
@@ -30,15 +31,25 @@ jobs:
       - name: Create native installer
         run: |
           mkdir -p dist
+
+          # Determine installer type
+          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+            TYPE=deb
+          elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+            TYPE=msi
+          else
+            TYPE=pkg
+          fi
+
           jpackage \
             --input target \
             --name Overnote \
             --main-jar Overnote-1.0-SNAPSHOT-jar-with-dependencies.jar \
             --main-class eus.overnote.Main \
-            --type ${{ matrix.os == 'ubuntu-latest' && 'deb' || (matrix.os == 'windows-latest' && 'msi' || 'pkg') }} \
+            --type "$TYPE" \
             --dest dist \
-            --app-version "${{ github.ref_name }}" \
-            --icon icon.png || true
+            --app-version "${{ github.ref_name || '0.0.0-test' }}"
+            --icon src/main/resources/icon.png
 
       - name: Upload packaged app
         uses: actions/upload-artifact@v4
