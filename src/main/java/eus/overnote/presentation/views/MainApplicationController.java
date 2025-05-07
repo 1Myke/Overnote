@@ -31,6 +31,7 @@ public class MainApplicationController {
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
     private final BlInterface bl = BusinessLogic.getInstance();
     private NoteEditorController noteEditorController;
+    private boolean viewingTrash = false;
 
     @FXML
     private VBox sidebarVBox;
@@ -110,7 +111,7 @@ public class MainApplicationController {
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             notes.forEach(note -> {
                 NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-                if (note.matchesContent(newValue) && !note.isDeleted()) {
+                if (note.matchesContent(newValue) && (!note.isDeleted() ^ viewingTrash)) {
                     thumbnail.show();
                 } else {
                     thumbnail.hide();
@@ -259,5 +260,34 @@ public class MainApplicationController {
         dialog.setHeaderText(null);
         dialog.setContentText("Enter the Gemini API key:");
         dialog.showAndWait().ifPresent(bl::setGeminiAPIKey);
+    }
+
+    @FXML
+    void toggleTrashView(ActionEvent event) {
+        logger.debug("Toggling trash view");
+        viewingTrash = !viewingTrash;
+        if (viewingTrash) {
+            newNoteButton.setDisable(true);
+            newNoteAiButton.setDisable(true);
+            notes.forEach(note -> {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                if (note.isDeleted()) {
+                    thumbnail.show();
+                } else {
+                    thumbnail.hide();
+                }
+            });
+        } else {
+            newNoteButton.setDisable(false);
+            newNoteAiButton.setDisable(false);
+            notes.forEach(note -> {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                if (note.isDeleted()) {
+                    thumbnail.hide();
+                } else {
+                    thumbnail.show();
+                }
+            });
+        }
     }
 }
