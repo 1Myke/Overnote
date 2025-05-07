@@ -86,14 +86,6 @@ public class MainApplicationController {
         thumbnails = bl.getThumbnails();
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
 
-
-        for(Note t: notes){
-            logger.info("the note has the id  \"{}\"", t.getId() );
-            //bl.addNewThumbnail(t);
-        //here the notes still have the correct id
-
-        }
-
         // Sort from oldest to newest
         notes.sort(new Comparator<Note>() {
             @Override
