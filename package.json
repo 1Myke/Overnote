@@ -15,6 +15,7 @@
         }],
         "javaVersion": "21",
         "jar": "target/Overnote-1.0-SNAPSHOT-jar-with-dependencies.jar",
+        "installerName": "Overnote_Installer",
         "javafx": false,
         "title": "Overnote"
     },
