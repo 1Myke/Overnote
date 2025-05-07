@@ -4,6 +4,7 @@ import eus.overnote.domain.Note;
 import eus.overnote.domain.OvernoteUser;
 import eus.overnote.presentation.components.NoteEditorController;
 import eus.overnote.presentation.components.NoteThumbnailController;
+import eus.overnote.presentation.views.MainApplicationController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import java.util.Locale;
@@ -36,21 +37,23 @@ public interface BlInterface {
     ObservableList<Node> getThumbnails();
     Note getSelectedNote();
     void moveNoteToTrash(Note note);
+    void recoverNote(Note selectedNote);
     void deleteNote(Note note);
     Note generateAINote(String prompt) throws GeminiException;
 
     // Thumbnail
     NoteThumbnailController getThumbnailController(Note note);
-
     // Language
     void changeLanguage(Locale locale);
+
     Locale loadLanguage();
     String getTranslation(String s);
-
     // AI
+
     void setGeminiAPIKey(String key);
 
     String sendGeminiRequest(String prompt) throws GeminiException;
-
     void checkNotesForDeletion();
+
+    void setMainApplicationController(MainApplicationController mainApplicationController);
 }

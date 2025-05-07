@@ -20,10 +20,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Comparator;
 import java.util.Locale;
 
 public class MainApplicationController {
@@ -31,6 +31,7 @@ public class MainApplicationController {
     private static final Logger logger = LoggerFactory.getLogger(MainApplicationController.class);
     private final BlInterface bl = BusinessLogic.getInstance();
     private NoteEditorController noteEditorController;
+    private boolean viewingTrash = false;
 
     @FXML
     private VBox sidebarVBox;
@@ -48,6 +49,9 @@ public class MainApplicationController {
     private Button newNoteButton;
 
     @FXML
+    private Button toggleTrashButton;
+
+    @FXML
     private MenuButton profileMenuButton;
 
     @FXML
@@ -59,13 +63,16 @@ public class MainApplicationController {
     @FXML
     private MenuItem eu;
 
+    @Getter
     private ObservableList<Note> notes;
     private ObservableList<Node> thumbnails;
 
     public void initialize() {
         logger.debug("Initializing main application view");
         bl.checkNotesForDeletion();
+        bl.setMainApplicationController(this);
         noteEditorController = bl.getNoteEditorController();
+        noteEditorController.clearEditor();
 
         // Initialize note list
         notes = FXCollections.observableArrayList(bl.getNotesFromUserId());
@@ -87,14 +94,11 @@ public class MainApplicationController {
         Bindings.bindContent(sidebarVBox.getChildren(), thumbnails);
 
         // Sort from oldest to newest
-        notes.sort(new Comparator<Note>() {
-            @Override
-            public int compare(Note n1, Note n2) {
-                if (n1.getCreationDate() == null || n2.getCreationDate() == null) {
-                    return 0;
-                }
-                return n1.getCreationDate().compareTo(n2.getCreationDate());
+        notes.sort((n1, n2) -> {
+            if (n1.getCreationDate() == null || n2.getCreationDate() == null) {
+                return 0;
             }
+            return n1.getCreationDate().compareTo(n2.getCreationDate());
         });
 
         // Add thumbnails to the sidebar
@@ -107,16 +111,14 @@ public class MainApplicationController {
         });
 
         // Bind the searchbar with the visible thumbnails
-        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            notes.forEach(note -> {
-                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-                if (note.matchesContent(newValue) && !note.isDeleted()) {
-                    thumbnail.show();
-                } else {
-                    thumbnail.hide();
-                }
-            });
-        });
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> notes.forEach(note -> {
+            NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+            if (note.matchesContent(newValue) && (!note.isDeleted() ^ viewingTrash)) {
+                thumbnail.show();
+            } else {
+                thumbnail.hide();
+            }
+        }));
 
         // Language menu listeners
         en.setOnAction(event -> bl.changeLanguage(Locale.ENGLISH));
@@ -259,5 +261,38 @@ public class MainApplicationController {
         dialog.setHeaderText(null);
         dialog.setContentText("Enter the Gemini API key:");
         dialog.showAndWait().ifPresent(bl::setGeminiAPIKey);
+    }
+
+    @FXML
+    void toggleTrashView(ActionEvent event) {
+        logger.debug("Toggling trash view");
+        noteEditorController.clearEditor();
+        viewingTrash = !viewingTrash;
+        noteEditorController.setViewingTrash(viewingTrash);
+        if (viewingTrash) {
+            toggleTrashButton.setText(bl.getTranslation("main.sidebar.button.toggleTrash.library"));
+            newNoteButton.setDisable(true);
+            newNoteAiButton.setDisable(true);
+            notes.forEach(note -> {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                if (note.isDeleted()) {
+                    thumbnail.show();
+                } else {
+                    thumbnail.hide();
+                }
+            });
+        } else {
+            toggleTrashButton.setText(bl.getTranslation("main.sidebar.button.toggleTrash.trash"));
+            newNoteButton.setDisable(false);
+            newNoteAiButton.setDisable(false);
+            notes.forEach(note -> {
+                NoteThumbnailController thumbnail = bl.getThumbnailController(note);
+                if (note.isDeleted()) {
+                    thumbnail.hide();
+                } else {
+                    thumbnail.show();
+                }
+            });
+        }
     }
 }

@@ -5,6 +5,7 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
@@ -18,8 +19,10 @@ import java.util.Date;
 public class NoteEditorController {
 
     private static final Logger logger = LoggerFactory.getLogger(NoteEditorController.class);
+    @Getter
     private Note selectedNote;
     private NoteThumbnailController bindedThumbnailController;
+    private boolean viewingTrash = false;
 
     /// The timer to detect user inactivity.
     private final PauseTransition savePause = new PauseTransition(javafx.util.Duration.seconds(0.25));
@@ -34,6 +37,12 @@ public class NoteEditorController {
 
     @FXML
     private HTMLEditor htmlEditor;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button trashButton;
 
     public void setSelectedNote(Note note) {
         // here the id is right
@@ -80,7 +89,7 @@ public class NoteEditorController {
 
     public void updateNote() {
         if (selectedNote != null){
-            logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+            logger.debug("Saving note {} for user {}", selectedNote.getId(), selectedNote.getUser() != null ? selectedNote.getUser().getEmail() : "Unknown");
 
             String titleText = noteTitle.getText();
             String htmlText = htmlEditor.getHtmlText();
@@ -101,26 +110,40 @@ public class NoteEditorController {
 
     @FXML
     public void moveToTrash() {
-        if (selectedNote != null) {
-            logger.debug("Note {} moved to trash for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
-            bl.moveNoteToTrash(selectedNote);
+        if (!viewingTrash) {
+            if (selectedNote != null) {
+                logger.debug("Note {} moved to trash for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+                bl.moveNoteToTrash(selectedNote);
+            }
+        } else {
+            if (selectedNote != null) {
+                logger.debug("Note {} deleted for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+                bl.deleteNote(selectedNote);
+            }
         }
     }
 
     @FXML
     void saveNoteClickingButton() {
-        updateNote();
+        if (!viewingTrash) {
+            updateNote();
+        } else {
+            // Recover note
+            if (selectedNote != null) {
+                logger.debug("Note {} recovered for user {}", selectedNote.getId(), selectedNote.getUser().getEmail());
+                bl.recoverNote(selectedNote);
+            }
+        }
     }
 
     public void clearEditor() {
-        root.setVisible(false);
-        htmlEditor.setHtmlText("");
-        noteTitle.clear();
-        savePause.stop();
-    }
+        NoteThumbnailController tc = bl.getThumbnailController(selectedNote);
+        if (tc != null) {
+            tc.setSelectedStyle(false);
+        }
 
-    public Note getSelectedNoteNote() {
-        return  this.selectedNote;
+        root.setVisible(false);
+        savePause.stop();
     }
 
     private void onNoteUpdate() {
@@ -129,5 +152,16 @@ public class NoteEditorController {
         savePause.playFromStart();
     }
 
+    public void setViewingTrash(boolean viewingTrash) {
+        this.viewingTrash = viewingTrash;
 
+        // Update the button texts
+        if (viewingTrash) {
+            saveButton.setText(bl.getTranslation("component.editor.button.recover"));
+            trashButton.setText(bl.getTranslation("component.editor.button.delete"));
+        } else {
+            saveButton.setText(bl.getTranslation("component.editor.button.save"));
+            trashButton.setText(bl.getTranslation("component.editor.button.trash"));
+        }
+    }
 }
