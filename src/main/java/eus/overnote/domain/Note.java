@@ -72,6 +72,11 @@ public class Note {
         this.deleteDate = new Date();
     }
 
+    public void recover() {
+        this.deleted = false;
+        this.deleteDate = null;
+    }
+
     public boolean matchesContent(String content) {
 
         // Compare raw title, compare parsed content

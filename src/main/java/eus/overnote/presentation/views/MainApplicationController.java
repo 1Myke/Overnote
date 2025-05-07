@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,12 +61,14 @@ public class MainApplicationController {
     @FXML
     private MenuItem eu;
 
+    @Getter
     private ObservableList<Note> notes;
     private ObservableList<Node> thumbnails;
 
     public void initialize() {
         logger.debug("Initializing main application view");
         bl.checkNotesForDeletion();
+        bl.setMainApplicationController(this);
         noteEditorController = bl.getNoteEditorController();
 
         // Initialize note list
@@ -265,7 +268,9 @@ public class MainApplicationController {
     @FXML
     void toggleTrashView(ActionEvent event) {
         logger.debug("Toggling trash view");
+        noteEditorController.clearEditor();
         viewingTrash = !viewingTrash;
+        noteEditorController.setViewingTrash(viewingTrash);
         if (viewingTrash) {
             newNoteButton.setDisable(true);
             newNoteAiButton.setDisable(true);

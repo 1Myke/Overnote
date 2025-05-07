@@ -149,7 +149,6 @@ public class DbAccessManager {
 
     public void updateNote(Note note) {
         try {
-
             logger.error(" last Updating note with id {}", note.getId());
             db.getTransaction().begin();
             db.merge(note);

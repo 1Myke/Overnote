@@ -44,6 +44,7 @@ public class BusinessLogic implements BlInterface {
     private ObservableList<Node> thumbnails;
     @Getter
     /// The controller of the main application window.
+    @Setter
     private MainApplicationController mainApplicationController;
 
     private BusinessLogic() {
@@ -177,7 +178,7 @@ public class BusinessLogic implements BlInterface {
         }
 
         // Update the previous note in the database
-        if(noteEditorController.getSelectedNoteNote() != null) {
+        if(noteEditorController.getSelectedNote() != null) {
             noteEditorController.updateNote();
         }
 
@@ -242,15 +243,27 @@ public class BusinessLogic implements BlInterface {
 
     @Override
     public void moveNoteToTrash(Note note) {
+        noteEditorController.clearEditor();
         noteEditorController.updateNote();
         removeThumbnail(note);
         db.moveNoteToTrash(note);
+    }
+
+    @Override
+    public void recoverNote(Note note) {
         noteEditorController.clearEditor();
+        note.recover();
+        noteThumbnailControllerMap.get(note).hide();
+        db.updateNote(note);
     }
 
     @Override
     public void deleteNote(Note note) {
+        noteEditorController.clearEditor();
         db.deleteNote(note);
+        noteThumbnailControllerMap.get(note).hide();
+        mainApplicationController.getNotes().remove(note);
+        logger.debug("Note {} deleted", note.getId());
     }
 
     private void setLoggedInUser(OvernoteUser user) {
