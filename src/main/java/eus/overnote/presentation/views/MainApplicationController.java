@@ -104,7 +104,7 @@ public class MainApplicationController {
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             notes.forEach(note -> {
                 NoteThumbnailController thumbnail = bl.getThumbnailController(note);
-                if (note.matchesContent(newValue)) {
+                if (note.matchesContent(newValue) && !note.isDeleted()) {
                     thumbnail.show();
                 } else {
                     thumbnail.hide();
