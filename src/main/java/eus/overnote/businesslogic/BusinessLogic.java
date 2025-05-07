@@ -185,9 +185,15 @@ public class BusinessLogic implements BlInterface {
         Note previousNote = loggedInUser.getSelectedNote();
         if (previousNote != null) {
             NoteThumbnailController thumbnailController = noteThumbnailControllerMap.get(previousNote);
-            StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
-            thumbnailTitle.unbind();
+            if (thumbnailController != null) {
+                thumbnailController.setSelectedStyle(false);
+
+                StringProperty thumbnailTitle = thumbnailController.getTitleText().textProperty();
+
+                thumbnailTitle.unbind();
+            }
         }
+
 
         // Set the unselected style for all the thumbnails
         loggedInUser.setSelectedNote(note);
