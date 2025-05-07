@@ -178,6 +178,8 @@ public class DbAccessManager {
         try {
             db.getTransaction().begin();
             note.getUser().getNotes().remove(note);
+            note.getUser().setSelectedNote(null);
+            note.setUser(null);
             db.remove(note);
             db.getTransaction().commit();
             logger.info("Note with id {} deleted successfully", note.getId());

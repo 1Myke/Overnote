@@ -51,4 +51,6 @@ public interface BlInterface {
     void setGeminiAPIKey(String key);
 
     String sendGeminiRequest(String prompt) throws GeminiException;
+
+    void checkNotesForDeletion();
 }

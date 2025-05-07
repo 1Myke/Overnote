@@ -113,7 +113,6 @@ public class BusinessLogic implements BlInterface {
         if (checkPassword(password, user.getPassword())) {
             setLoggedInUser(user, rememberMe);
             thumbnails = FXCollections.observableArrayList();
-            checkNotesForDeletion();
             return user;
         } else
             return null;
@@ -123,7 +122,8 @@ public class BusinessLogic implements BlInterface {
      * Delete the notes that are marked as trashed
      * if they were deleted more than 30 days ago.
      */
-    private void checkNotesForDeletion() {
+    @Override
+    public void checkNotesForDeletion() {
         for (Note note : loggedInUser.getNotes()) {
             if (note.isDeleted()) {
                 long diff = System.currentTimeMillis() - note.getDeleteDate().getTime();

@@ -64,7 +64,7 @@ public class MainApplicationController {
 
     public void initialize() {
         logger.debug("Initializing main application view");
-
+        bl.checkNotesForDeletion();
         noteEditorController = bl.getNoteEditorController();
 
         // Initialize note list
