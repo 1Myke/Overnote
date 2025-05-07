@@ -16,10 +16,7 @@
         "javaVersion": "21",
         "jar": "target/Overnote-1.0-SNAPSHOT-jar-with-dependencies.jar",
         "javafx": false,
-        "title": "Overnote",
-        "installerName": "Overnote_Installer",
-        "bundles": ["win", "linux"],
-        "installers": ["win", "linux"]
+        "title": "Overnote"
     },
     "dependencies": {
         "command-exists-promise": "^2.0.2",
