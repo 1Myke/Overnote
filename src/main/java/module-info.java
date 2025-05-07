@@ -1,5 +1,10 @@
 module eus.overnote.presentation {
     requires javafx.fxml;
+    requires javafx.controls;
+    requires javafx.graphics;
+    requires javafx.web;
+    requires javafx.base;
+    requires javafx.media;
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
@@ -11,17 +16,17 @@ module eus.overnote.presentation {
     requires com.h2database;
     requires jbcrypt;
     requires org.jsoup;
-    requires javafx.web;
+    requires org.fxmisc.richtext;
 
     exports eus.overnote;
     exports eus.overnote.presentation;
     exports eus.overnote.presentation.components;
     exports eus.overnote.factories;
     exports eus.overnote.domain;
+    exports eus.overnote.presentation.views;
 
     opens eus.overnote.domain to org.hibernate.orm.core;
     opens eus.overnote.presentation to javafx.fxml;
     opens eus.overnote.presentation.components to javafx.fxml;
-    exports eus.overnote.presentation.views;
     opens eus.overnote.presentation.views to javafx.fxml;
 }

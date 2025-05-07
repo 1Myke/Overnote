@@ -1,0 +1,47 @@
+name: Build and Package Overnote
+
+on:
+  push:
+#    tags:
+#      - 'v*'  # Trigger on version tags like v1.0.0
+  workflow_dispatch:
+
+jobs:
+  build-and-package:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Build JAR with dependencies
+        run: mvn clean package
+
+      - name: Create native installer
+        run: |
+          mkdir -p dist
+          jpackage \
+            --input target \
+            --name Overnote \
+            --main-jar Overnote-1.0-SNAPSHOT-jar-with-dependencies.jar \
+            --main-class eus.overnote.Main \
+            --type ${{ matrix.os == 'ubuntu-latest' && 'deb' || (matrix.os == 'windows-latest' && 'msi' || 'pkg') }} \
+            --dest dist \
+            --app-version "${{ github.ref_name }}" \
+            --icon icon.png || true
+
+      - name: Upload packaged app
+        uses: actions/upload-artifact@v4
+        with:
+          name: overnote-${{ matrix.os }}
+          path: dist/
