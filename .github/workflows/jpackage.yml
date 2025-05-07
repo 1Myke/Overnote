@@ -48,7 +48,7 @@ jobs:
             --main-class eus.overnote.Main \
             --type "$TYPE" \
             --dest dist \
-            --app-version "${{ github.ref_name || '0.0.0-test' }}"
+            --app-version "${{ github.ref_name || '0.0.0-test' }}" \
             --icon src/main/resources/icon.png
 
       - name: Upload packaged app
