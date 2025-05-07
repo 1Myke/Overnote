@@ -5,6 +5,7 @@ import eus.overnote.businesslogic.BusinessLogic;
 import eus.overnote.domain.Note;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.web.HTMLEditor;
@@ -36,6 +37,12 @@ public class NoteEditorController {
 
     @FXML
     private HTMLEditor htmlEditor;
+
+    @FXML
+    private Button saveButton;
+
+    @FXML
+    private Button trashButton;
 
     public void setSelectedNote(Note note) {
         // here the id is right
@@ -148,6 +155,13 @@ public class NoteEditorController {
     public void setViewingTrash(boolean viewingTrash) {
         this.viewingTrash = viewingTrash;
 
-        // Update the buttons of the editor
+        // Update the button texts
+        if (viewingTrash) {
+            saveButton.setText(bl.getTranslation("component.editor.button.recover"));
+            trashButton.setText(bl.getTranslation("component.editor.button.delete"));
+        } else {
+            saveButton.setText(bl.getTranslation("component.editor.button.save"));
+            trashButton.setText(bl.getTranslation("component.editor.button.trash"));
+        }
     }
 }
